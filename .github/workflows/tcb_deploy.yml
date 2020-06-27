@@ -1,0 +1,19 @@
+name: DeployBeetcbToTcb #workflow在github显示的名字
+
+on: push #触发workflows的方式 多条件触发写法 on: [push,pull_request]
+
+jobs:
+  deploy: #job ID 
+    runs-on: ubuntu-latest #运行job的系统
+    name: Tcb Github Action Deploy Job #job在github显示的名称
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Deploy static to Tcb
+        id: beetcbTcb
+        uses: TencentCloudBase/cloudbase-action@v1.1.0 #使用tcb的github action
+        with:  #tcb相关配置
+          secretId: ${{ secrets.SECRET_ID }}
+          secretKey: ${{ secrets.SECRET_KEY }}
+          envId: ${{ secrets.ENV_ID }}
+          staticSrcPath: ./ #推送目录
