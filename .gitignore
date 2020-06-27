@@ -6,7 +6,6 @@ npm-debug.*
 .DS_Store
 .sass-cache
 node_modules
-dist 
 
 # Specifics
 
