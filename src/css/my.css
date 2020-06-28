@@ -1,0 +1,138 @@
+:root {
+    --white: #ddf3f5;
+    --blue: #a6dcef;
+    --pink: #f2aaaa;
+    --pinkaccent: #e36387;
+    --black: #1d1b38;
+}
+
+/* svg preset */
+.svg-icon {
+    width: 1em;
+    height: 1em;
+  }
+  
+  .svg-icon path,
+  .svg-icon polygon,
+  .svg-icon rect {
+    fill: var(--pink);
+  }
+  
+  .svg-icon circle {
+    stroke: var(--pink);
+    stroke-width: 1;
+  }
+
+
+/* pre clear */
+body,html {
+    margin: 0;
+}
+html {
+    font-size:1.2rem;
+}
+    
+    @media(max-width:800px) {
+    html {
+        font-size:1rem;
+        }    
+    }
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+}
+ol,ul {
+    margin: 0;
+    display: inline;
+    list-style: none;
+}
+
+/* =========
+components  
+========= */
+
+/* header */
+.header {
+    position: relative;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--white);
+}
+.logo {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    text-align: center;
+}
+.logo a {
+    display: flex;
+    align-items: center;
+    color: var(--black);
+}
+.logo img {
+    width: 30px;
+    height: 30px;
+    margin-right: 1rem;
+    border: .5px solid var(--pink);
+    border-radius: 50%;
+}
+
+/* nav list */
+.nav-container {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+    @media(max-width:800px) {
+        .nav-items {
+            visibility: hidden;
+        }
+    }
+.nav-items:not(:nth-child(1)) {
+    margin-left: 20px;
+}
+
+/* mobile only hamburger */
+
+/* posts related */
+.posts {
+    width: 80%;
+    margin: 10px auto 10px;
+}
+    @media(max-width:800px) {
+        .posts {
+            width: 100%;
+        }
+    }
+.posts img {
+    width: 100%;
+}
+.posts-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+}
+.post {
+    display: flex;
+    align-items: center;
+    flex-flow: column wrap;
+    width: 200px;
+    margin: 0 10px 20px;
+    flex-flow: column nowrap;
+}
+
+/* footer */
+.footer {
+    background-color: var(--pinkaccent);
+    margin: 0 auto;
+}
+
+/* =========
+   bug fix 
+========= */

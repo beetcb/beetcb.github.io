@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ config.blog.description }}">
+    <title>{{ config.blog.title }}</title>
+    <link rel="stylesheet" href="{{ config.link.my_css }}">
+    <link rel="stylesheet" href="{{ config.link.highlight_css }}">
+    <link rel="shortcut icon" href="/src/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="{{ config.link.blog }}" target="_blank">
+                <img src={{ config.link.logo_src }}>
+                <span>{{ config.text.logo }}</span>
+            </a>
+        </div>
+        <ul class="nav-container">
+            {% for nav_items in config.blog.components.nav_items %}
+            <li class="nav-items">
+                <svg style="padding-top:6px;transform:scale(1.6)" class="svg-icon">
+                    <use xlink:href="/src/icon.svg#{{ nav_items }}" />
+                </svg>
+                {{ nav_items }}
+            </li>
+            {% endfor %}
+        </ul>
+    </header>
+    <main class="posts">
+        {{content | safe}}
+    </main>
+</body>
+
+</html>

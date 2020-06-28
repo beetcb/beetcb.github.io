@@ -1,0 +1,17 @@
+---
+layout: base
+eleventyExcludeFromCollections: true
+---
+<main class="posts">
+    <section class="posts-container">
+        {% for allPage in collections.all %}
+        <a class="post" href="{{ allPage.url }}">
+            <h1>{{ allPage.data.title }}</h1>
+        </a>
+        {% endfor %}
+
+    </section>
+</main>
+<footer class="footer">
+beetcb
+</footer>
