@@ -1,11 +1,18 @@
 blog:
   title: beet-11ty
-  description: a beginer theme based blog project with 11ty
+  description: 
+    metatag: a beginer theme based blog project with 11ty
+    logo: beetcabin
+    footer: Simply built by beet
   components: 
     nav_items: 
       - home
-      - share
+      - shared
       - tags
+    sociallogo: 
+      github: https://github.com/beetcb/
+      qq: https://qm.qq.com/cgi-bin/qm/qr?k=eaqvtvbTAtD7iw-HXwverJr736BwdPs6&noverify=0
+      
 
 link:
   blog: https://www.beetcb.com/
@@ -13,6 +20,5 @@ link:
   highlight_css: /src/css/prism-duotone-sea.css
   my_css: /src/css/my.css
 
-text:
-  logo: beetcabin
+
 

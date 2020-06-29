@@ -4,25 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ config.blog.description }}">
+    <meta name="description" content="{{ config.blog.description.metatag }}">
     <title>{{ config.blog.title }}</title>
     <link rel="stylesheet" href="{{ config.link.my_css }}">
     <link rel="stylesheet" href="{{ config.link.highlight_css }}">
     <link rel="shortcut icon" href="/src/favicon.ico" type="image/x-icon">
+    {% if eleventyExcludeFromCollections %}
+    <script defer src="/src/js/flickity.pkgd.min.js"></script>
+    <script defer src="/src/js/my.js"></script>
+    {% endif %}
 </head>
 
 <body>
     <header class="header">
-        <div class="logo">
-            <a href="{{ config.link.blog }}" target="_blank">
-                <img src={{ config.link.logo_src }}>
-                <span>{{ config.text.logo }}</span>
-            </a>
-        </div>
+        <a class="logo" href="/" target="_blank">
+            <img src="{{ config.link.logo_src }}">
+            <span>{{ config.blog.description.logo }}</span>
+        </a>
         <ul class="nav-container">
             {% for nav_items in config.blog.components.nav_items %}
             <li class="nav-items">
-                <svg style="padding-top:6px;transform:scale(1.6)" class="svg-icon">
+                <svg style="padding-top:7px;transform:scale(1.4)" class="svg-icon">
                     <use xlink:href="/src/icon.svg#{{ nav_items }}" />
                 </svg>
                 {{ nav_items }}
@@ -30,9 +32,24 @@
             {% endfor %}
         </ul>
     </header>
-    <main class="posts">
+    <main class="main">
         {{content | safe}}
     </main>
+    <footer class="footer">
+        <div>
+            {% for sociallogo, sociallink in config.blog.components.sociallogo %}
+            <a href="{{ sociallink }}" target="_blank">
+                <svg style="padding-top:6px;transform:scale(1.6)" class="svg-icon">
+                    <use xlink:href="/src/icon.svg#{{ sociallogo }}" />
+                </svg>
+            </a>
+            {% endfor %}
+        </div>
+        <div style="font-size:14px">
+            {{ config.blog.description.footer }} with <a style="color: skyblue;" href="https://www.11ty.dev/"
+                target="_blank">11ty</a>
+        </div>
+    </footer>
 </body>
 
 </html>

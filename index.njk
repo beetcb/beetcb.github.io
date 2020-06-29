@@ -2,16 +2,18 @@
 layout: base
 eleventyExcludeFromCollections: true
 ---
-<main class="posts">
-    <section class="posts-container">
+<div class="post-container">
+    <section class="post-collection">
         {% for allPage in collections.all %}
-        <a class="post" href="{{ allPage.url }}">
-            <h1>{{ allPage.data.title }}</h1>
+        <a style="background-image: url({{ allPage.data.nailimg }});" class="post" href="{{ allPage.url }}">
+            <img class="post-nailimg" src="{{ allPage.data.nailimg }}" alt="{{ allPage.data.title }}">
+            <div class="description">
+                <h1>{{ allPage.data.title }}</h1>
+            </div>
         </a>
         {% endfor %}
-
     </section>
-</main>
-<footer class="footer">
-beetcb
-</footer>
+    <section class="post-aside">
+        <div style="background:pink;width:300px;height:300px"></div>
+    </section>
+</div>

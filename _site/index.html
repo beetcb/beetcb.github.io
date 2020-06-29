@@ -9,34 +9,36 @@
     <link rel="stylesheet" href="/src/css/my.css">
     <link rel="stylesheet" href="/src/css/prism-duotone-sea.css">
     <link rel="shortcut icon" href="/src/favicon.ico" type="image/x-icon">
+    
+    <script defer src="/src/js/flickity.pkgd.min.js"></script>
+    <script defer src="/src/js/my.js"></script>
+    
 </head>
 
 <body>
     <header class="header">
-        <div class="logo">
-            <a href="https://www.beetcb.com/" target="_blank">
-                <img src=https://www.beetcb.com/pic/logo.svg>
-                <span>beetcabin</span>
-            </a>
-        </div>
+        <a class="logo" href="/" target="_blank">
+            <img src="https://www.beetcb.com/pic/logo.svg">
+            <span>beetcabin</span>
+        </a>
         <ul class="nav-container">
             
             <li class="nav-items">
-                <svg style="padding-top:6px;transform:scale(1.6)" class="svg-icon">
+                <svg style="padding-top:7px;transform:scale(1.4)" class="svg-icon">
                     <use xlink:href="/src/icon.svg#home" />
                 </svg>
                 home
             </li>
             
             <li class="nav-items">
-                <svg style="padding-top:6px;transform:scale(1.6)" class="svg-icon">
-                    <use xlink:href="/src/icon.svg#share" />
+                <svg style="padding-top:7px;transform:scale(1.4)" class="svg-icon">
+                    <use xlink:href="/src/icon.svg#shared" />
                 </svg>
-                share
+                shared
             </li>
             
             <li class="nav-items">
-                <svg style="padding-top:6px;transform:scale(1.6)" class="svg-icon">
+                <svg style="padding-top:7px;transform:scale(1.4)" class="svg-icon">
                     <use xlink:href="/src/icon.svg#tags" />
                 </svg>
                 tags
@@ -44,37 +46,65 @@
             
         </ul>
     </header>
-    <main class="posts">
-        <main class="posts">
-    <section class="posts-container">
+    <main class="main">
+        <div class="post-container">
+    <section class="post-collection">
         
-        <a class="post" href="/_post/git快扶我入门/">
-            <h1>Git 快扶我入门</h1>
+        <a style="background-image: url(https://www.nelsonkmc.com/img/github-logo.jpg);" class="post" href="/_post/git快扶我入门/">
+            <img class="post-nailimg" src="https://www.nelsonkmc.com/img/github-logo.jpg" alt="Git 快扶我入门">
+            <div class="description">
+                <h1>Git 快扶我入门</h1>
+            </div>
         </a>
         
-        <a class="post" href="/_post/ECMAScript数据类型及一般转换/">
-            <h1>对ECMAScript数据类型的理解</h1>
+        <a style="background-image: url(https://scontent-hkg4-1.xx.fbcdn.net/v/t31.0-8/p960x960/19250862_1385704434855281_2690929568776704071_o.png?_nc_cat=100&amp;_nc_sid=85a577&amp;_nc_ohc=HgvM9fFneZMAX93HZKB&amp;_nc_ht=scontent-hkg4-1.xx&amp;oh=f888772eafd5253f1f55e1d85334770d&amp;oe=5F224B25);" class="post" href="/_post/ECMAScript数据类型及一般转换/">
+            <img class="post-nailimg" src="https://scontent-hkg4-1.xx.fbcdn.net/v/t31.0-8/p960x960/19250862_1385704434855281_2690929568776704071_o.png?_nc_cat=100&amp;_nc_sid=85a577&amp;_nc_ohc=HgvM9fFneZMAX93HZKB&amp;_nc_ht=scontent-hkg4-1.xx&amp;oh=f888772eafd5253f1f55e1d85334770d&amp;oe=5F224B25" alt="对ECMAScript数据类型的理解">
+            <div class="description">
+                <h1>对ECMAScript数据类型的理解</h1>
+            </div>
         </a>
         
-        <a class="post" href="/_post/dontLookBack/">
-            <h1>DontLookBack-RickAndMorty</h1>
+        <a style="background-image: url(https://theoldqueenshead.com/wp-content/uploads/2017/08/rick-and-morty-square.jpg);" class="post" href="/_post/dontLookBack/">
+            <img class="post-nailimg" src="https://theoldqueenshead.com/wp-content/uploads/2017/08/rick-and-morty-square.jpg" alt="DontLookBack-RickAndMorty">
+            <div class="description">
+                <h1>DontLookBack-RickAndMorty</h1>
+            </div>
         </a>
         
-        <a class="post" href="/_post/git之修改commit记录/">
-            <h1>Git之修改commit记录</h1>
+        <a style="background-image: url(https://www.nelsonkmc.com/img/github-logo.jpg);" class="post" href="/_post/git之修改commit记录/">
+            <img class="post-nailimg" src="https://www.nelsonkmc.com/img/github-logo.jpg" alt="Git之修改commit记录">
+            <div class="description">
+                <h1>Git之修改commit记录</h1>
+            </div>
         </a>
         
-        <a class="post" href="/_post/file/">
-            <h1>one</h1>
-        </a>
-        
-
     </section>
-</main>
-<footer class="footer">
-beetcb
-</footer>
+    <section class="post-aside">
+        <div style="background:pink;width:300px;height:300px"></div>
+    </section>
+</div>
     </main>
+    <footer class="footer">
+        <div>
+            
+            <a href="https://github.com/beetcb/" target="_blank">
+                <svg style="padding-top:6px;transform:scale(1.6)" class="svg-icon">
+                    <use xlink:href="/src/icon.svg#github" />
+                </svg>
+            </a>
+            
+            <a href="https://qm.qq.com/cgi-bin/qm/qr?k=eaqvtvbTAtD7iw-HXwverJr736BwdPs6&amp;noverify=0" target="_blank">
+                <svg style="padding-top:6px;transform:scale(1.6)" class="svg-icon">
+                    <use xlink:href="/src/icon.svg#qq" />
+                </svg>
+            </a>
+            
+        </div>
+        <div style="font-size:14px">
+            Simply built by beet with <a style="color: skyblue;" href="https://www.11ty.dev/"
+                target="_blank">11ty</a>
+        </div>
+    </footer>
 </body>
 
 </html>

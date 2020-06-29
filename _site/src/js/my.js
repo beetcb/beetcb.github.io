@@ -1,0 +1,3 @@
+const flickity = new Flickity('', {
+
+})
