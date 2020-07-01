@@ -3,17 +3,29 @@ layout: base
 eleventyExcludeFromCollections: true
 ---
 <div class="post-container">
-    <section class="post-collection">
+    <section id="postList" class="post-collection">
         {% for allPage in collections.all %}
-        <a style="background-image: url({{ allPage.data.nailimg }});" class="post" href="{{ allPage.url }}">
-            <img class="post-nailimg" src="{{ allPage.data.nailimg }}" alt="{{ allPage.data.title }}">
-            <div class="description">
-                <h1>{{ allPage.data.title }}</h1>
-            </div>
-        </a>
+            <a data-index="{{ allPage.data.post }}" class="post" href="{{ allPage.url }}">
+                <img class="post-nailimg" src="{{ allPage.data.nailimg }}" alt="{{ allPage.data.title }}">
+                <div class="description">
+                    <h1>{{ allPage.data.title }}</h1>
+                </div>
+            </a>
         {% endfor %}
     </section>
-    <section class="post-aside">
-        <div style="background:pink;width:300px;height:300px"></div>
+    <section id="tagList" class="post-aside">
+        {% for allPage in collections.all %}
+            {% if allPage.data.tags.length > 1 %}
+                {% for allTag in allPage.data.tags %}
+                <a data-index="{{ allPage.data.post }}" class="tag" href="{{ allPage.url }}">
+                    @ {{ allTag }}
+                </a>
+                {% endfor %}
+            {% else %}
+                <a data-index="{{ allPage.data.post }}" class="tag" href="{{ allPage.url }}">
+                    @ {{ allPage.data.tags }}
+                </a>
+            {% endif %}
+        {% endfor %}
     </section>
 </div>

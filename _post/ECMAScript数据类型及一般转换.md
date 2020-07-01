@@ -8,12 +8,15 @@ toc: true
 mathjax: false
 post: 9
 date: 2020-06-04 06:30:01
-nailimg: https://scontent-hkg4-1.xx.fbcdn.net/v/t31.0-8/p960x960/19250862_1385704434855281_2690929568776704071_o.png?_nc_cat=100&_nc_sid=85a577&_nc_ohc=HgvM9fFneZMAX93HZKB&_nc_ht=scontent-hkg4-1.xx&oh=f888772eafd5253f1f55e1d85334770d&oe=5F224B25
-img: https://tvax3.sinaimg.cn/large/005K67iLgy1gfg8iocebuj30sg0lcta1.jpg
+nailimg: http://blog.appliedis.com/wp-content/uploads/2014/12/javascipt.png
+img: http://blog.appliedis.com/wp-content/uploads/2014/12/javascipt.png
 coverImg: https://tvax3.sinaimg.cn/large/005K67iLgy1gfg8iocebuj30sg0lcta1.jpg
 password:
 summary: 复习ES中数据类型
-tags:  JS
+tags:  
+- 数据类型
+- ECMAScript
+- 数据类型的转换
 categories: ES6
 keywords: 
 - 数据类型

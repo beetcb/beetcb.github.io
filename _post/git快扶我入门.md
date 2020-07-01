@@ -13,8 +13,8 @@ coverImg:
 password:
 summary: git getting started 我在Pluralsight学过的git课程，做个总结
 tags:
-- git
-- github
+- git教程
+- git入门
 categories:
 - git
 keywords:

@@ -30,6 +30,7 @@ body,html {
 }
 a {
     text-decoration: none;
+    color: var(--text)
 }
 ol,ul {
     margin: 0;
@@ -42,7 +43,8 @@ ol,ul {
 ========= */
 html {
     --bg-body: rgb(230, 228, 234);
-    --bg-edge: #e3f6f5;
+    --bg-edge: rgb(245, 245, 245);
+    --bg-tag: #e3f6f5;
     --text: hsl(0, 0%, 16%);
     --link: hsl(21, 100%, 85%);
     --lg: linear-gradient(to right bottom, #bdc3c7, #2c3e50);
@@ -152,12 +154,13 @@ body::before {
 .post-aside {
     display: flex;
     width: 35%;
+    justify-content: center;
+    flex-flow: row wrap;
+    align-content: center;
 }
 .post {
     position: relative;
     display: flex;
-    background: center no-repeat;
-    background-clip: padding-box;
     margin-bottom: 10px;
     padding: 30px 10px;
     border-radius: 15px;
@@ -170,18 +173,22 @@ body::before {
 
 .post:hover {
     transform: scale(1.05);
-    filter: brightness(.9) contrast(.8);
-    border-left-color: rgba(124, 215, 216, 0.85);
-}
-.post:last-child::after {
-    content: "";
-    flex: auto;
-    margin-bottom: 0;
+    filter: brightness(0.99) co2ntrast(1.2);
+    border-left-color: var(--bg-tag);
 }
 .post .description {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
+}
+.tag {
+    padding: .5em;
+    background-color: var(--bg-tag);
+    border-radius: 108em;
+}
+.tag {
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 /* post content layout */
@@ -226,8 +233,6 @@ body::before {
 /* =========
    bug fix 
 ========= */
-
-
 
 
 
