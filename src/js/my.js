@@ -1,4 +1,9 @@
 const postList = document.getElementById('postList');
+/* $event listener call$ method
+    - event
+    - function 
+    - [arguments]tagName
+    - [arguments]data-(atrr) */ 
 function listen(event, call) {
     arguments[2].addEventListener(event, (trash) => {
         const tar = trash.target,
@@ -11,9 +16,10 @@ function listen(event, call) {
         null;
     });
 }
+
 listen('mouseover', function () { 
     const index_attr = this.getAttribute('data-index'),
           addCSS = (s)=>((d,e)=>{ d.head.removeChild(d.head.children[d.head.children.length-1]);e = d.createElement("style");e.innerHTML = s;d.head.appendChild(e)})(document);
-          allStyle = `.tag[data-index="${index_attr}"]{order:-2;background:#2A9D8F;transition:background .5s,order .1s .4s}`;
+          allStyle = `.tag[data-index="${index_attr}"]{order:-2;background:#2A9D8F;transition:background .5s,order .1s .3s}`;
     addCSS(allStyle);
 }, postList, 'a', 'data-index');
