@@ -2,5 +2,9 @@
 layout: base
 ---
 <article style="margin: 0 auto" class="article">
-{{ content | safe }}
+    <h1 class="title">{{ title }}</h1>
+    <div class="content">
+        {{ content | safe }}
+    </div>
+    <div class="outline"></div>
 </article>

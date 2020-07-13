@@ -1,3 +1,8 @@
+/* custom font */
+@font-face {
+    font-family: 'pixer';
+    src: url(/src/Pixer.woff);
+}
 /* svg preset */
 .svg-icon {
     width: 20px;
@@ -7,7 +12,7 @@
   .svg-icon path,
   .svg-icon polygon,
   .svg-icon rect {
-    fill: var(--pink);
+    fill: var(--text);
   }
   
   .svg-icon circle {
@@ -42,12 +47,14 @@ ol,ul {
   global layout 
 ========= */
 html {
-    --bg-body: rgb(230, 228, 234);
-    --bg-edge: rgb(245, 245, 245);
-    --bg-tag: #e3f6f5;
-    --text: hsl(0, 0%, 16%);
-    --link: hsl(21, 100%, 85%);
-    --lg: linear-gradient(to right bottom, #bdc3c7, #2c3e50);
+    --bg-body: #282a36;
+    --bg-edge: #06375e;
+    --bg-tag: #012d4e;
+    --text: white;
+    --border: #b0dde9;
+    --border-hover: #04d481;
+    --link: #bd93f9;
+    --lg: linear-gradient(to right bottom, var(--border-hover), var(--border));
 }
 html[data-theme='dark'] {
     --bg-edge: #1d1b38;
@@ -109,6 +116,7 @@ body::before {
 .header .nav-container {
     display: flex;
     justify-content: center;
+    color: var(--text);
 }
 
 .logo {
@@ -122,6 +130,10 @@ body::before {
     margin-right: 10px;
     border-radius: 50%;
 }
+.logo span {
+    font-family: pixer;
+    font-size: 1.3em;
+}
 
 /* nav list */
 
@@ -134,7 +146,7 @@ body::before {
 /* main layout */
 .main {
     width: 100%;
-    margin: 53px auto 10px;
+    margin: 43px auto 0;
 }
 .main img,
 .main video {
@@ -146,6 +158,7 @@ body::before {
     justify-content: space-between;
 }
 .post-collection {
+    padding-top: 20px;
     width: 60%;
     display: flex;
     flex-flow: column nowrap;
@@ -161,26 +174,25 @@ body::before {
 .post {
     position: relative;
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     padding: 30px 10px;
-    border-radius: 15px;
-    border: 10px solid rgba(255,255,255,.15);
-    box-shadow: 1px 1px 4px rgba(0,0,0,.3);
+    border-radius: 10px;
+    align-items: center;
+    border: 1.5px solid var(--border);
+    box-shadow: 4px 4px 4px rgba(235, 235, 235, 0.3);
     transition: .3s transform ease-in-out,.3s filter ease-in-out,.5s border-left-color ease-in-out;
-    z-index: 997;
 
 }
 
 .post:hover {
-    transform: scale(1.05);
-    filter: brightness(0.99) co2ntrast(1.2);
-    border-left-color: var(--bg-tag);
+    transform: scale(1.02);
+    filter: brightness(0.99) contrast(1.2);
+    border-left-color: var(--border-hover);
+    box-shadow: 6px 6px 6px rgba(235, 235, 235, 0.3);
 }
-.post .description {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-}
+/* .post .description {
+    
+} */
 .tag {
     padding: .5em;
     background-color: var(--bg-tag);
@@ -199,6 +211,8 @@ body::before {
 .post .post-nailimg {
     height: 40px;
     width: 40px;
+    margin-right: 10px;
+    margin-left: 5px;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -207,6 +221,7 @@ body::before {
 .footer {
     width: 100%;
     height: 40px;
+    color: var(--text);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -214,12 +229,20 @@ body::before {
     border-top-left-radius: 35px;
     border-top-right-radius: 35px;
 }
+.footer-desc {
+    font-size: 1.1em !important;
+    font-family: pixer;
+}
 
 /* =========
    article   
 ========= */
-.article a {
+.article {
     color: var(--text);
+    padding-top: 5px !important;
+}
+.article a {
+    color: var(--link);
 }
 .article a::after {
     position: relative;
@@ -227,6 +250,34 @@ body::before {
     color: var(--link);
     top: 3.5px;
     left: 4px;
+}
+.article .title {
+    padding-left: 10px;
+}
+.article .content {
+    width: 70%;
+    padding: 5px 10px 20px;
+    margin: 0 auto;
+    border-top: 1px var(--border) solid;
+    border-radius: 20px;
+    box-shadow: 1px -4px 2px rgba(235, 235, 235, 0.3);
+}
+.content blockquote {
+    position: relative;
+    padding: 0 0 .5em 1.5em;
+    margin-left: 0;
+    margin-right: 0;
+    border: solid var(--border) 1px;
+    border-left: transparent;
+    border-radius: .5em;
+}
+.content blockquote::before {
+    position: absolute;
+    font-size: 4em;
+    left: 0;
+    top: 0;
+    content: "\201c";
+    color: var(--link);
 }
 
 
@@ -259,9 +310,14 @@ body::before {
         align-items: center;
     }
     .post-aside,
-    .article,
     .post-collection {
         width: 90%;
+    }
+    .article .content {
+        width: 100%;
+    }
+    .post-collection {
+        margin-bottom: 20px;
     }
     .header {
         justify-content: center;

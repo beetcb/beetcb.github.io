@@ -9,6 +9,7 @@ eleventyExcludeFromCollections: true
                 <img class="post-nailimg" src="{{ allPage.data.nailimg }}" alt="{{ allPage.data.title }}">
                 <div class="description">
                     <h1>{{ allPage.data.title }}</h1>
+                    <h1>{{ "2020-07-07" }}</h1>
                 </div>
             </a>
         {% endfor %}
@@ -18,12 +19,12 @@ eleventyExcludeFromCollections: true
             {% if allPage.data.tags.length > 1 %}
                 {% for allTag in allPage.data.tags %}
                 <a data-index="{{ allPage.data.post }}" class="tag" href="{{ allPage.url }}">
-                    @ {{ allTag }}
+                    # {{ allTag }}
                 </a>
                 {% endfor %}
             {% else %}
                 <a data-index="{{ allPage.data.post }}" class="tag" href="{{ allPage.url }}">
-                    @ {{ allPage.data.tags }}
+                    # {{ allPage.data.tags }}
                 </a>
             {% endif %}
         {% endfor %}

@@ -7,7 +7,7 @@ cover: true
 toc: true
 mathjax: false
 post: 4
-date: 2020-04-28 16:31:28
+date: 2020-04-28
 nailimg: https://www.nelsonkmc.com/img/github-logo.jpg
 coverImg:
 password:
