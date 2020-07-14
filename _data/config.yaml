@@ -2,7 +2,7 @@ blog:
   title: beet-11ty
   description: 
     metatag: a beginer theme based blog project with 11ty
-    logo: beetcabin
+    logo: beet cabin
     footer: Simply built by beet
   components: 
     nav_items: 
@@ -16,8 +16,8 @@ blog:
 
 link:
   blog: https://www.beetcb.com/
-  logo_src: https://www.beetcb.com/pic/logo.svg
-  highlight_css: /src/css/prism-duotone-sea.css
+  logo_src: /src/beet-logo.png
+  highlight_css: /src/css/prism-dracula.css
   my_css: /src/css/my.css
 
 
