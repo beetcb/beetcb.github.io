@@ -115,15 +115,54 @@ body::before {
     height: 40px;
     z-index: 999;
 }
-
-
 .header .nav-container {
+    margin-left: -40px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-self: start;
     color: var(--text);
+    font-size: 1.6em;
 }
 
+.nav-container .spread {
+    height: 40px;
+}
+.nav-container .toggle {
+    color: var(--bg-edge);
+    font-size: 2em;
+    margin-top: 5px;
+    width: 30px;
+    height: 30px;
+    transition: transform .5s ease-in;
+    border-radius: 10px;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #ca9dff, #aa84e0);
+    box-shadow:  1px 1px 1px #b990f4, 
+                 -1px -1px 1px #c196fe;
+}
+.nav-container.active .toggle {
+    transform: rotate(405deg);
+}
+
+/* nav list */
+.nav-container .nav-items {
+    background-color: rgba(0, 0, 0, .5);
+    margin-top: 10px;
+    display: none;
+    opacity: 0;
+    transform: translateY(-150px);
+    transition: transform .5s ease-in, opacity .6s;
+}
+.nav-container.active .nav-items {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+
 .logo {
+    margin-right: -10px;
     display: flex;
     align-items: center;
     color: var(--text);
@@ -139,13 +178,6 @@ body::before {
     font-size: 1.3em;
 }
 
-/* nav list */
-
-.nav-items:not(:nth-child(1)) {
-    margin-left: 20px;
-}
-
-/* mobile only hamburger */
 
 /* main layout */
 .main {
@@ -225,16 +257,15 @@ body::before {
 .footer {
     width: 100%;
     color: var(--text);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     background: var(--bg-edge);
     border-top-left-radius: 35px;
     border-top-right-radius: 35px;
 }
+
 .footer-desc {
     font-size: 1.1em !important;
     font-family: pixer;
+    text-align: center;
 }
 
 /* =========
@@ -332,7 +363,12 @@ body::before {
         padding: 0 0;
     }
     /* fix width and flex layout */
-
+    .logo {
+        margin-right: 10px !important;
+    }
+    .nav-container {
+        margin-left: -15px !important;
+    }
     .post-container {
         width: 100%;
         flex-flow: column nowrap;
@@ -350,16 +386,15 @@ body::before {
     .post-collection {
         margin-bottom: 20px;
     }
-    .header {
-        justify-content: center;
-    }
     .footer {
         flex-direction: column;
         justify-content: center;
     }
-    /* hide nav items  */
-    .nav-container {
-        display: none !important;
-    }   
+}
 
+img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
 }

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "devDependencies": {
-    "@11ty/eleventy": "*",
+    "@11ty/eleventy": "^0.11.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
     "js-yaml": "^3.14.0"
   },
@@ -13,5 +13,6 @@
   },
   "keywords": [],
   "author": "beet@beetcb.com",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {}
 }

@@ -16,11 +16,10 @@
 
 <body>
     <header class="header">
-        <a class="logo" href="/" target="_blank">
-            <img src="{{ config.link.logo_src }}">
-            <span>{{ config.blog.description.logo }}</span>
-        </a>
-        <ul class="nav-container">
+        <ul class="nav-container" id="nav">
+            <div class="spread">
+                <div class="toggle">+</div>
+            </div>
             {% for nav_items in config.blog.components.nav_items %}
             <li class="nav-items">
                 <svg style="padding-top:7px;transform:scale(1.4)" class="svg-icon">
@@ -30,20 +29,24 @@
             </li>
             {% endfor %}
         </ul>
+        <a class="logo" href="/" target="_blank">
+            <span>{{ config.blog.description.logo }}&nbsp</span>
+            <img src="{{ config.link.logo_src }}">
+        </a>
     </header>
     <main class="main">
         {{content | safe}}
-    </main>
+    </main> 
     <footer class="footer">
-        <div>
+        {# <div class="foo-social">
             {% for sociallogo, sociallink in config.blog.components.sociallogo %}
             <a href="{{ sociallink }}" target="_blank">
-                <svg style="padding-top:6px;transform:scale(1.6)" class="svg-icon">
+                <svg class="svg-icon">
                     <use xlink:href="/src/icon.svg#{{ sociallogo }}" />
                 </svg>
             </a>
             {% endfor %}
-        </div>
+        </div> #}
         <div class="footer-desc" style="font-size:14px">
             {{ config.blog.description.footer }} with <a style="color: skyblue;" href="https://www.11ty.dev/"
                 target="_blank">11ty</a>

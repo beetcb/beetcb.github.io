@@ -1,5 +1,5 @@
-const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const yaml = require("js-yaml");
+const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight"),
+      yaml = require("js-yaml");
 
 module.exports = eleventyConfig => {
     /* plugin */
@@ -10,7 +10,6 @@ module.exports = eleventyConfig => {
 
     /* default layout template */
 	eleventyConfig.addLayoutAlias('base', 'layouts/base.njk');
-	eleventyConfig.addLayoutAlias('page', 'layouts/page.njk');
     eleventyConfig.addLayoutAlias('post', 'layouts/post.njk');
     
     /* use custom data as a blog config set -> Yaml */
