@@ -138,8 +138,6 @@ body::before {
     border-radius: 10px;
     border-radius: 12px;
     background: linear-gradient(145deg, #ca9dff, #aa84e0);
-    box-shadow:  1px 1px 1px #b990f4, 
-                 -1px -1px 1px #c196fe;
 }
 .nav-container.active .toggle {
     transform: rotate(405deg);
@@ -200,13 +198,7 @@ body::before {
     flex-flow: column nowrap;
     justify-content: flex-start;
 }
-.post-aside {
-    display: flex;
-    width: 35%;
-    justify-content: center;
-    flex-flow: row wrap;
-    align-content: center;
-}
+
 .post {
     position: relative;
     display: flex;
@@ -226,15 +218,68 @@ body::before {
     border-left-color: var(--border-hover);
     box-shadow: 6px 6px 6px rgba(235, 235, 235, 0.3);
 }
-/* .post .description {
-    
-} */
-.tag {
+
+
+.post-aside {
+    margin: 18px auto;
+    display: flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    width: 35%;
+}
+.profile {
+    width: 100%;
+    height: 50%;
+    color: var(--text);
+}
+.title {
+    font-family: pixer;
+    font-size: 1.5em;
+    text-align: center;
+}
+.discp {
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.discp label {
+    display: flex;
+    justify-self: center;
+    padding: 0 2px;
+    border: var(--alink) 1px solid;
+    border-radius: .5em;
+}
+.discp div:not(:nth-child(1)) {
+    margin-left: 1em;
+}
+.discp .discription {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    left: -20px;
+    opacity: 0;
+    /* display: none; */
+}
+.discp input[type="radio"] {
+    display: none;
+}
+[type="radio"]:checked ~ .discription {
+    opacity: 1;;
+}
+.tagList {
+    display: flex;
+    margin-top: 3em;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    width: 100%;
+}
+.tagList .tag {
     padding: .5em;
     background-color: var(--bg-tag);
     border-radius: 108em;
 }
-.tag {
+.tagList .tag {
     margin-right: 20px;
     margin-bottom: 20px;
 }
@@ -378,6 +423,12 @@ body::before {
     .post-aside,
     .post-collection {
         width: 90%;
+    }
+    .post-aside {
+        order: -1;
+    }
+    .post-aside .tagList {
+        display: none;
     }
     .article .content,
     .article .title {

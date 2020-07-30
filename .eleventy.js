@@ -9,7 +9,8 @@ module.exports = eleventyConfig => {
     eleventyConfig.addPassthroughCopy("src/");
 
     /* default layout template */
-	eleventyConfig.addLayoutAlias('base', 'layouts/base.njk');
+    eleventyConfig.addLayoutAlias('base', 'layouts/base.njk');
+    eleventyConfig.addLayoutAlias('indexExtend', 'layouts/indexExtend.njk');
     eleventyConfig.addLayoutAlias('post', 'layouts/post.njk');
     
     /* use custom data as a blog config set -> Yaml */

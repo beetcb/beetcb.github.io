@@ -7,7 +7,6 @@ cover: false
 toc: true
 mathjax: false
 post: 9
-date: 2020-06-04
 nailimg: https://tvax3.sinaimg.cn/large/005K67iLgy1gfg8iocebuj30sg0lcta1.jpg
 img: https://tvax3.sinaimg.cn/large/005K67iLgy1gfg8iocebuj30sg0lcta1.jpg
 coverImg: https://tvax3.sinaimg.cn/large/005K67iLgy1gfg8iocebuj30sg0lcta1.jpg
@@ -15,9 +14,7 @@ password:
 summary: 复习ES中数据类型
 categories: ES6
 tags: 
-- 数据类型
 - ECMAScript
-- 数据类型的转换
 
 ---
 

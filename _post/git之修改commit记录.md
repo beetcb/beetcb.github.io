@@ -7,8 +7,8 @@ cover: false
 toc: true
 mathjax: false
 post: 11
-date: 2020-06-22
 nailimg: https://www.nelsonkmc.com/img/github-logo.jpg
+date: 2020-06-22
 coverImg:
 password:
 summary: rebase和reset指令、amend参数

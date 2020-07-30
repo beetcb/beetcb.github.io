@@ -7,7 +7,6 @@ cover: false
 toc: true
 mathjax: false
 post: 10
-date: 2020-06-06
 nailimg: https://theoldqueenshead.com/wp-content/uploads/2017/08/rick-and-morty-square.jpg
 img: https://tva2.sinaimg.cn/large/005K67iLgy1gfie3m3vc9j32yo1o0awc.jpg
 coverImg: https://tva2.sinaimg.cn/large/005K67iLgy1gfie3m3vc9j32yo1o0awc.jpg
