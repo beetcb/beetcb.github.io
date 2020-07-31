@@ -6,8 +6,8 @@
 }
 /* svg preset */
 .svg-icon {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
   }
   
   .svg-icon path,
@@ -45,7 +45,9 @@ ol,ul {
     display: inline;
     list-style: none;
 }
-
+code {
+    font-size: 16px;
+}
 /* =========
   global layout 
 ========= */
@@ -237,9 +239,15 @@ body::before {
     font-size: 1.5em;
     text-align: center;
 }
+.profile input[type="checkbox"] {
+    display: none;
+}
+[type="checkbox"]:checked ~ .discp {
+    display: flex;
+}
 .discp {
     margin-top: 1em;
-    display: flex;
+    display: none;
     justify-content: center;
     position: relative;
 }
@@ -249,6 +257,7 @@ body::before {
     padding: 0 2px;
     border: var(--alink) 1px solid;
     border-radius: .5em;
+    transition: margin-bottom .5s ease-in;
 }
 .discp div:not(:nth-child(1)) {
     margin-left: 1em;
@@ -256,16 +265,22 @@ body::before {
 .discp .discription {
     width: 100%;
     position: absolute;
-    text-align: center;
+    padding-left: 1em;
+    top: 1em;
     left: -20px;
     opacity: 0;
+    transition: opacity 1s ease-in-out;
     /* display: none; */
 }
 .discp input[type="radio"] {
     display: none;
 }
+[type="radio"]:checked ~ label {
+    margin-bottom: 6.5em;
+}
 [type="radio"]:checked ~ .discription {
-    opacity: 1;;
+    opacity: 1;
+    top: 1em;
 }
 .tagList {
     display: flex;
