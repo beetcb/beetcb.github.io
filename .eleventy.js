@@ -2,20 +2,23 @@ const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight"),
       yaml = require("js-yaml");
 
 module.exports = eleventyConfig => {
+
+    // alias like
+    const e = eleventyConfig;
+
     /* plugin */
-    eleventyConfig.addPlugin(pluginSyntaxHighlight);
+    e.addPlugin(pluginSyntaxHighlight);
 
     /* rendless but needed copy */
-    eleventyConfig.addPassthroughCopy("src/");
+    e.addPassthroughCopy("src/");
 
     /* default layout template */
-    eleventyConfig.addLayoutAlias('base', 'layouts/base.njk');
-    eleventyConfig.addLayoutAlias('indexExtend', 'layouts/indexExtend.njk');
-    eleventyConfig.addLayoutAlias('post', 'layouts/post.njk');
+    e.addLayoutAlias('base', 'layouts/base.11ty.js');
+    e.addLayoutAlias('indexExtend', 'layouts/indexExtend.11ty.js');
+    e.addLayoutAlias('post', 'layouts/post.11ty.js');
     
     /* use custom data as a blog config set -> Yaml */
-
-    eleventyConfig.addDataExtension("yaml", contents => yaml.safeLoad(contents));
+    e.addDataExtension("yaml", contents => yaml.safeLoad(contents));
 
     return {
         /*
@@ -30,7 +33,7 @@ module.exports = eleventyConfig => {
             "html",
             "md",
             "liquid",
-            "njk"
+            "11ty.js"
         ],
         htmlTemplateEnging: "njk",
         markdownTemplateEngine: "njk"

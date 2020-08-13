@@ -1,5 +1,5 @@
 {
-    window.judge = false;
+    let judge = false;
     /* $event listener call$ method
         - <event> `str`
         - <function> 
@@ -26,6 +26,7 @@
 
         });
     }
+
 
     function addActive(event, func, id, tag, data, deep) {
 

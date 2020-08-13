@@ -8,7 +8,7 @@ blog:
     nav_items: 
       - home
       - shared
-      - tags
+      - tags 
     sociallogo: 
       github: https://github.com/beetcb/
       githubBlog: https://github.com/beetcb/beetcb.github.io/
@@ -16,7 +16,7 @@ blog:
       zhihu: https://www.zhihu.com/people/ur-apprentice/posts
       wechat: #
       qq: https://qm.qq.com/cgi-bin/qm/qr?k=eaqvtvbTAtD7iw-HXwverJr736BwdPs6&noverify=0
-      
+      telegram: #
 
 link:
   blog: https://www.beetcb.com/
