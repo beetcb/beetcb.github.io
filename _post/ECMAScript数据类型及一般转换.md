@@ -13,8 +13,7 @@ coverImg: https://tvax3.sinaimg.cn/large/005K67iLgy1gfg8iocebuj30sg0lcta1.jpg
 password:
 summary: 复习ES中数据类型
 categories: ES6
-tags: 
-- ECMAScript
+tags: ECMAScript
 
 ---
 

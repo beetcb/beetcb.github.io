@@ -11,9 +11,7 @@ nailimg: https://www.nelsonkmc.com/img/github-logo.jpg
 coverImg:
 password:
 summary: git getting started 我在Pluralsight学过的git课程，做个总结
-tags:
-- git
-- github
+tags: git
 categories:
 - git
 keywords:

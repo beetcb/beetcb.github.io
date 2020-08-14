@@ -28,29 +28,14 @@
     }
 
 
-    function addActive(event, func, id, tag, data, deep) {
-
-        listen(event, function (judge) {
-            if (deep) {
-                const howDeep = `parentNode.`.repeat(deep);
-                Function(`judge || this.${howDeep}classList.add('active');judge && this.${howDeep}classList.remove('active');`).call(this);
-            }
-            else {
-                judge || this.classList.add('active');
-                judge && this.classList.remove('active');
-            }
-            if (func) func(this);
-        }, id, tag, data);
-    }
-
 
     listen('mouseover', function () {
+	// find coresponding tag index, define addCss();
         const index_attr = this.getAttribute('data-index'),
             addCSS = (s) => ((d, e) => { d.head.removeChild(d.head.children[d.head.children.length - 1]); e = d.createElement("style"); e.innerHTML = s; d.head.appendChild(e) })(document);
-        allStyle = `.tag[data-index="${index_attr}"]{order:-2;background:#2A9D8F;transition:background .5s,order .1s .3s}`;
+        allStyle = `.tag[data-index*="${index_attr}"]{order:-2;background:#2A9D8F;transition:background .5s,order .1s .3s}`;
+	// add <style></style> to dom; (need optmizing???)
         addCSS(allStyle);
     }, 'postList', 'a', 'data-index');
 
-    // addActive('click', null, 'nav', 'div');
-    addActive('click', null, 'nav', 'div', null, 2);
 }

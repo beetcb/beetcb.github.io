@@ -1,0 +1,20 @@
+---
+pagination:
+    data: collections
+    size: 13
+    alias: tags
+    filter: all
+permalink: /tags/
+eleventyExcludeFromCollections: true
+layout: "base"
+---
+
+<ol>
+{% for tag in tags %}
+    <h1>Tagged “{{ tag }}”</h1>
+    {% set taglist = collections[ tag ] %}
+    {% for post in taglist | reverse %}
+	<li><a href="{{ post.url | url }}">{{ post.data.title }}</a></li>
+    {% endfor %}
+{% endfor %}
+</ol>

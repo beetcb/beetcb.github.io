@@ -32,8 +32,8 @@ module.exports = eleventyConfig => {
         templateFormats: [
             "html",
             "md",
-            "liquid",
-            "11ty.js"
+            "11ty.js",
+	    "njk"
         ],
         htmlTemplateEnging: "njk",
         markdownTemplateEngine: "njk"

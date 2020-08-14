@@ -14,12 +14,6 @@ class Base {
 	`.trim()
 
 	const body = `<body>
-		<header class="header">
-		   <a class="logo" href="/" target="_blank">
-			<span>${ $.blog.description.logo }&nbsp</span>
-			<img src="${ $.link.logo_src }">
-		    </a>
-		</header>
 		<main class="main">
 		${data.content} 
 		</main>

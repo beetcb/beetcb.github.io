@@ -1,14 +1,10 @@
-class Post {
+exports.data = {
+    layout: "base",
+    permalink: "post/{{ post }}/index.html"
+}
 
-    data() {
-	return {
-	    layout: "base",
-	    permalink: "post/{{ post }}/index.html"
-	}
-    } 
-
-    render(data) {
-	return `
+exports.render = function(data) {
+    return `
 	<article style="margin: 0 auto" class="article">
 	    <h1 class="title">${ data.title }</h1>
 	    <div class="content">
@@ -18,8 +14,4 @@ class Post {
 	</article>
 
     `
-    }
 }
-
-
-module.exports = Post;
