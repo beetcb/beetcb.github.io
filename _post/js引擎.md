@@ -4,7 +4,7 @@ title: BrowserStack-JS引擎机理(浅解)
 author: beet
 post: "@15@"
 date: 2020-07-21 08:14:22
-nailimg:
+nailimg: https://tcxzcc.gitee.io/src/nailimg/v8.png
 tags: JS
 ---
 ### 首先从加载 js 说起

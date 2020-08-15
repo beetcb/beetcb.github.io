@@ -3,6 +3,11 @@ const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight"),
 
 module.exports = eleventyConfig => {
 
+    //add postIndex filter
+    eleventyConfig.addFilter("removeAtSymbol", function(value) {
+	return value.replace(/@/g, '')
+    });
+
     // alias like
     const e = eleventyConfig;
 

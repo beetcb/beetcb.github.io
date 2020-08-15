@@ -4,7 +4,7 @@ title: 'tcb硬核博客加速,解决pages的龟速问题'
 author: beet
 post: "@7@"
 date: 2020-05-17 13:15:34
-nailimg: 
+nailimg: https://tcxzcc.gitee.io/src/nailimg/blog.png
 tags: share
 ---
 

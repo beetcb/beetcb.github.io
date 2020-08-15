@@ -4,7 +4,7 @@ title: Git 快扶我入门
 author: beet
 post: "@4@"
 date: 2020-04-28 16:31:28
-nailimg: 
+nailimg: https://tcxzcc.gitee.io/src/nailimg/git.png
 tags:
 - git
 ---

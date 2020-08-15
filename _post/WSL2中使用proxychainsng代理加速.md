@@ -4,7 +4,7 @@ title: WSL2中使用proxychains ng代理加速
 author: beet
 post: "@13@"
 date: 2020-07-21 08:14:22
-nailimg:
+nailimg: https://tcxzcc.gitee.io/src/nailimg/proxy.png
 tags: wsl
 ---
 > 情景：windows 已开启代理，需要 WSL2 走主机的代理

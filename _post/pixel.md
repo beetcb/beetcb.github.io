@@ -4,7 +4,7 @@ title: 刷机pixelExp，获得原生安卓体验
 author: beet
 post: "@16@"
 date: 2020-08-06
-nailimg:
+nailimg: https://tcxzcc.gitee.io/src/nailimg/google.png
 tags: share
 ---
 

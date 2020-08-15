@@ -1,6 +1,6 @@
 exports.data = {
     layout: "base",
-    permalink: "post/{{ post }}/index.html"
+    permalink: "posts/{{ post | removeAtSymbol }}/"
 }
 
 exports.render = function(data) {

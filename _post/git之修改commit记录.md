@@ -4,7 +4,7 @@ title: Git之修改commit记录
 author: beet
 post: "@11@"
 date: 2020-06-22 19:50:04
-nailimg:
+nailimg: https://tcxzcc.gitee.io/src/nailimg/git.png
 tags: git
 ---
 

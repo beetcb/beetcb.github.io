@@ -4,7 +4,7 @@ title: 读Openssh Manual
 author: beet
 post: "@17@"
 date: 2020-08-04
-nailimg: 
+nailimg: https://tcxzcc.gitee.io/src/nailimg/openssh-fish.png
 tags: ssh
 ---
 > 第一次去深入了解 openssh ，此篇是我的学习笔记。本文使用的 ip 地址均替换成了某厂 CDN 地址，所以热心的朋友不必去尝试 ** 啦  (✿◡‿◡) 。

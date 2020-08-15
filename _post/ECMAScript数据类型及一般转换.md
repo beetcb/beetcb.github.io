@@ -4,7 +4,7 @@ title: 对ECMAScript数据类型的理解
 author: beet
 post: "@9@"
 date: 2020-06-04 06:30:01
-nailimg: https://tvax3.sinaimg.cn/large/005K67iLgy1gfg8iocebuj30sg0lcta1.jpg
+nailimg: https://tcxzcc.gitee.io/src/nailimg/es.png
 tags: JS
 ---
 

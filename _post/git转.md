@@ -4,7 +4,7 @@ title: Git部分命令图解
 author: beet
 post: "@8@"
 date: 2020-05-22 16:31:28
-nailimg: 
+nailimg: https://tcxzcc.gitee.io/src/nailimg/git.png
 tags: git
 ---
 
