@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="a beginer theme based blog project with 11ty">
+	    <title>beet-11ty</title>
+	    <link rel="stylesheet" href="/src/css/my.css">
+	    <link rel="stylesheet" href="/src/css/prism-dracula.css">
+	    <link rel="shortcut icon" href="/src/favicon.ico" type="image/x-icon">
+	    <script defer src="/src/js/my.js"></script>
+	    </head><body>
+		<main class="main">
+		
+	<article style="margin: 0 auto" class="article">
+	    <h1 class="title">BrowserStack-浏览器引擎及渲染机理(含重排和重绘)</h1>
+	    <div class="content">
+		<h3>渲染引擎和JS引擎?</h3>
+<p>网页在客户端的呈现, 重度依赖于浏览器。因此，了解浏览器在网页渲染方面的过程和机理，必利于网页开发。</p>
+<p><strong>如何解释两个引擎？</strong></p>
+<p>现代浏览器都有两个基本工作, 把页面呈现出来[渲染引擎(HTML、CSS)]和对JS的处理[JS引擎], 两个过程可以通过DOM数据结构联系起来。</p>
+<p><strong>那什么是浏览器内核？</strong></p>
+<p>内核其实就是引擎的别名，起初包含JS引擎，（随着JS的扩展，不仅仅只有浏览器使用JS引擎），现在一般只表示渲染引擎</p>
+<h3>主流浏览器和引擎</h3>
+<p><strong>1.看市场, 了解趋势</strong></p>
+<blockquote>
+<p>2020年浏览器的市场份额占比</p>
+</blockquote>
+<p><img src="https://tvax1.sinaimg.cn/large/005K67iLgy1gh1xns2vu7j31550e9t9n.jpg" alt="image">
+<a href="https://en.wikipedia.org/wiki/Browser_engine">浏览器引擎</a></p>
+<p><strong>2.主流的浏览器都用什么引擎</strong></p>
+<p><strong><a href="https://en.wikipedia.org/wiki/Comparison_of_browser_engines">主流渲染引擎</a></strong></p>
+<ul>
+<li>firefox:  <code>Gecko</code></li>
+<li>chrome &amp; opera:  <code>Blink</code>[Google联手Facebook、IBM、Opera等大厂开发]</li>
+<li>safari:  <code>Webkit</code></li>
+<li>IE:  <code>Trident</code></li>
+<li>Edge:  <code>Edgehtml</code> =&gt; <code>Blink</code>[2020年发布]</li>
+</ul>
+<p><strong><a href="https://en.wikipedia.org/wiki/JavaScript_engine">主流JS引擎</a></strong></p>
+<ul>
+<li>firefox:  <code>SpiderMonkey</code></li>
+<li>chrome: <code>V8</code>[目前最通用，用于Nodejs和Deno项目]</li>
+<li>safari:  <code>javascriptcore</code></li>
+<li>IE:  <code>chakra</code></li>
+<li>Edge:  <code>chakra</code> =&gt; <code>V8</code>[2020年更新]</li>
+</ul>
+<p><img src="https://tvax4.sinaimg.cn/large/005K67iLgy1gh20wxhqp4j30zk0k0qea.jpg" alt="from lambdatest"></p>
+<h3>渲染引擎机理(简)</h3>
+<p><strong>1.渲染引擎的主要工作</strong></p>
+<p>为了呈现页面，渲染引擎需要：</p>
+<ul>
+<li>
+<p>1.解析成对象模型:</p>
+<ul>
+<li>
+<p>找到页面结构(内容)：<br>
+首先, 读取HTML文件, 根据其编码把它转换成字符;利用html的标签以及标签之间的层级关系创建 <code>DOM tree</code>
+<img src="https://tva1.sinaimg.cn/large/005K67iLgy1gh24jrnbd8j30ih07waaj.jpg" alt="image"></p>
+</li>
+<li>
+<p>看看页面长啥样: 同理 <code>DOM tree</code>, 分析CSS生成<code>CSSOM Tree</code></p>
+<p><img src="https://tva2.sinaimg.cn/large/005K67iLgy1gh24da6v2pj30vq0hwtf8.jpg" alt="image"></p>
+<blockquote>
+<p>为什么要解析成<code>对象模型</code>: 比如DOM和CSSOM两者都是对象模型( <code>OM</code> 后缀), 从上面的图例也可以看出它们都是树形数据结构，而树形结构的最基本单元 ——— <a href="https://en.wikipedia.org/wiki/Node_(computer_science)"><code>node</code></a> 节点, 其中每个 <code>node</code> 节点都含一个对象（比如 <code>document.documentElement</code> 是根node，通过这个node的信息我们知道它对应的对象是整个HTML）, 对象里的属性和方法就可以描述或和操作这个节点（这就可以很好地解释我们通过JS获取的元素集合为什么是 NodeList），所以可以理解为有了对象模型, 页面文档具有编程接口, 就可以利用js操作页面中的内容。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>2.根据 js 更改 <code>DOM Tree</code> <code>CSSOM Tree</code>[js没有更改则跳过]</p>
+</li>
+<li>
+<p>3.合并<code>DOM Tree</code>和<code>CSSOM Tree</code> , 生成 <code>Render Tree</code>:</p>
+<ul>
+<li><code>Render Tree</code> 是最终用于布局, 所以一些不参与布局的内容不会被加入到<code>Render Tree</code>中(比如<code>&lt;meta&gt;</code> <code>&lt;link&gt;</code> <code>display:none</code>等)</li>
+<li><code>DOM Tree</code> 和 <code>CSSOM Tree</code> 不会被删除 , 方便js的交互</li>
+</ul>
+</li>
+<li>
+<p>4.计算布局(computing layout)</p>
+<p>根据<code>Render Tree</code>来排版布局, 以计算每个节点的几何信息(位置 尺寸) <br><strong>注意</strong>：（只要几何布局不改变）第二次渲染并不一定需要此步骤，比如改变了元素颜色，不需要进行二次排版布局</p>
+</li>
+<li>
+<p>5.绘制页面(paint)</p>
+<p>布局完成后, 浏览器根据布局确定每个像素点的显示，利用GPU, 完成网页的绘制;至此, 一个UI制作完毕，我们就可以看见页面啦!</p>
+<p>我画了一个简单的流程图简要概括以上的五个步骤:</p>
+<p><img src="https://tva3.sinaimg.cn/large/005K67iLgy1gh2542an6rj30jo0jkgmu.jpg" alt="image"></p>
+</li>
+</ul>
+<h3>重排和重绘 [reflows/layouting &amp; Repaints]</h3>
+<blockquote>
+<p>注：<code>reflows</code> 又可称作 <code>layouting</code>（回流）</p>
+</blockquote>
+<p>简单点说, 初次浏览器渲染后, 由于CSS、JS有动画存在，JS 也可以进行许多动态操作, 会导致网页会进行二次渲染，再次执行以上的步骤</p>
+<p><strong>注意</strong>：渲染的第四步(computing layout)可以在二次渲染的时候跳过，前提是不改变页面的几何布局</p>
+<p>因为第四步的可跳过性，我们把二次渲染分为重排和重绘（分别对应第4、5步）</p>
+<blockquote>
+<p>前三步也会执行，但是处理速度很快，所以忽略</p>
+</blockquote>
+<p><strong>如何区分两者？</strong></p>
+<ul>
+<li>重排：对于影响布局的更改，浏览器会进行重排
+<ul>
+<li>实列：设定宽高、浮动、定位、<code>input</code>内容更改、DOM操作等等</li>
+</ul>
+</li>
+<li>重绘：相对直观——只要页面可视内容发生改变，一定会重绘。比如透明度、 颜色等</li>
+</ul>
+<p><strong>为什么要关注重排和重绘？</strong></p>
+<p>它们成为前端性能优化的切入点，需要减少重回和重排的次数来尽量优化性能，绘制更流畅的UI，获得更佳的用户体验</p>
+<p><strong>浏览器有帮我们优化吗？</strong></p>
+<ul>
+<li>
+<p>浏览器也很懒，不会傻到每一次小的变动都去重新渲染，多个连续的页面变化会暂时集中储存到一个队列，每一个frame批次执行更改并且清空队列，再去执行渲染步骤。不过有几个列外（当我们需要实时获取页面的状态时，队列会被强制清空用于获取最新最精确的状态）：</p>
+<ul>
+<li>请求JS盒子模型的属性，如<code>clientTop</code> <code>scroolTop</code>等等</li>
+<li>请求获得元素样式、宽高：<code>ele.width</code> <code>ele.getComputedStyle()</code>等等</li>
+</ul>
+</li>
+<li>
+<p>第一步不一定需要全部重新执行（可以只有部分重新更改）</p>
+</li>
+<li>
+<p>第二步本身是不存在于初次渲染中的，但如果页面载入时JS便对页面DOM或CSSOM进行了更改，为避免连续渲染两次，会先执行更改，再执行第三步</p>
+</li>
+<li>
+<p>只要重新渲染，第三步一定重新执行，重新生成 <code>Render Tree</code></p>
+</li>
+</ul>
+<p><strong>自己如何优化？</strong></p>
+<p>网络上有比较好的例子，在这里备注提供几个地址</p>
+<ul>
+<li><a href="https://gist.github.com/faressoft/36cdd64faae21ed22948b458e6bf04d5">Minimizing Repaints And Reflows</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2015/09/web-page-performance-in-depth.html">网页性能管理详解</a></li>
+</ul>
+<h3>JS引擎</h3>
+<p><a href="">JS引擎机制（基本）🥳</a></p>
+<h3>参考及补充：</h3>
+<ul>
+<li><a href="https://hacks.mozilla.org/2017/05/quantum-up-close-what-is-a-browser-engine/">Quantum Up Close: What is a browser engine?</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model">Constructing the Object Model
+</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction">Render-tree Construction, Layout, and Paint</a></li>
+<li><a href="https://medium.com/schaoss-blog/%E5%89%8D%E7%AB%AF%E4%B8%89%E5%8D%81-03-css-reflow-%E5%8F%8A-repaint-%E6%98%AF%E4%BB%80%E9%BA%BC-36293ebcffe7">前端三十｜03. [CSS] Reflow 及 Repaint 是什麼？</a></li>
+</ul>
+<blockquote>
+<p>欢迎讨论、指正</p>
+</blockquote>
+
+	    </div>
+	    <div class="outline"></div>
+	</article>
+
+     
+		</main>
+		<footer class="footer">
+				    <div class="footer-desc" style="font-size:14px">
+			made with love&<a style="color: skyblue;" href="https://www.11ty.dev/"
+			    target="_blank">11ty</a> by beet
+		    </div>
+		</footer>
+
+	    </body></html>

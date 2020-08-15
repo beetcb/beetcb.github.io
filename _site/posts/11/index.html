@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="a beginer theme based blog project with 11ty">
+	    <title>beet-11ty</title>
+	    <link rel="stylesheet" href="/src/css/my.css">
+	    <link rel="stylesheet" href="/src/css/prism-dracula.css">
+	    <link rel="shortcut icon" href="/src/favicon.ico" type="image/x-icon">
+	    <script defer src="/src/js/my.js"></script>
+	    </head><body>
+		<main class="main">
+		
+	<article style="margin: 0 auto" class="article">
+	    <h1 class="title">Git之修改commit记录</h1>
+	    <div class="content">
+		<blockquote>
+<p>在很多影视作品里，就算主人公乘上了时光鸡，还是无法修改历史（或者说修改后造成十分严重的后果）；而现在，在 Git 的强力驱动下，修改历史变得简单又相对安全。</p>
+<p>本文叨叨修改 commit 历史的问题</p>
+</blockquote>
+<h4>应用场景</h4>
+<p>① 刚刚的提交不小心打错了👋 能更改吗？</p>
+<p>比如<code>Sun of a Beach with canvas</code> 写成了 <code>son of a b**ch with canvas</code></p>
+<p>② 刚刚的提交漏掉了文件👋 能追加吗？</p>
+<p>③ 以前写的 commit 很菜👋 能更改吗？</p>
+<p>可能你的 commit是这样的 :</p>
+<p><code>fix bug</code></p>
+<p><code>fix another bug</code></p>
+<p><code>fix final bug</code></p>
+<p><code>oh anotherOne wtf?</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622224539.png" alt=""></p>
+<h4>魔法一：git coomit --amend -m ''🃏</h4>
+<p>对于场景 ①，可以这样急救</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> coomit --amend -m <span class="token string">'Sun of a Beach with canvas'</span></code></pre>
+<p><strong>实际效果图</strong>：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622203322.png" alt=""></p>
+<p>如果没有加 <code>-m</code>参数的话，会弹出 vim 让你编辑最近一次的commit</p>
+<p><strong>注意</strong>：</p>
+<ul>
+<li><code>--amend</code> 只能修改最近的一次 commit</li>
+<li>最近的那一次 commit物件的 SHA1 被新的 SHA1 值替代，因为对于 <code>commit 物件</code> 来说它的内容发生了改变</li>
+<li>commit 的时间并未被修改，因为时间作者信息是由 <code>tree物件</code> 储存，文件、文件目录结构啥都没变，tree物件不可能变化</li>
+</ul>
+<p>同时，对于场景二 ，<code>--amend</code> 也能处理</p>
+<pre class="language-bash"><code class="language-bash"><span class="token comment">#先把漏掉的文件加入缓存区</span><br><span class="token function">git</span> <span class="token function">add</span> careless.less<br><span class="token comment">#再使用--amend参数进行commit,下面--no-edit 表示保留原有message信息</span><br><span class="token function">git</span> commit --amend --no-edit</code></pre>
+<p>注意：</p>
+<ul>
+<li>commit 的时间并会发生变化</li>
+</ul>
+<h4>魔法二：git reset🃏</h4>
+<p>对于场景 ②，另一种处理方式是<code>git reset</code>指令</p>
+<p><code>git reset</code>指令是跳回之前的某次 commit （而非字面重置的意思）</p>
+<blockquote>
+<p>附加知识：定位到那一次commit的多种方式</p>
+<ul>
+<li>
+<p>通过HEAD或当前分支（比如 master） =&gt; 像贴纸一样指向当前的 commit，</p>
+<p>再加上 <code>^</code> 表示当前commit的前一次 ，或者<code>~n</code> 表示当前commit的前n次</p>
+</li>
+<li>
+<p>通过 SHA1 值的简写 =&gt; 比如 <code>e2d2873</code></p>
+</li>
+</ul>
+</blockquote>
+<p>所以可以退回到之前的 commit  =&gt; 重新添加文件 =&gt; 再次 commit</p>
+<p>退回上一次的commit的三种写法：</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> reset e2d273 <span class="token comment">#opt1：利用上一次的SHA1简写值</span><br><span class="token function">git</span> reset HEAD^ <span class="token comment">#opt2: 利用HEAD</span><br><span class="token function">git</span> reset master^ <span class="token comment">#opt3: 利用当前所在分支</span></code></pre>
+<p><strong>实际效果图</strong>：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622211624.png" alt=""></p>
+<h4>魔法三：git rebase🃏</h4>
+<p>对于情景 ③，当你写了‘折磨多’无用commit，别急着删掉 .git 目录👻；先试试 <code>git rebase</code>(只涉及到 rebase 附加的一个小小的应用，在接下来的应用中可以想象成HEAD一直顺着commit往下走，遇到非<code>pick</code> 的commit就会停下来，等待你操作这个commit)</p>
+<h5>1.git log 看看现有的commit</h5>
+<pre class="language-javascript"><code class="language-javascript">git log <span class="token operator">--</span>oneline</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622215836.png" alt=""></p>
+<h5>2.确定操作的范围</h5>
+<pre class="language-javascript"><code class="language-javascript">git rebase <span class="token operator">-</span>i <span class="token number">4</span>d11e38<br>#此处<span class="token operator">-</span>i表示interactive 交互式的rebase过程</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622220420.png" alt=""></p>
+<h5>3.把需要修改的commit前面 <code>pick</code> 改为 <code>r</code></h5>
+<p><img src="https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622220721.png" alt=""></p>
+<p>保存并退出 vim 编辑器</p>
+<h5>4.正式修改 commit</h5>
+<p><img src="../../../../Users/arno/AppData/Roaming/Typora/typora-user-images/image-20200622220901983.png" alt=""></p>
+<p><code>go to jail</code> 改成 <code>go to party</code> 是不是潇洒的多呢🐶</p>
+<p>退出保存后，再次查看commit</p>
+<p><img src="https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622221140.png" alt=""></p>
+<p>我们再重新看看这张图，</p>
+<p><img src="https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622220420.png" alt=""></p>
+<p>细心的你有没有发现 除了可以 <code>r</code>(也就是reword commit)  还有很多强大的操作，这里举两个栗子：</p>
+<ul>
+<li><code>e</code> ：edit commit ，可以实现对commit的高级修改：比如干掉这个commit，重新提交</li>
+<li><code>s</code> ：squash commit，可以实现合并多个commit：会向更早的邻居commit物件去合并，同时会给你修改message的机会</li>
+<li><code>d </code>：drop commit ，把它丢掉=&gt; 把这个commit删除</li>
+<li>另外一个骚操作：只要在rebase弹出的编辑器里面手动修改commit行的位置，就可以实现<code>修改commit的顺序</code>的效果。同理啦，删掉某一行也就实现了<code>删掉了这个commit</code>的效果</li>
+</ul>
+<h4>你可能会想：reset回去改 commit 信息</h4>
+<blockquote>
+<p>既然 <code>git reset</code> 可以跳回之前的 commit ，两次相反的 reset 不就回到了当前提交吗？</p>
+</blockquote>
+<blockquote>
+<p>对于情景 ③，利用这一点，我们可以依次跳到各个 commit ，搬砖 ... 最后利用 <code>git reflog</code>  查找commit 信息跳回来</p>
+</blockquote>
+<p>但是，新的 commit 物件并没有被之后的 commit 所指到 ，当你再次reset回去的时候，一切还是原来的样子。不信你看</p>
+<p><img src="https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622224237.png" alt=""></p>
+<p>除非你愿意去手动修改 commit 的指向，可能会生效吧</p>
+<h4>但是</h4>
+<p>如果是真实开发的话，已经 push 出去的 commit 不要修改了（会引发许多麻烦），就让往事都随风吧</p>
+<p><img src="https://tvax4.sinaimg.cn/large/005K67iLgy1gg1fq053dsg30dw092whw.gif" alt=""></p>
+
+	    </div>
+	    <div class="outline"></div>
+	</article>
+
+     
+		</main>
+		<footer class="footer">
+				    <div class="footer-desc" style="font-size:14px">
+			made with love&<a style="color: skyblue;" href="https://www.11ty.dev/"
+			    target="_blank">11ty</a> by beet
+		    </div>
+		</footer>
+
+	    </body></html>

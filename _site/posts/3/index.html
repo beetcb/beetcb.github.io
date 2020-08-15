@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="a beginer theme based blog project with 11ty">
+	    <title>beet-11ty</title>
+	    <link rel="stylesheet" href="/src/css/my.css">
+	    <link rel="stylesheet" href="/src/css/prism-dracula.css">
+	    <link rel="shortcut icon" href="/src/favicon.ico" type="image/x-icon">
+	    <script defer src="/src/js/my.js"></script>
+	    </head><body>
+		<main class="main">
+		
+	<article style="margin: 0 auto" class="article">
+	    <h1 class="title">咋就避不开这个话题呢—下载(上)</h1>
+	    <div class="content">
+		<p><code>本文或许可以解决你的这些困扰</code></p>
+<ul>
+<li>
+<p>挑中的音视频无法直链下载</p>
+</li>
+<li>
+<p>寻找各种软、插件，徒增系统负载和学习成本</p>
+</li>
+<li>
+<p>所用的下载工具多平台不适用</p>
+</li>
+<li>
+<p>种子文件下载之坑</p>
+</li>
+</ul>
+<h6>今天简单地叨一下我用到的下载工具（短期解决方案不包含在内，对，折腾他们太费劲，何必那么操心）</h6>
+<h4>aira2 / motrix 解决种子下载</h4>
+<h5>1.aria2</h5>
+<p>官方Github地址 <a href="https://github.com/aria2/aria2">Aria2</a></p>
+<p>一直用linux服务器下载上传种子文件，下行速度平均维持在 50m/s 左右。现在为win10装一个，方便演示（<code>提示：aria2的入门有一定的门槛，主要原因是没有图形界面，它只是个轻便但强大的后端程序。如果嫌麻烦，直接安装motrix吧</code>）</p>
+<p>借用  <a href="https://p3terx.com/archives/use-aria2-under-windows.html">P3TERX大佬</a> 写好的配置，开始配置吧（伸手警告）</p>
+<p><strong>a.下载aria2并创建空文件</strong></p>
+<p><a href="https://pan.beetcb.com/?/aria2c.exe"><code>下载aria2.exe</code></a> 博主手动上传，版本1.35.0,省去了解压的过程</p>
+<p>下载完确保文件名为<code>aria2c.exe</code> ,把它放到某目录里（演示目录<code>c:aria2</code>）</p>
+<p>在<code>c:aria2</code> 目录下新建四个文件</p>
+<p><code>aria2.conf</code></p>
+<p><code>HideRun.vbs</code></p>
+<p><code>aria2.session</code> （文件留空即可）</p>
+<p><code>Aria2.log</code> (可选、文件留空即可)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/beetcb/pic/4.0.png" alt=""></p>
+<p><strong>b. 写入配置</strong></p>
+<p>编辑<code>aria2.conf</code> ，写入如下内容（根据注释自行修改）</p>
+<pre class="language-properties"><code class="language-properties"><span class="token comment">## '#'开头为注释内容, 选项都有相应的注释说明, 根据需要修改 ##</span><br><span class="token comment">## 被注释的选项填写的是默认值, 建议在需要修改时再取消注释  ##</span><br><br><span class="token comment"># 日志</span><br><span class="token attr-name">log</span><span class="token punctuation">=</span><span class="token attr-value">aria2.log</span><br><span class="token attr-name">log-level</span><span class="token punctuation">=</span><span class="token attr-value">error</span><br><br><span class="token comment">## 文件保存相关 ##</span><br><br><span class="token comment"># 文件的保存路径(可使用绝对路径或相对路径), 默认: 当前启动位置</span><br><span class="token attr-name">dir</span><span class="token punctuation">=</span><span class="token attr-value">E:\Downloads</span><br><span class="token comment"># 启用磁盘缓存, 0为禁用缓存, 需1.16以上版本, 默认:16M</span><br><span class="token attr-name">disk-cache</span><span class="token punctuation">=</span><span class="token attr-value">32M</span><br><span class="token comment"># 文件预分配方式, 能有效降低磁盘碎片, 默认:prealloc</span><br><span class="token comment"># 预分配所需时间: none &lt; falloc ? trunc &lt; prealloc</span><br><span class="token comment"># falloc和trunc则需要文件系统和内核支持</span><br><span class="token comment"># NTFS建议使用falloc, EXT3/4建议trunc, MAC 下需要注释此项</span><br><span class="token attr-name">file-allocation</span><span class="token punctuation">=</span><span class="token attr-value">falloc</span><br><span class="token comment"># 断点续传</span><br><span class="token attr-name">continue</span><span class="token punctuation">=</span><span class="token attr-value">true</span><br><br><span class="token comment">## 下载连接相关 ##</span><br><br><span class="token comment"># 最大同时下载任务数, 运行时可修改, 默认:5</span><br><span class="token attr-name">max-concurrent-downloads</span><span class="token punctuation">=</span><span class="token attr-value">3</span><br><span class="token comment"># 同一服务器连接数, 添加时可指定, 默认:1</span><br><span class="token attr-name">max-connection-per-server</span><span class="token punctuation">=</span><span class="token attr-value">5</span><br><span class="token comment"># 最小文件分片大小, 添加时可指定, 取值范围1M -1024M, 默认:20M</span><br><span class="token comment"># 假定size=10M, 文件为20MiB 则使用两个来源下载; 文件为15MiB 则使用一个来源下载</span><br><span class="token attr-name">min-split-size</span><span class="token punctuation">=</span><span class="token attr-value">10M</span><br><span class="token comment"># 单个任务最大线程数, 添加时可指定, 默认:5</span><br><span class="token attr-name">split</span><span class="token punctuation">=</span><span class="token attr-value">5</span><br><span class="token comment"># 整体下载速度限制, 运行时可修改, 默认:0</span><br><span class="token comment">#max-overall-download-limit=0</span><br><span class="token comment"># 单个任务下载速度限制, 默认:0</span><br><span class="token attr-name">max-download-limit</span><span class="token punctuation">=</span><span class="token attr-value">0</span><br><span class="token comment"># 整体上传速度限制, 运行时可修改, 默认:0</span><br><span class="token attr-name">max-overall-upload-limit</span><span class="token punctuation">=</span><span class="token attr-value">1M</span><br><span class="token comment"># 单个任务上传速度限制, 默认:0</span><br><span class="token comment">#max-upload-limit=0</span><br><span class="token comment"># 禁用IPv6, 默认:false</span><br><span class="token attr-name">disable-ipv6</span><span class="token punctuation">=</span><span class="token attr-value">true</span><br><br><span class="token comment">## 进度保存相关 ##</span><br><br><span class="token comment"># 从会话文件中读取下载任务</span><br><span class="token attr-name">input-file</span><span class="token punctuation">=</span><span class="token attr-value">aria2.session</span><br><span class="token comment"># 在Aria2退出时保存`错误/未完成`的下载任务到会话文件</span><br><span class="token attr-name">save-session</span><span class="token punctuation">=</span><span class="token attr-value">aria2.session</span><br><span class="token comment"># 定时保存会话, 0为退出时才保存, 需1.16.1以上版本, 默认:0</span><br><span class="token attr-name">save-session-interval</span><span class="token punctuation">=</span><span class="token attr-value">60</span><br><br><span class="token comment">## RPC相关设置 ##</span><br><br><span class="token comment"># 启用RPC, 默认:false</span><br><span class="token attr-name">enable-rpc</span><span class="token punctuation">=</span><span class="token attr-value">true</span><br><span class="token comment"># 允许所有来源, 默认:false</span><br><span class="token attr-name">rpc-allow-origin-all</span><span class="token punctuation">=</span><span class="token attr-value">true</span><br><span class="token comment"># 允许非外部访问, 默认:false</span><br><span class="token attr-name">rpc-listen-all</span><span class="token punctuation">=</span><span class="token attr-value">true</span><br><span class="token comment"># 事件轮询方式, 取值:[epoll, kqueue, port, poll, select], 不同系统默认值不同</span><br><span class="token comment">#event-poll=select</span><br><span class="token comment"># RPC监听端口, 端口被占用时可以修改, 默认:6800</span><br><span class="token attr-name">rpc-listen-port</span><span class="token punctuation">=</span><span class="token attr-value">6800</span><br><span class="token comment"># 设置的RPC授权令牌, v1.18.4新增功能, 取代 --rpc-user 和 --rpc-passwd 选项</span><br><span class="token comment">#rpc-secret=&lt;TOKEN></span><br><span class="token comment"># 设置的RPC访问用户名, 此选项新版已废弃, 建议改用 --rpc-secret 选项</span><br><span class="token comment">#rpc-user=&lt;USER></span><br><span class="token comment"># 设置的RPC访问密码, 此选项新版已废弃, 建议改用 --rpc-secret 选项</span><br><span class="token comment">#rpc-passwd=&lt;PASSWD></span><br><br><span class="token comment">## BT/PT下载相关 ##</span><br><br><span class="token comment"># 当下载的是一个种子(以.torrent结尾)时, 自动开始BT任务, 默认:true</span><br><span class="token attr-name">follow-torrent</span><span class="token punctuation">=</span><span class="token attr-value">true</span><br><span class="token comment"># BT监听端口, 当端口被屏蔽时使用, 默认:6881-6999</span><br><span class="token attr-name">listen-port</span><span class="token punctuation">=</span><span class="token attr-value">51413-52333</span><br><span class="token comment"># 单个种子最大连接数，0表示不限制，默认:55</span><br><span class="token attr-name">bt-max-peers</span><span class="token punctuation">=</span><span class="token attr-value">0</span><br><span class="token comment"># 打开DHT功能, PT需要禁用, 默认:true</span><br><span class="token attr-name">enable-dht</span><span class="token punctuation">=</span><span class="token attr-value">true</span><br><span class="token comment"># 打开IPv6 DHT功能, PT需要禁用</span><br><span class="token attr-name">enable-dht6</span><span class="token punctuation">=</span><span class="token attr-value">true</span><br><span class="token comment"># DHT网络监听端口, 默认:6881-6999</span><br><span class="token attr-name">dht-listen-port</span><span class="token punctuation">=</span><span class="token attr-value">6881-6999</span><br><span class="token comment"># 本地节点查找, PT需要禁用, 默认:false</span><br><span class="token comment">#bt-enable-lpd=false</span><br><span class="token comment"># 种子交换, PT需要禁用, 默认:true</span><br><span class="token attr-name">enable-peer-exchange</span><span class="token punctuation">=</span><span class="token attr-value">true</span><br><span class="token comment"># 期望下载速度, 对少种的PT很有用, 默认:50K</span><br><span class="token attr-name">bt-request-peer-speed-limit</span><span class="token punctuation">=</span><span class="token attr-value">50M</span><br><span class="token comment"># 客户端伪装, PT需要</span><br><span class="token attr-name">peer-id-prefix</span><span class="token punctuation">=</span><span class="token attr-value">-UT3500-</span><br><span class="token attr-name">user-agent</span><span class="token punctuation">=</span><span class="token attr-value">uTorrent/3500(43580)</span><br><span class="token comment"># 最小分享率。当种子的分享率达到这个数时, 自动停止做种, 0为一直做种, 默认:1.0</span><br><span class="token attr-name">seed-ratio</span><span class="token punctuation">=</span><span class="token attr-value">0</span><br><span class="token comment"># 最小做种时间。此选项设置为0时，将在BT任务下载完成后不进行做种。</span><br><span class="token attr-name">seed-time</span><span class="token punctuation">=</span><span class="token attr-value">0</span><br><span class="token comment"># 强制保存会话, 即使任务已经完成, 默认:false</span><br><span class="token comment"># 较新的版本开启后会在任务完成后依然保留.aria2文件</span><br><span class="token attr-name">force-save</span><span class="token punctuation">=</span><span class="token attr-value">true</span><br><span class="token comment"># BT校验相关, 默认:true</span><br><span class="token comment">#bt-hash-check-seed=true</span><br><span class="token comment"># 继续之前的BT任务时, 无需再次校验, 默认:false</span><br><span class="token attr-name">bt-seed-unverified</span><span class="token punctuation">=</span><span class="token attr-value">true</span><br><span class="token comment"># 保存磁力链接元数据为种子文件(.torrent文件), 默认:false</span><br><span class="token comment">#bt-save-metadata=false</span><br><span class="token comment"># 删除未选择文件</span><br><span class="token attr-name">bt-remove-unselected-file</span><span class="token punctuation">=</span><span class="token attr-value">true</span><br><br><span class="token comment">## BT 服务器地址 ##</span><br><span class="token attr-name">bt-tracker</span><span class="token punctuation">=</span><span class="token attr-value">udp://tracker.coppersurfer.tk:6969/announce,udp://tracker.opentrackr.org:1337/announce,udp://tracker.leechers-paradise.org:6969/announce,udp://p4p.arenabg.com:1337/announce,udp://9.rarbg.to:2710/announce,udp://9.rarbg.me:2710/announce,udp://exodus.desync.com:6969/announce,udp://open.stealth.si:80/announce,udp://tracker.sbsub.com:2710/announce,udp://tracker.cyberia.is:6969/announce,udp://retracker.lanta-net.ru:2710/announce,udp://tracker.tiny-vps.com:6969/announce,udp://tracker.torrent.eu.org:451/announce,udp://tracker.moeking.me:6969/announce,udp://tracker3.itzmx.com:6961/announce,http://tracker1.itzmx.com:8080/announce,udp://ipv4.tracker.harry.lu:80/announce,udp://bt1.archive.org:6969/announce,udp://bt2.archive.org:6969/announce,udp://zephir.monocul.us:6969/announce</span><br><span class="token comment"># 这里我替换了最新的优质tracker</span></code></pre>
+<p><strong>c. 启动并隐藏cmd窗口</strong></p>
+<p>编辑<code>HideRun.vbs</code>脚本文件 ,写入</p>
+<p>CreateObject(&quot;WScript.Shell&quot;).Run &quot;aria2c.exe --conf-path=aria2.conf&quot;,0</p>
+<p>双击运行</p>
+<p>此时aria2已经悄悄运行，后端配置基本完成</p>
+<p><strong>d. 前端配置</strong></p>
+<p>我使用的是功能全面的在线面板 <a href="http://ariang.mayswind.net/latest/">AriaNg</a> ；</p>
+<p>可选的面板还有很多，也可自行搭建，我炒鸡耐心地截了张前端配置图 。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/beetcb/pic/4.1.png" alt=""></p>
+<p>至此，可以开始愉快下载了</p>
+<p><strong>e. 设置开机自启</strong> （可选）</p>
+<p>添加<code>HideRun.vbs</code> 为启动项，将其快捷方式复制到启动项文件夹中；</p>
+<p>打开启动项文件夹的方式 快捷键 <code>win</code> + <code>R</code> 输入“shell:startup”。</p>
+<h5>2.motrix</h5>
+<p>官方中文文档 <a href="https://github.com/agalwood/Motrix/blob/master/README-CN.md">mortrix</a></p>
+<p>作者的介绍</p>
+<blockquote>
+<p>Motrix 是一款全能的下载工具，支持下载 HTTP、FTP、BT、磁力链、某盘等资源。</p>
+</blockquote>
+<p><strong>a.</strong> 下载免安装版 <a href="https://github.com/agalwood/Motrix/releases/download/v1.4.1/Motrix-1.4.1.exe">点击此处</a>  图形界面操作， 超级简单</p>
+<p><strong>b.</strong> 问题解决
+下载出现问题建议看看<a href="https://www.yuque.com/moapp/help">官方帮助文档</a></p>
+<p><strong>c.</strong> 另外，不乏许多网友总是跟某度网盘过不去，尝试失败回来又吐槽工具。最近PD大佬又被抓，更不建议折腾这个小度盘了，转向Onedrive或Googledrive是明智的选择。</p>
+<h4>本来准备一次写完的，下篇再叨吧（预告：<code style="font-size:18px">最好用的音视频下载</code>）</h4>
+
+	    </div>
+	    <div class="outline"></div>
+	</article>
+
+     
+		</main>
+		<footer class="footer">
+				    <div class="footer-desc" style="font-size:14px">
+			made with love&<a style="color: skyblue;" href="https://www.11ty.dev/"
+			    target="_blank">11ty</a> by beet
+		    </div>
+		</footer>
+
+	    </body></html>

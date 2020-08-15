@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="a beginer theme based blog project with 11ty">
+	    <title>beet-11ty</title>
+	    <link rel="stylesheet" href="/src/css/my.css">
+	    <link rel="stylesheet" href="/src/css/prism-dracula.css">
+	    <link rel="shortcut icon" href="/src/favicon.ico" type="image/x-icon">
+	    <script defer src="/src/js/my.js"></script>
+	    </head><body>
+		<main class="main">
+		
+	<article style="margin: 0 auto" class="article">
+	    <h1 class="title">Git部分命令图解</h1>
+	    <div class="content">
+		<blockquote>
+<p>转载于 https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1</p>
+<p>原作者：https://dev.to/lydiahallie</p>
+<p>英文更助于理解，不译</p>
+<p>如需译文：<a href="https://mp.weixin.qq.com/s/oKMdlo6jsIcMcZW8nzoAUg">图解常用的 Git 指令含义</a></p>
+</blockquote>
+<p>Although Git is a very powerful tool, I think most people would agree when I say it can also be... a total nightmare 😐 I've always found it very useful to visualize in my head what's happening when working with Git: how are the branches interacting when I perform a certain command, and how will it affect the history? Why did my coworker cry when I did a hard reset on <code>master</code>, <code>force push</code>ed to origin and <code>rimraf</code>'d the <code>.git</code> folder?</p>
+<p>I thought it would be the perfect use case to create some visualized examples of the most common and useful commands! 🥳 Many of the commands I'm covering have optional arguments that you can use in order to change their behavior. In my examples, I'll cover the default behavior of the commands without adding (too many) config options! 😄</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1#merge">Merge</a></th>
+<th><a href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1#rebase">Rebase</a></th>
+<th><a href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1#reset">Reset</a></th>
+<th><a href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1#revert">Revert</a></th>
+<th><a href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1#cherry-pick">Cherry-Pick</a></th>
+<th><a href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1#fetch">Fetch</a></th>
+<th><a href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1#pull">Pull</a></th>
+<th><a href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1#reflog">Reflog</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Merging</h2>
+<p>Having multiple branches is extremely convenient to keep new changes separated from each other, and to make sure you don't accidentally push unapproved or broken changes to production. Once the changes have been approved, we want to get these changes in our production branch!</p>
+<p>One way to get the changes from one branch to another is by performing a <code>git merge</code>! There are two types of merges Git can perform: a <strong>fast-forward</strong>, or a <strong>no-fast-forward</strong> 🐢</p>
+<p>This may not make a lot of sense right now, so let's look at the differences!</p>
+<h3>Fast-forward (<code>--ff</code>)</h3>
+<p>A <strong>fast-forward merge</strong> can happen when the current branch has no extra commits compared to the branch we’re merging. Git is... <em>lazy</em> and will first try to perform the easiest option: the fast-forward! This type of merge doesn’t create a new commit, but rather merges the commit(s) on the branch we’re merging right in the current branch 🥳</p>
+<p><a href="https://cdn.jsdelivr.net/gh/beetcb/pic/a8/894znjv4oo9agqiz4dql.gif"><img src="https://cdn.jsdelivr.net/gh/beetcb/pic/a8/894znjv4oo9agqiz4dql.gif" alt="img"></a></p>
+<p>Perfect! We now have all the changes that were made on the <code>dev</code> branch available on the <code>master</code> branch. So, what's the <strong>no-fast-forward</strong> all about?</p>
+<h3>No-fast-foward (<code>--no-ff</code>)</h3>
+<p>It's great if your current branch doesn't have any extra commits compared to the branch that you want to merge, but unfortunately that's rarely the case! If we committed changes on the current branch that the branch we want to merge doesn't have, git will perform a <em>no-fast-forward</em> merge.</p>
+<p>With a no-fast-forward merge, Git creates a new <em>merging commit</em> on the active branch. The commit's parent commits point to both the active branch and the branch that we want to merge!</p>
+<p><a href="https://cdn.jsdelivr.net/gh/beetcb/pic/a8/rf1o2b6eduboqwkigg3w.gif"><img src="https://cdn.jsdelivr.net/gh/beetcb/pic/a8/rf1o2b6eduboqwkigg3w.gif" alt="img"></a></p>
+<p>No big deal, a perfect merge! 🎉 The <code>master</code> branch now contains all the changes that we've made on the <code>dev</code> branch.</p>
+<h3>Merge Conflicts</h3>
+<p>Although Git is good at deciding how to merge branches and add changes to files, it cannot always make this decision all by itself 🙂 This can happen when the two branches we're trying to merge have changes on the same line in the same file, or if one branch deleted a file that another branch modified, and so on.</p>
+<p>In that case, Git will ask you to help decide which of the two options we want to keep! Let's say that on both branches, we edited the first line in the <code>README.md</code>.</p>
+<p><a href="https://cdn.jsdelivr.net/gh/beetcb/pic/a8/m3nxmp67mqof5sa3iik9.png"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--jXqGWUai--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/m3nxmp67mqof5sa3iik9.png" alt="img"></a></p>
+<p>If we want to merge <code>dev</code> into <code>master</code>, this will end up in a merge conflict: would you like the title to be <code>Hello!</code> or <code>Hey!</code>?</p>
+<p>When trying to merge the branches, Git will show you where the conflict happens. We can manually remove the changes we don't want to keep, save the changes, add the changed file again, and commit the changes 🥳</p>
+<p><a href="https://cdn.jsdelivr.net/gh/beetcb/pic/a8/bcd5ajtoc0g5dxzmpfbq.gif"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--7lBksXwA--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/bcd5ajtoc0g5dxzmpfbq.gif" alt="img"></a></p>
+<p>Yay! Although merge conflicts are often quite annoying, it makes total sense: Git shouldn't just <em>assume</em> which change we want to keep.</p>
+<hr>
+<h2>Rebasing</h2>
+<p>We just saw how we could apply changes from one branch to another by performing a <code>git merge</code>. Another way of adding changes from one branch to another is by performing a <code>git rebase</code>.</p>
+<p>A <code>git rebase</code> <em>copies</em> the commits from the current branch, and puts these copied commits on top of the specified branch.</p>
+<p><a href="https://cdn.jsdelivr.net/gh/beetcb/pic/a8/dwyukhq8yj2xliq4i50e.gif"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--EIY4OOcE--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/dwyukhq8yj2xliq4i50e.gif" alt="img"></a></p>
+<p>Perfect, we now have all the changes that were made on the <code>master</code> branch available on the <code>dev</code> branch! 🎊</p>
+<p>A big difference compared to merging, is that Git won't try to find out which files to keep and not keep. The branch that we're rebasing always has the latest changes that we want to keep! You won't run into any merging conflicts this way, and keeps a nice linear Git history.</p>
+<p>This example shows rebasing on the <code>master</code> branch. In bigger projects, however, you usually don't want to do that. A <code>git rebase</code> <strong>changes the history of the project</strong> as new hashes are created for the copied commits!</p>
+<p>Rebasing is great whenever you're working on a feature branch, and the master branch has been updated. You can get all the updates on your branch, which would prevent future merging conflicts! 😄</p>
+<h3>Interactive Rebase</h3>
+<p>Before rebasing the commits, we can modify them! 😃 We can do so with an <em>interactive rebase</em>. An interactive rebase can also be useful on the branch you're currently working on, and want to modify some commits.</p>
+<p>There are 6 actions we can perform on the commits we're rebasing:</p>
+<ul>
+<li><code>reword</code>: Change the commit message</li>
+<li><code>edit</code>: Amend this commit</li>
+<li><code>squash</code>: Meld commit into the previous commit</li>
+<li><code>fixup</code>: Meld commit into the previous commit, without keeping the commit's log message</li>
+<li><code>exec</code>: Run a command on each commit we want to rebase</li>
+<li><code>drop</code>: Remove the commit</li>
+</ul>
+<p>Awesome! This way, we can have full control over our commits. If we want to remove a commit, we can just <code>drop</code> it.</p>
+<p><a href="https://cdn.jsdelivr.net/gh/beetcb/pic/a8/msofpv7k6rcmpaaefscm.gif"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--P6jr7igd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/msofpv7k6rcmpaaefscm.gif" alt="Alt Text"></a></p>
+<p>Or if we want to squash multiple commits together to get a cleaner history, no problem!</p>
+<p><a href="https://cdn.jsdelivr.net/gh/beetcb/pic/a8/bc1r460xx1i0blu0lnnm.gif"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--VSQt4g1V--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/bc1r460xx1i0blu0lnnm.gif" alt="Alt Text"></a></p>
+<p>Interactive rebasing gives you a lot of control over the commits you're trying to rebase, even on the current active branch!</p>
+<hr>
+<h2>Resetting</h2>
+<p>It can happen that we committed changes that we didn't want later on. Maybe it's a <code>WIP</code> commit, or maybe a commit that introduced bugs! 🐛 In that case, we can perform a <code>git reset</code>.</p>
+<p>A <code>git reset</code> gets rid of all the current staged files and gives us control over where <code>HEAD</code> should point to.</p>
+<h3>Soft reset</h3>
+<p>A <em>soft reset</em> moves <code>HEAD</code> to the specified commit (or the index of the commit compared to <code>HEAD</code>), without getting rid of the changes that were introduced on the commits afterward!</p>
+<p>Let's say that we don't want to keep the commit <code>9e78i</code> which added a <code>style.css</code> file, and we also don't want to keep the commit <code>035cc</code> which added an <code>index.js</code> file. However, we do want to keep the newly added <code>style.css</code> and <code>index.js</code> file! A perfect use case for a soft reset.</p>
+<p><a href="https://cdn.jsdelivr.net/gh/beetcb/pic/a8/je5240aqa5uw9d8j3ibb.gif"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s---GveiZe---/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/je5240aqa5uw9d8j3ibb.gif" alt="img"></a></p>
+<p>When typing <code>git status</code>, you'll see that we still have access to all the changes that were made on the previous commits. This is great, as this means that we can fix the contents of these files and commit them again later on!</p>
+<h3>Hard reset</h3>
+<p>Sometimes, we don't want to keep the changes that were introduced by certain commits. Unlike a soft reset, we shouldn't need to have access to them any more. Git should simply reset its state back to where it was on the specified commit: this even includes the changes in your working directory and staged files! 💣</p>
+<p><a href="https://cdn.jsdelivr.net/gh/beetcb/pic/a8/hlh0kowt3hov1xhcku38.gif"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--GqjwnYkF--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/hlh0kowt3hov1xhcku38.gif" alt="Alt Text"></a></p>
+<p>Git has discarded the changes that were introduced on <code>9e78i</code> and <code>035cc</code>, and reset its state to where it was on commit <code>ec5be</code>.</p>
+<hr>
+<h3>Reverting</h3>
+<p>Another way of undoing changes is by performing a <code>git revert</code>. By reverting a certain commit, we create a <em>new commit</em> that contains the reverted changes!</p>
+<p>Let's say that <code>ec5be</code> added an <code>index.js</code> file. Later on, we actually realize we didn't want this change introduced by this commit anymore! Let's revert the <code>ec5be</code> commit.</p>
+<p><a href="https://cdn.jsdelivr.net/gh/beetcb/pic/a8/3kkd2ahn41zixs12xgpf.gif"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--eckmvr2M--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/3kkd2ahn41zixs12xgpf.gif" alt="Alt Text"></a></p>
+<p>Perfect! Commit <code>9e78i</code> reverted the changes that were introduced by the <code>ec5be</code> commit. Performing a <code>git revert</code> is very useful in order to undo a certain commit, without modifying the history of the branch.</p>
+<hr>
+<h2>Cherry-picking</h2>
+<p>When a certain branch contains a commit that introduced changes we need on our active branch, we can <code>cherry-pick</code> that command! By <code>cherry-pick</code>ing a commit, we create a new commit on our active branch that contains the changes that were introduced by the <code>cherry-pick</code>ed commit.</p>
+<p>Say that commit <code>76d12</code> on the <code>dev</code> branch added a change to the <code>index.js</code> file that we want in our <code>master</code> branch. We don't want the <em>entire</em> we just care about this one single commit!</p>
+<p><a href="https://cdn.jsdelivr.net/gh/beetcb/pic/a8/2dkjx4yeaal10xyvj29v.gif"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--9vWP_K4S--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/2dkjx4yeaal10xyvj29v.gif" alt="Alt Text"></a></p>
+<p>Cool, the master branch now contains the changes that <code>76d12</code> introduced!</p>
+<hr>
+<h2>Fetching</h2>
+<p>If we have a remote Git branch, for example a branch on Github, it can happen that the remote branch has commits that the current branch doesn't have! Maybe another branch got merged, your colleague pushed a quick fix, and so on.</p>
+<p>We can get these changes locally, by performing a <code>git fetch</code> on the remote branch! It doesn't affect your local branch in any way: a <code>fetch</code> simply downloads new data.</p>
+<p><a href="https://cdn.jsdelivr.net/gh/beetcb/pic/a8/bulx1voegfji4vwgndh4.gif"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--38PuARw2--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/bulx1voegfji4vwgndh4.gif" alt="Alt Text"></a></p>
+<p>We can now see all the changes that have been made since we last pushed! We can decide what we want to do with the new data now that we have it locally.</p>
+<hr>
+<h2>Pulling</h2>
+<p>Although a <code>git fetch</code> is very useful in order to get the remote information of a branch, we can also perform a <code>git pull</code>. A <code>git pull</code> is actually two commands in one: a <code>git fetch</code>, and a <code>git merge</code>. When we're pulling changes from the origin, we're first fetching all the data like we did with a <code>git fetch</code>, after which the latest changes are automatically merged into the local branch.</p>
+<p><a href="https://cdn.jsdelivr.net/gh/beetcb/pic/a8/zifpnl1h6a4tk4qdc9sy.gif"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s---X5AXldj--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/zifpnl1h6a4tk4qdc9sy.gif" alt="Alt Text"></a></p>
+<p>Awesome, we're now perfectly in sync with the remote branch and have all the latest changes! 🤩</p>
+<hr>
+<h2>Reflog</h2>
+<p>Everyone makes mistakes, and that's totally okay! Sometimes it may feel like you've screwed up your git repo so badly that you just want to delete it entirely.</p>
+<p><code>git reflog</code> is a very useful command in order to show a log of all the actions that have been taken! This includes merges, resets, reverts: basically any alteration to your branch.</p>
+<p><a href="https://cdn.jsdelivr.net/gh/beetcb/pic/a8/1aqek1py1knwl926ele7.gif"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--MMUdOS0P--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/1aqek1py1knwl926ele7.gif" alt="Alt Text"></a>)</p>
+<p>If you made a mistake, you can easily redo this by resetting <code>HEAD</code> based on the information that <code>reflog</code> gives us!</p>
+<p>Say that we actually didn't want to merge the origin branch. When we execute the <code>git reflog</code> command, we see that the state of the repo before the merge is at <code>HEAD@{1}</code>. Let's perform a <code>git reset</code> to point HEAD back to where it was on <code>HEAD@{1}</code>!</p>
+<p><a href="https://cdn.jsdelivr.net/gh/beetcb/pic/a8/9z9rhtbw7mrigp0miijz.gif"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--A1UMM2AH--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/9z9rhtbw7mrigp0miijz.gif" alt="Alt Text"></a></p>
+<p>We can see that the latest action has been pushed to the <code>reflog</code>!</p>
+<blockquote>
+<p>plus a useful comment</p>
+<p>Awesome visualizations as usual!</p>
+<p>It's interesting there's a few different syntaxes for selecting a previous commit:</p>
+<pre class="language-bash"><code class="language-bash">HEAD~2          // previous two commits fro <span class="token function">head</span><br>HEAD~~         // previous two commits from <span class="token function">head</span><br>HEAD@<span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">}</span>     // reflog order<br>18fe5              // previous commit <span class="token builtin class-name">hash</span></code></pre>
+</blockquote>
+<p>And the animate tool to create those gifs is <code>Keynote (the presentation software by Apple)</code></p>
+
+	    </div>
+	    <div class="outline"></div>
+	</article>
+
+     
+		</main>
+		<footer class="footer">
+				    <div class="footer-desc" style="font-size:14px">
+			made with love&<a style="color: skyblue;" href="https://www.11ty.dev/"
+			    target="_blank">11ty</a> by beet
+		    </div>
+		</footer>
+
+	    </body></html>
