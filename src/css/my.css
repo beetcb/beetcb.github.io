@@ -210,12 +210,18 @@ body {
     background: var(--bg-edge);
     border-top-left-radius: 35px;
     border-top-right-radius: 35px;
+    line-height: 1em;
 }
 
 .footer-desc {
+    padding-top: 5px;
     font-size: 1.1em !important;
     font-family: pixer;
     text-align: center;
+}
+.footer a[href="http://www.beian.miit.gov.cn/"] {
+    color: black;
+    font-size: 13px;
 }
 
 /* =========

@@ -18,9 +18,10 @@ class Base {
 		${data.content} 
 		</main>
 		<footer class="footer">
-				    <div class="footer-desc" style="font-size:14px">
+		    <div class="footer-desc">
 			${ $.blog.description.footer }<a style="color: skyblue;" href="https://www.11ty.dev/"
-			    target="_blank">11ty</a> by beet
+			    target="_blank">11ty</a> by beet <br> 
+			<a href="http://www.beian.miit.gov.cn/" target="_blank">ICP-20003648-1</a>
 		    </div>
 		</footer>
 
