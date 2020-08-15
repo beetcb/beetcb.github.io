@@ -2,19 +2,10 @@
 layout: post
 title: 对ECMAScript数据类型的理解
 author: beet
-top: true
-cover: false
-toc: true
-mathjax: false
-post: 9
+post: "@9@"
+date: 2020-06-04 06:30:01
 nailimg: https://tvax3.sinaimg.cn/large/005K67iLgy1gfg8iocebuj30sg0lcta1.jpg
-img: https://tvax3.sinaimg.cn/large/005K67iLgy1gfg8iocebuj30sg0lcta1.jpg
-coverImg: https://tvax3.sinaimg.cn/large/005K67iLgy1gfg8iocebuj30sg0lcta1.jpg
-password:
-summary: 复习ES中数据类型
-categories: ES6
-tags: ECMAScript
-
+tags: JS
 ---
 
 ### 数据类型和值 
@@ -29,7 +20,7 @@ tags: ECMAScript
 
 ![谁说直观的！！](https://tvax4.sinaimg.cn/large/005K67iLgy1gffvyod1b2g30b4063tru.gif)
 
-ES 数据类型: 可分为 <code>原始类型(primitive)</code> 、<code>对象(引用类型)</code>  , 一个变量的类型可以动态变化，可在声明后改变(这说明了 JS是一种弱类型、动态类型的语言)：
+ES 数据类型: 可分为 <code>原始类型(primitive)</code> 、<code>对象(引用类型)</code>  , 一个变量的类型可以动态变化，可在声明后改变(这说明了JS是一种弱类型、动态类型的语言)：
 
 > - 原始类型即上面提到的 <code>undefined, null, boolean, string, symbol, number, bigInt</code>
 >
@@ -41,7 +32,7 @@ ES 数据类型: 可分为 <code>原始类型(primitive)</code> 、<code>对象(
 >
 > - 对象(引用类型) ： 
 >
->   我们的对象大法在  JS 语言里囊括万物
+>   我们的对象大法在 JS 语言里囊括万物
 >   
 >   一个简单的解释就是：对象是属性和方法(方法提供了操作对象的接口)的集合，属性又可以包含基本类型和引用类型。
 
@@ -218,7 +209,7 @@ let o = new Object();
 
 2. Array 
 
-   [Arrays](https://developer.mozilla.org/en-US/docs/ js/Reference/Global_Objects/Array) are regular objects for which there is a particular relationship between integer-key-ed properties and the `length` property
+   [Arrays](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array) are regular objects for which there is a particular relationship between integer-key-ed properties and the `length` property
 
    以数字为属性名索引、包含length属性的对象
 
@@ -235,9 +226,9 @@ let o = new Object();
 
    比如由 `.getElementsByTagName('li')` 得到的 HTMLcollection
 
-   ![console](https://cdn. jsdelivr.net/gh/beetcb/pic/a9/20200604131918.png)
+   ![console](https://cdn.jsdelivr.net/gh/beetcb/pic/a9/20200604131918.png)
 
-4.  JSON 
+4. JSON 
 
 5. Date日期
 
@@ -302,7 +293,7 @@ The `instanceof` operator tests whether the `prototype` property of a constructo
 
 比如：
 
-``` js
+```js
 [] instanceof Array; // true 解决问题①②
 
 class Foo {};
@@ -321,5 +312,5 @@ null instanceof Object; // "false"  解决问题 ③
 #### 参考
 
 - [ECMAScript Language Types](https://tc39.es/ecma262/#sec-ecmascript-data-types-and-values)
-- [ js data types and data structures](https://developer.mozilla.org/en-US/docs/Web/ js/Data_structures)
-- [[  JS 进阶 \] 基本类型 引用类型 简单赋值 对象引用](https://segmentfault.com/a/1190000002789651)
+- [JavaScript data types and data structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
+- [[ JS 进阶 \] 基本类型 引用类型 简单赋值 对象引用](https://segmentfault.com/a/1190000002789651)

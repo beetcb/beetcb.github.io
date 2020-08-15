@@ -2,21 +2,11 @@
 layout: post
 title: Git 快扶我入门
 author: beet
-top: false
-cover: true
-toc: true
-mathjax: false
-post: 4
-nailimg: https://www.nelsonkmc.com/img/github-logo.jpg
-coverImg:
-password:
-summary: git getting started 我在Pluralsight学过的git课程，做个总结
-tags: git
-categories:
+post: "@4@"
+date: 2020-04-28 16:31:28
+nailimg: 
+tags:
 - git
-keywords:
-- git教程
-- git入门
 ---
 
 
@@ -107,7 +97,7 @@ Git 已追踪文件的状态（注意`untracked`：未被git追踪的状态）
 
 ![](https://cdn.jsdelivr.net/gh/beetcb/pic/a5/lq.png)
 
-打开命令行（git  bash） ，git it ！！！（含完整返回结果作参考）
+打开命令行（git bash） ，git it ！！！（含完整返回结果作参考）
 
 ``` bash
 # fork 老师的作业仓库到自己的账号下，因为老师不可能给我仓库的访问权

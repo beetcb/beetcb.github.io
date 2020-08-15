@@ -19,8 +19,8 @@ class Base {
 		</main>
 		<footer class="footer">
 				    <div class="footer-desc" style="font-size:14px">
-			${ $.blog.description.footer } with <a style="color: skyblue;" href="https://www.11ty.dev/"
-			    target="_blank">11ty</a>
+			${ $.blog.description.footer }<a style="color: skyblue;" href="https://www.11ty.dev/"
+			    target="_blank">11ty</a> by beet
 		    </div>
 		</footer>
 

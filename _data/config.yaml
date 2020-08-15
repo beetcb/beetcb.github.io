@@ -3,7 +3,7 @@ blog:
   description: 
     metatag: a beginer theme based blog project with 11ty
     logo: beet cabin
-    footer: Simply built by beet
+    footer: made with love&
   components: 
     nav_items: 
       - home

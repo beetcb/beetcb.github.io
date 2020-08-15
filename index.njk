@@ -1,10 +1,10 @@
 ---
 tags:
-  - pageIndex
+- pageIndex
 layout: layouts/home.11ty.js
 pagination:
   data: collections.all
-  size: 2
+  size: 4
   alias: posts
   addAllPagesToCollections: true
 eleventyExcludeFromCollections: true
@@ -14,18 +14,18 @@ permalink: "/{% if pagination.pageNumber > 0 %}pages/{{ pagination.pageNumber }}
 {% for post in posts %}
 
 <a data-index="{{ post.data.post }}" class="post" href="{{post.url}}">
-<img class="post-nailimg" src="{{ post.data.nailimg}}" alt="postimg">
-<div class="description">
-<h1>{{ post.data.title }}</h1>
-<small>
-{{ post.date.toDateString() }}
-</small>
-</div>
+  <img class="post-nailimg" src="{{ post.data.nailimg }}" alt="postimg">
+  <div class="description">
+    <h1>{{ post.data.title }}</h1>
+    <small>
+      {{ post.date.toDateString() }}
+    </small>
+  </div>
 </a>
 {% endfor %}
 
 <div class="page">
-<a href="{{ pagination.previousPageHref }}" class="previous-page">&lt; Previous</a>
+  <a href="{{ pagination.previousPageHref }}" class="previous-page">&lt; Previous</a>
 
-<a href="{{ pagination.nextPageHref }}" class="next-page">Next &gt;</a>
-</div> 
+  <a href="{{ pagination.nextPageHref }}" class="next-page">Next &gt;</a>
+</div>

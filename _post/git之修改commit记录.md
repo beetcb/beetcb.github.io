@@ -2,19 +2,10 @@
 layout: post
 title: Git之修改commit记录
 author: beet
-top: false
-cover: false
-toc: true
-mathjax: false
-post: 11
-nailimg: https://www.nelsonkmc.com/img/github-logo.jpg
-date: 2020-06-22
-coverImg:
-password:
-summary: rebase和reset指令、amend参数
+post: "@11@"
+date: 2020-06-22 19:50:04
+nailimg:
 tags: git
-categories: git
-keywords: git
 ---
 
 
@@ -112,7 +103,7 @@ git reset master^ #opt3: 利用当前所在分支
 
 ##### 1.git log 看看现有的commit
 
-``` bash
+```javascript
 git log --oneline
 ```
 
@@ -120,7 +111,7 @@ git log --oneline
 
 ##### 2.确定操作的范围
 
-``` bash
+```javascript
 git rebase -i 4d11e38
 #此处-i表示interactive 交互式的rebase过程
 ```

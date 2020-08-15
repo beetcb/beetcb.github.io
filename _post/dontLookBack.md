@@ -1,20 +1,11 @@
 ---
 layout: post
-title: DontLookBack-RickAndMorty
+title: DontLookBack | RickAndMorty
 author: beet
-top: false
-cover: false
-toc: true
-mathjax: false
-post: 10
-nailimg: https://theoldqueenshead.com/wp-content/uploads/2017/08/rick-and-morty-square.jpg
-img: https://tva2.sinaimg.cn/large/005K67iLgy1gfie3m3vc9j32yo1o0awc.jpg
-coverImg: https://tva2.sinaimg.cn/large/005K67iLgy1gfie3m3vc9j32yo1o0awc.jpg
-password:
-summary: Another episode
+post: "@10@"
+date: 2020-06-06 11:01:25
+nailimg: https://tva2.sinaimg.cn/large/005K67iLgy1gfie3m3vc9j32yo1o0awc.jpg
 tags: RickAndMorty
-categories: 分享
-keywords: RickAndMorty
 ---
 <video class="responsive-video" controls="">
                         <source src="https://tcxz.coding.net/api/share/download/a19cdb2c-f151-40ad-be0b-f48dbe57dca8" type="video/mp4">
