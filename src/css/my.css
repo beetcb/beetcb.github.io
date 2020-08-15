@@ -94,17 +94,13 @@ body {
 /* header -> removed */ 
 
 /* main layout */
-.main {
-    width: 100%;
-}
 .main img,
 .main video {
     width: 100%;
 }
 .post-container {
-    margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .post-collection {
     padding-top: 20px;
@@ -114,6 +110,9 @@ body {
     justify-content: flex-start;
 }
 
+.page {
+    margin-top: 2.5em;
+}
 .post {
     position: relative;
     display: flex;
@@ -149,15 +148,10 @@ body {
 }
 
 .post-aside {
-    margin: 18px auto;
-    display: flex;
-    flex-flow: column wrap;
-    align-content: space-between;
+    margin-top: 18px;
     width: 35%;
 }
 .header {
-    width: 100%;
-    font-size: 1em;
     text-align: center;
 }
 .header a {
@@ -176,26 +170,24 @@ body {
     border-radius: 50%;
 }
 .beetsaid {
-    width: 100%;
     text-align: center;
     color: var(--link);
 }
 
 .tagList {
     display: flex;
-    padding: 3em;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    width: 100%;
+    padding-top: 3em;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .tagList .tag {
     padding: .5em;
+    color: var(--text);
     background-color: var(--bg-tag);
     border-radius: 108em;
-}
-.tagList .tag {
     margin-right: 20px;
     margin-bottom: 20px;
+
 }
 
 /* post content layout */
@@ -214,7 +206,6 @@ body {
 
 /* footer */
 .footer {
-    width: 100%;
     color: var(--text);
     background: var(--bg-edge);
     border-top-left-radius: 35px;
@@ -255,7 +246,7 @@ body {
 }
 .content blockquote {
     position: relative;
-    padding: 0 .5em .5em 1.5em;
+    padding-left: 1.5em;
     margin-left: 0;
     margin-right: 0;
     border: solid var(--border) 1px;
@@ -297,6 +288,9 @@ body {
 }
 .content h6 {
     font-size: 1.1em;
+}
+:not(pre) > code[class*="language-"], pre[class*="language-"] {
+    border: solid var(--border) 1px;
 }
 /* =========
    bug fix 

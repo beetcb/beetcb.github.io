@@ -6,7 +6,7 @@ pagination:
   data: collections.all
   size: 4
   alias: posts
-  addAllPagesToCollections: true
+  reverse: true
 eleventyExcludeFromCollections: true
 permalink: "/{% if pagination.pageNumber > 0 %}pages/{{ pagination.pageNumber }}/{% endif %}index.html"
 ---
