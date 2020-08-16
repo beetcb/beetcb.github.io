@@ -8,6 +8,7 @@
 .svg-icon {
     width: 16px;
     height: 16px;
+    fill: var(--text);
   }
   
   .svg-icon path,
@@ -60,12 +61,7 @@ html {
     --border-hover: #04d481;
     --link: #bd93f9;
     --alink: #47ebb4;
-    --lg: linear-gradient(to right bottom, var(--border-hover), var(--border));
 }
-html[data-theme='light'] {
-    --bg-edge: #1d1b38;
-}
-
 body {
     display: flex;
     flex-flow: column;
@@ -74,8 +70,9 @@ body {
 }
 /* header wrap with pseudo eles -> removed 2020.08.14 */
 
-
 .main {
+    display: flex;
+    justify-content: center;
     width: 100%;
     flex: 1;
 } 
@@ -245,6 +242,13 @@ body {
     padding: 20px 0 30px 10px;
     width: 70%;
     margin: 0 auto;
+}
+.article .location {
+    color: var(--border);
+}
+article .location time {
+    float: right;
+    color: var(--text);
 }
 .article .content {
     width: 70%;

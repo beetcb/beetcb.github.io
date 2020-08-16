@@ -6,15 +6,16 @@ pagination:
     filter: all
 permalink: /tags/
 eleventyExcludeFromCollections: true
-layout: "base"
+layout: "home"
 ---
-
-<ol>
+<div class="subPage">
+    <ul>
 {% for tag in tags %}
-    <h1>Tagged “{{ tag }}”</h1>
-    {% set taglist = collections[ tag ] %}
-    {% for post in taglist | reverse %}
+	&gt; {{ tag }}
+	{% set taglist = collections[ tag ] %}
+	{% for post in taglist | reverse %}
 	<li><a href="{{ post.url | url }}">{{ post.data.title }}</a></li>
-    {% endfor %}
+	{% endfor %}
 {% endfor %}
-</ol>
+    </ul>
+</div>

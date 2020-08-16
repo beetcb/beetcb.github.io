@@ -21,7 +21,7 @@ module.exports = eleventyConfig => {
 
     /* default layout template */
     e.addLayoutAlias('base', 'layouts/base.11ty.js');
-    e.addLayoutAlias('indexExtend', 'layouts/indexExtend.11ty.js');
+    e.addLayoutAlias('home', 'layouts/home.11ty.js');
     e.addLayoutAlias('post', 'layouts/post.11ty.js');
     
     /* use custom data as a blog config set -> Yaml */
