@@ -4,7 +4,7 @@ title: BrowserStack-JS引擎机理(浅解)
 author: beet
 post: "@15@"
 date: 2020-07-21 08:14:22
-nailimg: https://tcxzcc.gitee.io/src/nailimg/v8.png
+nailimg: https://m.beetcb.com/nailimg/v8.png
 tags: JS
 ---
 ### 首先从加载 js 说起
@@ -306,7 +306,7 @@ v8里的Interpreter叫做 `Ignition`
 
 以上便是读取、编译代码的整个流程，可以总结如下
 
-![](https://user-gold-cdn.xitu.io/2018/6/18/16411b3691977b53?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![](https://m.beetcb.com/postimg/15/1.png)
 
 ---
 
@@ -314,7 +314,7 @@ v8里的Interpreter叫做 `Ignition`
 
 `RUNTIME` 是指 js 代码运行时的环境。js 引擎参与（也处在）这个环境中。理解这个环境对 js 中的同步与异步很用帮助
 > 概括：
-> ![](https://tva4.sinaimg.cn/large/005K67iLgy1gh4e1c13e5j30jg0fldht.jpg)
+> ![](https://m.beetcb.com/postimg/15/2.png)
 >    - Memory Heap
 >    - Call Stack
 >    - Web APIs

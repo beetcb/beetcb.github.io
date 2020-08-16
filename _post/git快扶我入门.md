@@ -4,7 +4,7 @@ title: Git 快扶我入门
 author: beet
 post: "@4@"
 date: 2020-04-28 16:31:28
-nailimg: https://tcxzcc.gitee.io/src/nailimg/git.png
+nailimg: https://m.beetcb.com/nailimg/git.png
 tags:
 - git
 ---
@@ -19,11 +19,9 @@ tags:
 
 #### Git简介
 
-##### 
-
 ##### 0. Git不仅仅为开发者服务
 
-Git完美适配开源：*Linus Torvalds* 大佬写出Git的目的也是为了对自己linux开源项目的管理，再加上github，git也成为开源项目必备协作工具。
+Git完美适配开源：*Linus Torvalds* 前辈写出Git的目的也是为了对自己linux开源项目的管理，再加上github，git也成为开源项目必备协作工具。
 
 Git作为现在最流行的**版本控制系统**(VCS) ，不仅用于开发，还用于项目管理、团队合作、学校事务等；此外，掌握Git，编程能力并非刚需。
 
@@ -43,7 +41,7 @@ Git 为记录文件更改而设计，它能还原之前版本的项目或文件�
 
 ##### 3. 理解文件更改的三种状态(git tracked)
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a5/p1.png)
+![form pluralsight](https://m.beetcb.com/postimg/4/1.png)
 
 Git 已追踪文件的状态（注意`untracked`：未被git追踪的状态）
 
@@ -69,7 +67,7 @@ Git 已追踪文件的状态（注意`untracked`：未被git追踪的状态）
 
 ##### 4. 理解 Git 工程的三种状态
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a5/p2.png)
+![form pluralsight](https://m.beetcb.com/postimg/4/2.png)
 
 
 **<code>Working Directory</code>**
@@ -95,7 +93,7 @@ Git 已追踪文件的状态（注意`untracked`：未被git追踪的状态）
 
 先google 一份学霸作文，用某 seo 伪原创工具替换关键词，"写"成了一篇新的文章
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a5/lq.png)
+![](https://m.beetcb.com/postimg/4/3.png)
 
 打开命令行（git bash） ，git it ！！！（含完整返回结果作参考）
 
@@ -283,9 +281,6 @@ git pull [url]
 
 以Github 为例，首先完成 <code>sign up</code> 、<code>creat new repository</code>  
 
-先看看Github 官方中文作弊表
-
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a5/git-cheat-sheet.png)
 
 ###### https / ssh 安全管理
 
@@ -297,11 +292,10 @@ git pull [url]
 
 先来张图压压惊
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a5/git-doc.png)
 
-好吧好吧，来张常用的
+一些常用的
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a5/p3.png)
+![](https://m.beetcb.com/postimg/4/4.png)
 
 前面已经提过了 <code>init</code> <code>clone</code> <code>pull</code>  <code>add</code> <code>commit</code>   <code>push</code>  
 
@@ -311,7 +305,7 @@ git pull [url]
 
  git add 同时 commit  （untracked 状态的文件不会被commit  ，例如新建的 new.txt 文件，会出现如下结果）
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a5/gita.png)
+![](https://m.beetcb.com/postimg/4/5.png)
 
 **<code>git status</code>**
 
@@ -331,7 +325,6 @@ git push origin master --tags
 ```
 
 
-
 **<code>git reset/checkout/revert</code>**
 
 三者都可进行撤销操作，详见：
@@ -340,7 +333,7 @@ git push origin master --tags
 
 这张图太直观了，必须放上来（git reset 对比）
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a5/p5.png)
+![form pluralsight](https://m.beetcb.com/postimg/4/6.png)
 
 **<code>git diff</code>**
 
@@ -348,7 +341,7 @@ git push origin master --tags
 
 例如：git diff --staged
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a5/p4.png)
+![form pluralsight](https://m.beetcb.com/postimg/4/7.png)
 
 
 
@@ -433,8 +426,6 @@ git checkout master
 **修改git 凭据的方法** （win）
 
 控制面板 用户账务 凭据管理器  管理win 凭据 修改对应凭据
-
- ![](https://cdn.jsdelivr.net/gh/beetcb/pic/a5/i22.png)
 
 #### 道阻且艰
 

@@ -4,7 +4,7 @@ title: 对ECMAScript数据类型的理解
 author: beet
 post: "@9@"
 date: 2020-06-04 06:30:01
-nailimg: https://tcxzcc.gitee.io/src/nailimg/es.png
+nailimg: https://m.beetcb.com/nailimg/es.png
 tags: JS
 ---
 
@@ -16,9 +16,6 @@ tags: JS
 
 > The ECMAScript language types are <code>Undefined, Null, Boolean, String, Symbol, Number, BigInt, and Object.</code> An ECMAScript language `value is a value that is characterized by an ECMAScript language type.`
 
-嗯，应该很直观
-
-![谁说直观的！！](https://tvax4.sinaimg.cn/large/005K67iLgy1gffvyod1b2g30b4063tru.gif)
 
 ES 数据类型: 可分为 <code>原始类型(primitive)</code> 、<code>对象(引用类型)</code>  , 一个变量的类型可以动态变化，可在声明后改变(这说明了JS是一种弱类型、动态类型的语言)：
 
@@ -68,7 +65,7 @@ ES 值：对一个数据类型来说，值与之对应，是可以直观认识�
 
 控制台输入一个`没有返回值的语句` 返回undefined 
 
-![console](https://tva3.sinaimg.cn/large/005K67iLgy1gfh0xoznjoj30c4053gln.jpg)
+![console](https://m.beetcb.com/postimg/9/1.png)
 
 #### Null
 
@@ -213,7 +210,7 @@ let o = new Object();
 
    以数字为属性名索引、包含length属性的对象
 
-   ![console](https://tvax4.sinaimg.cn/large/005K67iLgy1gfg662h445j30da05c0sw.jpg)
+   ![console](https://m.beetcb.com/postimg/9/2.png)
 
    $ 创建方法：
 
@@ -226,7 +223,7 @@ let o = new Object();
 
    比如由 `.getElementsByTagName('li')` 得到的 HTMLcollection
 
-   ![console](https://cdn.jsdelivr.net/gh/beetcb/pic/a9/20200604131918.png)
+   ![console](https://m.beetcb.com/postimg/9/3.png)
 
 4. JSON 
 
@@ -285,7 +282,7 @@ typeof null;// "object"
 
 注意：typeof 一般不会报错，一般返回undefined；但是遇到let造成的暂时性死区时，报错"ReferenceError"
 
-![console](https://tva4.sinaimg.cn/large/005K67iLgy1gfh1jhf6mrj30f406kwex.jpg)
+![console](https://m.beetcb.com/postimg/9/4.png)
 
 ##### <code>instanceof</code>
 
@@ -305,7 +302,7 @@ null instanceof Object; // "false"  解决问题 ③
 
 一个经验易懂的解释
 
-![stack overflow](https://tva3.sinaimg.cn/large/005K67iLgy1gfg8bmaok6j30gl104wi7.jpg)
+![stack overflow](https://m.beetcb.com/postimg/9/5.png)
 
 后续补充......
 

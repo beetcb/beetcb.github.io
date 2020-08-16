@@ -4,7 +4,7 @@ title: Git之修改commit记录
 author: beet
 post: "@11@"
 date: 2020-06-22 19:50:04
-nailimg: https://tcxzcc.gitee.io/src/nailimg/git.png
+nailimg: https://m.beetcb.com/nailimg/git.png
 tags: git
 ---
 
@@ -34,7 +34,7 @@ tags: git
 
 `oh anotherOne wtf?` 
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622224539.png)
+![](https://m.beetcb.com/postimg/11/1.png)
 
 #### 魔法一：git coomit --amend -m ''🃏
 
@@ -46,7 +46,7 @@ git coomit --amend -m 'Sun of a Beach with canvas'
 
 **实际效果图**：
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622203322.png)
+![](https://m.beetcb.com/postimg/11/2.png)
 
 如果没有加 <code>-m</code>参数的话，会弹出 vim 让你编辑最近一次的commit
 
@@ -95,7 +95,7 @@ git reset master^ #opt3: 利用当前所在分支
 
 **实际效果图**：
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622211624.png)
+![](https://m.beetcb.com/postimg/11/3.png)
 
 #### 魔法三：git rebase🃏
 
@@ -107,7 +107,7 @@ git reset master^ #opt3: 利用当前所在分支
 git log --oneline
 ```
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622215836.png)
+![](https://m.beetcb.com/postimg/11/4.png)
 
 ##### 2.确定操作的范围
 
@@ -116,27 +116,26 @@ git rebase -i 4d11e38
 #此处-i表示interactive 交互式的rebase过程
 ```
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622220420.png)
+![](https://m.beetcb.com/postimg/11/5.png)
 
 ##### 3.把需要修改的commit前面 <code>pick</code> 改为 <code>r</code> 
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622220721.png)
+![](https://m.beetcb.com/postimg/11/6.png)
 
 保存并退出 vim 编辑器
 
 ##### 4.正式修改 commit
 
-![](../../../../Users/arno/AppData/Roaming/Typora/typora-user-images/image-20200622220901983.png)
 
 `go to jail` 改成 `go to party` 是不是潇洒的多呢🐶
 
 退出保存后，再次查看commit
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622221140.png)
+![](https://m.beetcb.com/postimg/11/7.png)
 
 我们再重新看看这张图，
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622220420.png)
+![](https://m.beetcb.com/postimg/11/8.png)
 
 细心的你有没有发现 除了可以 `r`(也就是reword commit)  还有很多强大的操作，这里举两个栗子：
 
@@ -153,13 +152,13 @@ git rebase -i 4d11e38
 
 但是，新的 commit 物件并没有被之后的 commit 所指到 ，当你再次reset回去的时候，一切还是原来的样子。不信你看
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a11/20200622224237.png)
+![](https://m.beetcb.com/postimg/11/9.png)
 
 除非你愿意去手动修改 commit 的指向，可能会生效吧
 
 #### 但是
 
-如果是真实开发的话，已经 push 出去的 commit 不要修改了（会引发许多麻烦），就让往事都随风吧
+如果是真实开发的话，已经 push 出去的 commit 不要修改了（会引发许多麻烦），就让往事都随风吧o((>ω< ))o。
 
 ![](https://tvax4.sinaimg.cn/large/005K67iLgy1gg1fq053dsg30dw092whw.gif)
 

@@ -4,7 +4,7 @@ title: 'tcb硬核博客加速,解决pages的龟速问题'
 author: beet
 post: "@7@"
 date: 2020-05-17 13:15:34
-nailimg: https://tcxzcc.gitee.io/src/nailimg/blog.png
+nailimg: https://m.beetcb.com/nailimg/blog.png
 tags: share
 ---
 
@@ -28,11 +28,11 @@ tags: share
 
 1.tcb 静态托管
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a7/7.6ping.png)
+![](https://m.beetcb.com/postimg/7/1.png)
 
 2.Github pages （部分资源已套cdn）
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a7/7.7ping.png)
+![](https://m.beetcb.com/postimg/7/2.png)
 
 #### 利用Github actions 自动部署到 tcb
 
@@ -46,7 +46,7 @@ tags: share
 
 如果在没有羊毛的情况下，构建首个云开发环境赠送资源如下，也够博客的基本使用了
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a7/7.10png.png)
+![](https://m.beetcb.com/postimg/7/3.png)
 
 具体定价参考 [静态网站托管](https://cloud.tencent.com/document/product/1210/42854)
 
@@ -60,17 +60,17 @@ tags: share
 
 登录 [腾讯云云开发控制台](https://console.cloud.tencent.com/tcb) ，创建环境 ，记录环境ID备用
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a7/7.11.png)
+![](hhttps://m.beetcb.com/postimg/7/4.png)
 
 等待创建成功后，进入所创建的环境，左侧菜单栏找到静态网络托管，开启使用，进入基础配置，绑定域名并配置证书（和cdn的配置类似）
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a7/7.13.png)
+![](https://m.beetcb.com/postimg/7/5.png)
 
 ##### 访问管理（获取 secretId&secretKey）
 
 进入 [访问管理](https://console.cloud.tencent.com/cam/capi)页面，创建子账号，获取 <code>secretId & secretKey</code>  **保存备用**
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a7/7.14.png)
+![](https://m.beetcb.com/postimg/7/6.png)
 
 ##### 配置github actions
 
@@ -80,9 +80,9 @@ tags: share
 
 > 本次教程以 hexo 为例，其他环境类似或更为简单
 
-<code>source</code> 目录下新建<code>.github/workflow/tcb_deploy.yml</code> 
+<code>source</code> git repo 的根目录下新建<code>.github/workflows/tcb_deploy.yml</code> 
 
-![](https://cdn.jsdelivr.net/gh/beetcb/pic/a7/7.1dir.png)
+
 
 <code>tcb_deploy.yml</code> 中写入
 
@@ -140,7 +140,7 @@ jobs:
 
    如下图：
 
-   ![](https://cdn.jsdelivr.net/gh/beetcb/pic/a7/7.15.png)
+   ![](https://m.beetcb.com/postimg/7/3.png)
 
 ##### 在repo里添加机密
 

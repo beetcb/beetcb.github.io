@@ -4,7 +4,7 @@ title: WSL2中使用proxychains ng代理加速
 author: beet
 post: "@13@"
 date: 2020-07-21 08:14:22
-nailimg: https://tcxzcc.gitee.io/src/nailimg/proxy.png
+nailimg: https://m.beetcb.com/nailimg/proxy.png
 tags: wsl
 ---
 > 情景：windows 已开启代理，需要 WSL2 走主机的代理
@@ -65,7 +65,7 @@ alias px='proxychains4'
 > 注意：`px gp` 如此的连续两个alias是无法识别的，依旧需要使用`px git pull`
 
 最后，放一张 `proxychains ng` 体验图
-![image](https://tva3.sinaimg.cn/large/005K67iLgy1ggyfsjos64j31j70pr1ky.jpg)
+![px test](https://m.beetcb.com/postimg/13/13.png)
 
 参考及补充：
 - [通过 ProxyChains-NG 实现终端下任意应用代理](https://www.hi-linux.com/posts/48321.html)
