@@ -247,7 +247,6 @@ body {
     color: var(--border);
 }
 article .location time {
-    float: right;
     color: var(--text);
 }
 .article .content {
