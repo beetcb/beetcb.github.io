@@ -69,7 +69,7 @@ class Home {
 	    
 	    <section class="post-aside">
 		<section class="header">
-		    <img src="https://cdn.jsdelivr.net/gh/beetcb/pic/logo.svg">
+		    <img src="${ data.config.link.logo_src }">
 		    <a href="/">Home</a>&nbsp;|&nbsp;
 		    <a href="/tags/">Tags</a>&nbsp;|&nbsp;
 		    <a href="/about/">About</a>
