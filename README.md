@@ -11,5 +11,5 @@ site_url: www.beetcb.com
  easy to do so with `_data/config.yaml`
  - **interactive tags**
  When you hover a blog post, the corresponding tags will response:
- > ![interactive tags]https://m.beetcb.com/readme/README-tag-demo.gif
+ > ![interactive tags](https://m.beetcb.com/readme/README-tag-demo.gif)
  - more...
