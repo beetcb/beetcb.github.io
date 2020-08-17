@@ -15,6 +15,6 @@
  
   When you hover a blog post, the corresponding tags will response:
  
-  <img src="https://i.imgur.com/V5aNMCR.gif" width="200" style="border-radius:10px;display: grid;place-items: center;">
+  <img src="https://i.imgur.com/V5aNMCR.gif" width="400" style="border-radius:10px;display: grid;place-items: center;">
  
  - more...
