@@ -6,10 +6,15 @@
 
 ### features
  - **simplicity**
+ 
  simple to build with the simpler [`11ty`](11ty.dev) generator.
  - **configurable** 
+ 
  easy to do so with `_data/config.yaml`
  - **interactive tags**
+ 
  When you hover a blog post, the corresponding tags will response:
- > ![interactive tags](https://m.beetcb.com/readme/README-tag-demo.gif)
+ 
+ > ![interactive tags](https://i.imgur.com/V5aNMCR.gif)
+ 
  - more...
