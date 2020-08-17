@@ -1,21 +1,19 @@
 blog:
-  title: beet-11ty
+  site_name: beet's blog
+  url: https://www.beetcb.com/
+  title: Beet's blog, a frontEnd lover's blog site
   description: 
-    metatag: a beginer theme based blog project with 11ty
-    logo: beet cabin
+    metatag: Beet's blog, share & blogging 
+    keywords: beetcb blog site, beet's blog, frontEnd, beet 的博客, www.beetcb.com, beetcb.com
     footer: made with love&
   components: 
-    nav_items: 
-      - home
-      - shared
-      - tags 
     sociallogo: 
       github: https://github.com/beetcb/
       twitter: https://twitter.com/beetcb1
       zhihu: https://www.zhihu.com/people/ur-apprentice/posts
       wechat: #
       qq: https://qm.qq.com/cgi-bin/qm/qr?k=eaqvtvbTAtD7iw-HXwverJr736BwdPs6&noverify=0
-      telegram: #
+      telegram: https://t.me/@beetbeet
 
 link:
   blog: https://www.beetcb.com/

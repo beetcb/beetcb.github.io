@@ -320,7 +320,7 @@ article .location time {
     .post,
     .article,
     .footer {
-        padding: 0 0;
+        padding: 0 1em;
     }
     /* fix width and flex layout */
     .logo {
