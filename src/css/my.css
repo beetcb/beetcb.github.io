@@ -78,7 +78,6 @@ body {
 } 
 .footer,
 .post-container,
-.header,
 .article {
     width: 100%;
     max-width: 1280px;
@@ -89,7 +88,6 @@ body {
     index components  
 ========= */
 
-/* header -> removed */ 
 
 /* main layout */
 .main img,
@@ -164,13 +162,18 @@ body {
 }
 .header img {
     width: 3em;
+    height: 3em;
     margin: 0.5em auto 2em;
     border: 2px solid var(--border);
     border-radius: 50%;
 }
-.beetsaid {
+.post-aside p {
     text-align: center;
     color: var(--link);
+}
+.beetsaid small {
+    color: var(--border);
+
 }
 
 .tagList {
@@ -316,7 +319,6 @@ article .location time {
 
 @media(max-width:788px) {
     /* clear padding */
-    .header,
     .post-container,
     .post,
     .article,
