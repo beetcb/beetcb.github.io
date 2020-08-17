@@ -7,8 +7,8 @@ blog:
     keywords: beetcb blog site, beet's blog, frontEnd, beet 的博客, www.beetcb.com, beetcb.com
     footer: made with love&
   components: 
-    sociallogo: 
-      github: https://github.com/beetcb/
+    social: 
+      github: https://github.com/beetcb/beetcb.github.io
       twitter: https://twitter.com/beetcb1
       zhihu: https://www.zhihu.com/people/ur-apprentice/posts
       wechat: #

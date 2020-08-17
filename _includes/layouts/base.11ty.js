@@ -33,7 +33,7 @@ class Base {
 	    ${ this.betterSeo($, data) }
 	    <link rel="stylesheet" href="${ $.link.my_css }">
 	    ${ this.cleanJsnCss($, data.page.url) }
-	    <link rel="shortcut type="image/x-icon" icon" href="/src/favicon.ico">
+	    <link rel="icon" href="/src/favicon.ico">
 	    </head>
 	`.trim()
 

@@ -44,7 +44,7 @@ class Home {
 
 
     render(data, array = []) {
-        const socialIcon = data.config.blog.components.sociallogo;
+        const socialIcon = data.config.blog.components.social;
 
         // store social data in array
         for (let i in socialIcon) {
