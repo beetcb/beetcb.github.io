@@ -1,8 +1,8 @@
 ### info
 
-descr: This is my blog dev repo (developed with love & [11ty](11ty.dev) ) 
-site_name: **bb ( 🙉 short for `beet's blog` )**
-site_url: www.beetcb.com
+- descr: This is my blog dev repo (developed with love & [11ty](11ty.dev) ) 
+- site_name: **bb ( 🙉 short for `beet's blog` )**
+- site_url: www.beetcb.com
 
 ### features
  - **simplicity**
