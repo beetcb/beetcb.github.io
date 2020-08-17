@@ -89,7 +89,7 @@ class Base {
 	</style>`.trim() 
 
 	||
-	(url==='/' && `<script defer src="${ $.link.my_js }"></script>` || `<link rel="stylesheet" href="${ $.link.highlight_css }"> `)
+	(/(pages)|(^\/$)/.test(url) && `<script defer src="${ $.link.my_js }"></script>` || `<link rel="stylesheet" href="${ $.link.highlight_css }"> `)
 
 
     render(data) {

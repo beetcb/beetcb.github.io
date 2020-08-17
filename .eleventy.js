@@ -14,7 +14,9 @@ module.exports = eleventyConfig => {
 
     /* plugin */
     e.addPlugin(pluginSyntaxHighlight);
-    e.addPlugin(lazyImagesPlugin)
+    e.addPlugin(lazyImagesPlugin, {
+      scriptSrc: 'https://m.beetcb.com/lib/lazysizes.min.js'
+    })
 
     /* rendless but needed copy */
     e.addPassthroughCopy("src/");

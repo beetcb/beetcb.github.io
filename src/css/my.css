@@ -135,6 +135,7 @@ body {
 }
 .previous-page[href*="/"],
 .next-page[href*="/"] {
+    cursor: pointer;
     color: var(--link);
 }
 /*post aside*/

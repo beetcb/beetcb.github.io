@@ -9,7 +9,7 @@ class Home {
     // grab all possible Tags
     getTag(data, tags, array = []) {
 
-	if (data.page.url!=='/') {return ''} else 
+	if (!/(pages)|(^\/$)/.test(data.page.url)) {return ''} else 
 
 	{
 	    for(let i in tags) {array.push(i)}
