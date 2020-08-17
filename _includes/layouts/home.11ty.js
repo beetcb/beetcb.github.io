@@ -70,11 +70,13 @@ class Home {
 	    <section class="post-aside">
 		<section class="header">
 		    <img src="${ data.config.link.logo_src }">
+		    <p class="beetsaid"> ${ data.config.blog.description.header } </p>
 		    <a href="/">Home</a>&nbsp;|&nbsp;
 		    <a href="/tags/">Tags</a>&nbsp;|&nbsp;
 		    <a href="/about/">About</a>
 		</section>
-		<p class="beetsaid">
+	
+		<p>
 		${ array } 
 		</p>
 		${ this.getTag(data, data.collections) }	
