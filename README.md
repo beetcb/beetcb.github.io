@@ -7,14 +7,14 @@
 ### features
  - **simplicity**
  
- simple to build with the simpler [`11ty`](11ty.dev) generator.
+  simple to build with the simpler [`11ty`](11ty.dev) generator.
  - **configurable** 
  
- easy to do so with `_data/config.yaml`
+  easy to do so with `_data/config.yaml`
  - **interactive tags**
  
- When you hover a blog post, the corresponding tags will response:
+  When you hover a blog post, the corresponding tags will response:
  
- <img src="https://i.imgur.com/V5aNMCR.gif" width="200" style="display: grid;place-items: center;">
+  <img src="https://i.imgur.com/V5aNMCR.gif" width="200" style="border-radius:10px;display: grid;place-items: center;">
  
  - more...
