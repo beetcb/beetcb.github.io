@@ -4,6 +4,7 @@
     src: url(/src/Pixer.woff);
     font-display: swap;
 }
+
 /* svg preset */
 .svg-icon {
     width: 16px;
@@ -64,10 +65,10 @@ html {
 }
 body {
     display: flex;
+    align-items: center;
     flex-direction: column;
     background-color: var(--bg-body);
 }
-/* header wrap with pseudo eles -> removed 2020.08.14 */
 
 .main {
     /* display: flex; => bad!!! */
