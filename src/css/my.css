@@ -64,16 +64,13 @@ html {
 }
 body {
     display: flex;
-    flex-flow: column;
-    align-items: center;
+    flex-direction: column;
     background-color: var(--bg-body);
 }
 /* header wrap with pseudo eles -> removed 2020.08.14 */
 
 .main {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    /* display: flex; => bad!!! */
     flex: 1;
 } 
 .footer,
@@ -110,8 +107,8 @@ body {
     margin-top: 2.5em;
 }
 .post {
-    position: relative;
     display: flex;
+    /*flex-shrink: 0;*/
     margin-bottom: 15px;
     padding: 30px 10px;
     border-radius: 10px;
@@ -119,7 +116,6 @@ body {
     border: 1.5px solid var(--border);
     box-shadow: 4px 4px 4px rgba(235, 235, 235, 0.3);
     transition: .3s transform ease-in-out,.3s filter ease-in-out,.5s border-left-color ease-in-out;
-
 }
 .previous-page {
     float: left;  
@@ -212,7 +208,7 @@ body {
     background: var(--bg-edge);
     border-top-left-radius: 35px;
     border-top-right-radius: 35px;
-    line-height: 1em;
+    line-height: .8em;
 }
 
 .footer-desc {
