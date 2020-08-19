@@ -98,6 +98,7 @@ body {
 }
 .post-container {
   display: flex;
+  margin: 0 auto;
   justify-content: space-around;
 }
 .post-collection {
@@ -221,8 +222,7 @@ body {
   font-family: pixer;
   text-align: center;
 }
-.footer a[href="http://www.beian.miit.gov.cn/"]
-{
+.footer a[href="http://www.beian.miit.gov.cn/"] {
   color: black;
   font-size: 13px;
 }
@@ -231,6 +231,7 @@ body {
    article   
 ========= */
 .article {
+  margin: 0 auto;
   color: var(--text);
   padding-top: 5px !important;
 }

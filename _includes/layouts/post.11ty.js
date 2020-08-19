@@ -3,7 +3,7 @@ exports.data = {
   permalink: 'posts/{{ post | removeAtSymbol }}/',
 }
 
-let formatDate = (date) => {
+let formatDate = date => {
   const dateArr = date.toString().match(/^(?:\w+\s)(\w+)\s(\d+)\s(\d+)/)
   return `Posted date: ${dateArr[3]} ${dateArr[1]} ${dateArr[2]}`
 }

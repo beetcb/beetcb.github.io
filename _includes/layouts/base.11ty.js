@@ -1,7 +1,7 @@
 class Base {
   betterSeo($, data) {
     // in case of 'undefined'
-    const get = (getWhat) => (getWhat && `${getWhat} |`) || ''
+    const get = getWhat => (getWhat && `${getWhat} |`) || ''
 
     // shorten code (* ￣︿￣)
     const [thisTitle, blogTitle, thisSum, descr] = [
