@@ -1,36 +1,35 @@
-const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight"),
-      lazyImagesPlugin = require('eleventy-plugin-lazyimages'),
-      yaml = require("js-yaml");
+const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight'),
+  lazyImagesPlugin = require('eleventy-plugin-lazyimages'),
+  yaml = require('js-yaml')
 
-module.exports = eleventyConfig => {
+module.exports = (eleventyConfig) => {
+  //add postIndex filter
+  eleventyConfig.addFilter('removeAtSymbol', function (value) {
+    return value.replace(/@/g, '')
+  })
 
-    //add postIndex filter
-    eleventyConfig.addFilter("removeAtSymbol", function(value) {
-	return value.replace(/@/g, '')
-    });
+  // alias like
+  const e = eleventyConfig
 
-    // alias like
-    const e = eleventyConfig;
+  /* plugin */
+  e.addPlugin(pluginSyntaxHighlight)
+  e.addPlugin(lazyImagesPlugin, {
+    scriptSrc: 'https://m.beetcb.com/lib/lazysizes.min.js',
+  })
 
-    /* plugin */
-    e.addPlugin(pluginSyntaxHighlight);
-    e.addPlugin(lazyImagesPlugin, {
-      scriptSrc: 'https://m.beetcb.com/lib/lazysizes.min.js'
-    })
+  /* rendless but needed copy */
+  e.addPassthroughCopy('src/')
 
-    /* rendless but needed copy */
-    e.addPassthroughCopy("src/");
+  /* default layout template */
+  e.addLayoutAlias('base', 'layouts/base.11ty.js')
+  e.addLayoutAlias('home', 'layouts/home.11ty.js')
+  e.addLayoutAlias('post', 'layouts/post.11ty.js')
 
-    /* default layout template */
-    e.addLayoutAlias('base', 'layouts/base.11ty.js');
-    e.addLayoutAlias('home', 'layouts/home.11ty.js');
-    e.addLayoutAlias('post', 'layouts/post.11ty.js');
-    
-    /* use custom data as a blog config set -> Yaml */
-    e.addDataExtension("yaml", contents => yaml.safeLoad(contents));
+  /* use custom data as a blog config set -> Yaml */
+  e.addDataExtension('yaml', (contents) => yaml.safeLoad(contents))
 
-    return {
-        /*
+  return {
+    /*
         dir: {
             input: "build",
             output: "sequel",
@@ -38,13 +37,8 @@ module.exports = eleventyConfig => {
         }, 
         custom 11ty settings
         */
-        templateFormats: [
-            "html",
-            "md",
-            "11ty.js",
-	    "njk"
-        ],
-        htmlTemplateEnging: "njk",
-        markdownTemplateEngine: "njk"
-    };
-} 
+    templateFormats: ['html', 'md', '11ty.js', 'njk'],
+    htmlTemplateEnging: 'njk',
+    markdownTemplateEngine: 'njk',
+  }
+}

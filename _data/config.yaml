@@ -2,13 +2,13 @@ blog:
   site_name: beet's blog
   url: https://www.beetcb.com/
   title: Beet's blog, a frontEnd lover's blog site
-  description: 
+  description:
     header: "<strong>b b</strong><br><small>(🙉 short for beet's blog)</small>"
-    metatag: Beet's blog, share & blogging 
+    metatag: Beet's blog, share & blogging
     keywords: beetcb blog site, beet's blog, frontEnd, beet 的博客, www.beetcb.com, beetcb.com
     footer: made with love&
-  components: 
-    social: 
+  components:
+    social:
       github: https://github.com/beetcb/beetcb.github.io
       twitter: https://twitter.com/beetcb1
       zhihu: https://www.zhihu.com/people/ur-apprentice/posts
@@ -22,5 +22,3 @@ link:
   highlight_css: /src/css/prism-dracula.css
   my_css: /src/css/my.css
   my_js: /src/js/my.js
-
-

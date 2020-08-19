@@ -1,49 +1,47 @@
 class Base {
+  betterSeo($, data) {
+    // in case of 'undefined'
+    const get = (getWhat) => (getWhat && `${getWhat} |`) || ''
 
-    betterSeo($, data) {
-	// in case of 'undefined'
-	const get = getWhat => (getWhat && (`${ getWhat } |`)) || '';
-	
-	// shorten code (* ￣︿￣)
-	const [
-	    thisTitle, 
-	    blogTitle, 
-	    thisSum, 
-	    descr
-	] = [get(data.title), $.blog.title, get(data.summary), $.blog.description.metatag ]
+    // shorten code (* ￣︿￣)
+    const [thisTitle, blogTitle, thisSum, descr] = [
+      get(data.title),
+      $.blog.title,
+      get(data.summary),
+      $.blog.description.metatag,
+    ]
 
-	return `<meta charset="UTF-8">
+    return `<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="${ thisSum } ${ descr }">
-		<meta name="title" content="${ thisTitle } ${ blogTitle }">
+		<meta name="description" content="${thisSum} ${descr}">
+		<meta name="title" content="${thisTitle} ${blogTitle}">
 
-		<title>${ thisTitle } ${ blogTitle }</title>
+		<title>${thisTitle} ${blogTitle}</title>
 
-		<meta property="og:site_name" content="${ $.blog.site_name }">
-		<meta property="og:url" content="${ $.blog.url }">
+		<meta property="og:site_name" content="${$.blog.site_name}">
+		<meta property="og:url" content="${$.blog.url}">
 		<meta property="og:type" content="website">
-		<meta property="og:title" content="${ thisTitle } ${ blogTitle }">
-		<meta property="og:description" content="${ thisSum } ${ descr }">
+		<meta property="og:title" content="${thisTitle} ${blogTitle}">
+		<meta property="og:description" content="${thisSum} ${descr}">
 	    `
+  }
 
-    }
-
-    getData($, data) {
-	const head = `<head>
-	    ${ this.betterSeo($, data) }
-	    <link rel="stylesheet" href="${ $.link.my_css }">
-	    ${ this.cleanJsnCss($, data.page.url) }
+  getData($, data) {
+    const head = `<head>
+	    ${this.betterSeo($, data)}
+	    <link rel="stylesheet" href="${$.link.my_css}">
+	    ${this.cleanJsnCss($, data.page.url)}
 	    <link rel="icon" href="/src/favicon.ico">
 	    </head>
 	`.trim()
 
-	const body = `<body>
+    const body = `<body>
 	    <main class="main">
-		${ data.content } 
+		${data.content} 
 		</main>
 		<footer class="footer">
 		    <div class="footer-desc">
-			${ $.blog.description.footer }<a style="color: skyblue;" href="https://www.11ty.dev/"
+			${$.blog.description.footer}<a style="color: skyblue;" href="https://www.11ty.dev/"
 			    target="_blank">11ty</a> by beet <br> 
 			<a href="http://www.beian.miit.gov.cn/" target="_blank">ICP-20003648-1</a>
 		    </div>
@@ -51,15 +49,14 @@ class Base {
 
 	    </body>
 	`.trim()
-	
-	return [head, body]
 
-    }
+    return [head, body]
+  }
 
-
-    cleanJsnCss = ($, url) =>  ( url!=='/' && url.match(/(tag)|(about)/g) ) 
-	&&
-    	`<style>
+  cleanJsnCss = ($, url) =>
+    (url !== '/' &&
+      url.match(/(tag)|(about)/g) &&
+      `<style>
 	    ol,ul {
 		display: block !important;
 	    }
@@ -86,19 +83,21 @@ class Base {
 		font-size: .8em;
 		color: var(--text)
 	    }
-	</style>`.trim() 
+	</style>`.trim()) ||
+    (/(pages)|(^\/$)/.test(url) &&
+      `<script defer src="${$.link.my_js}"></script>`) ||
+    `<link rel="stylesheet" href="${$.link.highlight_css}"> `
 
-	||
-	(/(pages)|(^\/$)/.test(url) && `<script defer src="${ $.link.my_js }"></script>` || `<link rel="stylesheet" href="${ $.link.highlight_css }"> `)
-
-
-    render(data) {
-	let dataArray = this.getData(data.config, data);
-	return `<!DOCTYPE html>
-<html lang="en">` + dataArray[0] + dataArray[1] + `</html>`.trim()
-
-    }
-
+  render(data) {
+    let dataArray = this.getData(data.config, data)
+    return (
+      `<!DOCTYPE html>
+<html lang="en">` +
+      dataArray[0] +
+      dataArray[1] +
+      `</html>`.trim()
+    )
+  }
 }
 
-module.exports = Base;
+module.exports = Base
