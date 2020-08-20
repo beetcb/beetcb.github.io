@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="en"><head>
+	    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content=" Beet's blog, share &amp; blogging">
+		<meta name="title" content="刷机pixelExp，获得原生安卓体验 | Beet's blog, a frontEnd lover's blog site">
+
+		<title>刷机pixelExp，获得原生安卓体验 | Beet's blog, a frontEnd lover's blog site</title>
+
+		<meta property="og:site_name" content="beet's blog">
+		<meta property="og:url" content="https://www.beetcb.com/">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="刷机pixelExp，获得原生安卓体验 | Beet's blog, a frontEnd lover's blog site">
+		<meta property="og:description" content=" Beet's blog, share &amp; blogging">
+	    
+	    <link rel="stylesheet" href="/static/css/my.css">
+	    <link rel="stylesheet" href="/static/css/prism-dracula.css"> 
+      <script src="https://cdn.jsdelivr.net/npm/turbolinks@5.2.0/dist/turbolinks.min.js"></script>
+	    <link rel="icon" href="/static/favicon.ico">
+	    </head><body>
+	    <main class="main">
+		
+	<article class="article">
+	    <h1 class="title">刷机pixelExp，获得原生安卓体验</h1>
+	    <div class="location content">
+		<a href="/">Home</a> /posts/16/<br>
+		<time datetime="Posted date: 2020 Aug 06">Posted date: 2020 Aug 06</time>
+	    </div>
+	    <div class="content">
+		<blockquote>
+<p>本文记录 beet 尝鲜 <code>pixel experience</code> 的小小体验</p>
+</blockquote>
+<video class="responsive-video" controls="">
+    <source src="https://tcxz.coding.net/api/share/download/f2bc2dc5-7ea5-40e6-b193-21536714e62c" type="video/mp4">
+</video>
+<h3>为何重装系统</h3>
+<p>最近接触了某些个流氓应用，功能及其简单，却一再索要各种权限，体验极其不佳，手机迟早要被它们玩透支。所以是时候 root 一下，夺回主权。</p>
+<p>root 中解锁 <code>bootLoader</code> 必须格式化，于是指引我想到换一个干净的 ROM 来替代我用惯的 <code>OOS</code> (一加手机的国外 ROM )</p>
+<h3><code>pixel experience OS?</code></h3>
+<p><code>pixel experience OS?</code> 提供类 pixel 的原生安卓体验，自带谷歌全家桶。还有，它是开源的自定义 ROM ，拥有无限可能。</p>
+<blockquote>
+<p>国内大多数手机厂商预装的都是自定义ROM，不开源而且大部分阉割GMS和谷歌全家桶( 因为国情，也没有办法 )
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAMCAIAAAAYkIEcAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACo0lEQVQoz1WSXU8TQRSG+/9vbUvERGyLxgsFg7QFTIQCBYJAFCjt9rud3WW3O/sxX2dmWi48S1Bj8uZczCRP3nnOFIgbEC9wvTAIY5zTmTeb+663wHNnMO50+11n2HOG/cF4MJzg7WRCphNCSDCduqPxvD+cOP1xzxk9dAcF7zF+DOMgTBY0w/kY0HARL2g6pe6Nd9si7TNy+WveGZGZ2x+H993g4io8v1zc3AbdgTdzscec+JgZ8Qsh5TQRNOFRIoKIBVEWUR6lvM/Hx2n7U7q1Gzcu4+tZRJLekLfP2Zcd/nmbNw+y658x8WnCIppiaJwVaApM6IzrhAFNFU4mTCaho52GbpbNWlVVW/KUcFd3nOXe/nL9zaq8Zmqb+vRM+YEEKyRgFJgCUoQyXJqUwSJRGKTHTN1Br66bJVuu6uoJtD3hmQdn2dxbvV5/KpZsbdOctnOWtlJpTM5K2QsrEzrOIGHY8aXXM6tU0dVjOHWRhb0ae6u110+vSrZSMydt8AOVswBZoO1zL4ms/Jk0w0aA9FTAPTh10ywv16qmdqLbnvTNYLA8+rZ6/3ZVWbdbH82PCwhCZKnnXjkrpCJhKmX4NPVIhR+JMFZRJu9U76usF1Vxg28cstaMzYGMTOcYjj/oo5o634b+laShkJoLyYREHLqXGQdMkvuSQSwjVMYk+tpVjZIuVWSlJU7m3IV0ZuJL8Ha0tw3+AcR3kkfPLIXJWWEskZJyQFkoPkxwlfkb0deuqhehuCHeHfLWnBNQxC5vAPZA1xV8B3iQiv5jgS6kXOMnQPdMagzuAfRSGdOz/YZFX+Ua+sI9Kt9o19oba/aXtmnNkTFdgFgqI//6wjqIy/LgzwJcAp5KrbvWaaD7/E/8YQGyrpFlbcOYI60f1P+s38CLHktnPoemAAAAAElFTkSuQmCC" alt="wiki" data-src="https://m.beetcb.com/postimg/16/1.png" class="lazyload" width="1305" height="660"></p>
+</blockquote>
+<p>所以，安排！！！</p>
+<h3>预备（备份、环境、下载）</h3>
+<h4>1.备份、设置</h4>
+<p>备份手机内容（尽量规避手机系统自带的备份，以免不能恢复）</p>
+<p>进入开发者选项 =&gt; 打开<code>usb调试</code> 和<code>OEM unlocking</code></p>
+<h4>2.<code>SDK</code>&amp;&amp;<code>Fastboot</code>调试环境</h4>
+<blockquote>
+<p>简单说：这一步允许我们通过电脑调试手机，完成一些高级设置</p>
+</blockquote>
+<p>建议新手直接下载安装工具包：<a href="http://download.clockworkmod.com/test/UniversalAdbDriverSetup.msi">UniversalAdbDriver</a>
+可以直接获得 <code>sdk</code> 和 <code>fastboot</code> 这两个调试工具，在电脑上构建调试环境。</p>
+<p>linux 或者 macos 可以参考 <a href="https://github.com/simmac/minimal_adb_fastboot">minimal_adb_fastboot</a></p>
+<p>如果你是安卓开发者，已有SDK环境，那自然不必执行上一步操作了。</p>
+<h3>解锁 bootloader</h3>
+<h4>1.重启进入bootloader</h4>
+<p>通过数据线连接手机(确保手机允许电脑的验证)，打开命令行：</p>
+<pre class="language-bash"><code class="language-bash">adb <span class="token function">reboot</span> bootloader<br><span class="token comment"># 如果顺利执行，命令行则不会有任何输出，手机会自动重启</span></code></pre>
+<p>此时不要操作手机，再次输入：</p>
+<pre class="language-bash"><code class="language-bash">fastboot oem unlock<br><span class="token comment"># 如果顺利执行，会返回成功提示</span></code></pre>
+<p>成功解锁手机！接下来，需要一个易操作的恢复程序来帮助我们安装系统——TWRP</p>
+<h3>下载TWRP、ROM、Magisk</h3>
+<blockquote>
+<p>TWRP提供安装的环境，而我们需要刷入的主体就是pixel experience, magisk 则是root工具</p>
+</blockquote>
+<p><code>TWRP</code> 和 <code>pixel experience ROM</code>
+两者都需要去<a href="https://download.pixelexperience.org/">官网</a>按照对应机型下载，注意前者需要下载<code>.img</code>镜像用于加载（也可以下载压缩文件进行安装，我就不装了）</p>
+<p>Magisk则可以到官方repo的releases页面下载最新版 =&gt; <a href="https://github.com/topjohnwu/Magisk/releases">地址</a></p>
+<p>三者最好放到电脑上同一个文件夹，方便命令行操作</p>
+<h3>正式刷入ROM + Magisk</h3>
+<h4>1.刷入ROM</h4>
+<pre class="language-bash"><code class="language-bash">adb <span class="token function">reboot</span> bootloader<br><span class="token comment"># 再重启进入bootloader</span><br>fastboot boot path/to/twrp.img<br><span class="token comment"># 加载TWRP构建恢复环境</span><br>adb sideload path/to/rom.zip<br><span class="token comment"># 把电脑上的rom传输到手机的同时进行刷入</span></code></pre>
+<p>安装完成后，选择 <code>reboot</code>-&gt;  <code>bootloader</code>，再安装 magisk</p>
+<pre class="language-bash"><code class="language-bash">fastboot boot path/to/twrp.img<br><span class="token comment"># 加载TWRP构建恢复环境</span><br>adb sideload path/to/magisk.zip<br><span class="token comment"># 安装magisk</span></code></pre>
+<p>安装完成后，选择 <code>reboot</code>-&gt;  <code>system</code>，重启进入系统。恢复备份。</p>
+<p>至此，刷机和root已经完成，可以当成 pixel 把玩啦！！！</p>
+<blockquote>
+<p>题外话：前面提到的权限管理，可以通过 <code>App Ops</code> 给程序提供假权限，干掉那些不给权限不给用的流氓软体</p>
+</blockquote>
+
+	    </div>
+	    <div class="outline"></div>
+	</article>
+
+     
+		</main>
+		<footer class="footer">
+		    <div class="footer-desc">
+			made with love&amp;<a style="color: skyblue;" href="https://www.11ty.dev/" target="_blank">11ty</a> by beet <br> 
+			<a href="http://www.beian.miit.gov.cn/" target="_blank">ICP-20003648-1</a>
+		    </div>
+		</footer>
+    <script>Turbolinks.start()</script>
+	    <script>
+            (function (selector, src, preferNativeLazyLoad) {
+  var images = document.querySelectorAll(selector);
+  var numImages = images.length;
+
+  if (numImages > 0) {
+    if (preferNativeLazyLoad && 'loading' in HTMLImageElement.prototype) {
+      for (var i = 0; i < numImages; i++) {
+        var keys = ['src', 'srcset'];
+
+        for (var j = 0; j < keys.length; j++) {
+          if (images[i].hasAttribute('data-' + keys[j])) {
+            var value = images[i].getAttribute('data-' + keys[j]);
+            images[i].setAttribute(keys[j], value);
+          }
+        }
+      }
+
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = src;
+    document.body.appendChild(script);
+  }
+})(
+              'img',
+              'https://m.beetcb.com/lib/lazysizes.min.js',
+              false
+            );
+          </script></body></html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content=" Beet's blog, share & blogging">
+		<meta name="title" content="咋就避不开这个话题呢-下载（下） | Beet's blog, a frontEnd lover's blog site">
+
+		<title>咋就避不开这个话题呢-下载（下） | Beet's blog, a frontEnd lover's blog site</title>
+
+		<meta property="og:site_name" content="beet's blog">
+		<meta property="og:url" content="https://www.beetcb.com/">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="咋就避不开这个话题呢-下载（下） | Beet's blog, a frontEnd lover's blog site">
+		<meta property="og:description" content=" Beet's blog, share & blogging">
+	    
+	    <link rel="stylesheet" href="/static/css/my.css">
+	    <link rel="stylesheet" href="/static/css/prism-dracula.css"> 
+      <script src="https://cdn.jsdelivr.net/npm/turbolinks@5.2.0/dist/turbolinks.min.js"></script>
+	    <link rel="icon" href="/static/favicon.ico">
+	    </head><body>
+	    <main class="main">
+		
+	<article class="article">
+	    <h1 class="title">咋就避不开这个话题呢-下载（下）</h1>
+	    <div class="location content">
+		<a href="/">Home</a> /posts/5/<br>
+		<time datetime="Posted date: 2020 Apr 26">Posted date: 2020 Apr 26</time>
+	    </div>
+	    <div class="content">
+		<p><cite>本文或许可以解决你的这些困扰</cite></p>
+<ol>
+<li>挑中的音视频无法直链下载</li>
+<li>寻找各种软、插件，徒增系统负载和学习成本</li>
+</ol>
+<aside>接着叨下载这个话题，本篇主要推荐两个音视频下载工具 annie 、you get，举例一些日常需求来说说命令的简单写法。</aside> 
+<h4>annie</h4>
+<p>annie 对国内友好，支持国内主流音视频网站（哔哩哔哩、优酷、网易云等）和国外部分网站。这是annie 的<a href="https://github.com/iawia002/annie/blob/master/README.md">官方文档</a></p>
+<p>官方文档清晰明了，建议看完，同时也希望我记录的这一点自用配置可以帮助到小甜菜们。</p>
+<h5>1. 安装</h5>
+<h6>所需依赖</h6>
+<p>下载并安装 Ffmpeg，强大的音视频处理软件，等我读完复杂的官方文档后再写博文细解。它相当于一个小插件，帮annie 处理视频，对下载无直接影响。</p>
+<p>linux下安装 go 会很方便（可选）</p>
+<h5>win 安装</h5>
+<p>linux 配置简单，把我在 windows 安装过程记录下 （mac 同理）。</p>
+<p>如果你有包管理器 ，甚至不用装ffmpeg，一行代码即可。</p>
+<pre class="language-bash"><code class="language-bash">$ scoop <span class="token function">install</span> annie<br>// or <br>$ choco <span class="token function">install</span> annie</code></pre>
+<p>没有包管理器，装好ffmpeg后，下载win版软件包
+<a href="https://github.com/iawia002/annie/releases/download/0.9.8/annie_0.9.8_Windows_64-bit.zip">下载地址</a>
+解压记好你的文件位置，<code>win + s</code> 唤出搜索，输入环境变量，把annie 放入环境变量中。具体配置见下图 。</p>
+<h5>2. 日常下载需求示例</h5>
+<p><strong><code>annie [OPTIONS] [URL...]</code></strong></p>
+<h6>更改下载清晰度 (默认最高画质)</h6>
+<pre class="language-bash"><code class="language-bash">$ annie -i https://www.bilibili.com/video/BV12J411D7qK?from<span class="token operator">=</span>search<span class="token operator">&amp;</span><span class="token assign-left variable">seid</span><span class="token operator">=</span><span class="token number">1289336077348544836</span><br><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token number">1023</span><br><br>$ <br> Site:      哔哩哔哩 bilibili.com<br> Title:     【片片】1分钟包含9层反转！你的脑细胞还够用吗？《瑞克和莫蒂》史上彩蛋最多的一集<br> Type:      video<br> Streams:   <span class="token comment"># All available quality</span><br>     <span class="token punctuation">[</span><span class="token number">80</span><span class="token punctuation">]</span>  -------------------<br>     Quality:         高清 1080P<br>     Size:            <span class="token number">188.96</span> MiB <span class="token punctuation">(</span><span class="token number">198141236</span> Bytes<span class="token punctuation">)</span><br>     <span class="token comment"># download with: annie -f 80 ...</span><br><br>     <span class="token punctuation">[</span><span class="token number">64</span><span class="token punctuation">]</span>  -------------------<br>     Quality:         高清 720P<br>     Size:            <span class="token number">140.22</span> MiB <span class="token punctuation">(</span><span class="token number">147026742</span> Bytes<span class="token punctuation">)</span><br>     <span class="token comment"># download with: annie -f 64 ...</span><br><br>     <span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">]</span>  -------------------<br>     Quality:         清晰 480P<br>     Size:            <span class="token number">62.39</span> MiB <span class="token punctuation">(</span><span class="token number">65425641</span> Bytes<span class="token punctuation">)</span><br>     <span class="token comment"># download with: annie -f 32 ...</span><br><br>     <span class="token punctuation">[</span><span class="token number">16</span><span class="token punctuation">]</span>  -------------------<br>     Quality:         流畅 360P<br>     Size:            <span class="token number">60.24</span> MiB <span class="token punctuation">(</span><span class="token number">63163194</span> Bytes<span class="token punctuation">)</span><br>     <span class="token comment"># download with: annie -f 16 ...</span><br><br><br><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+  Done                    annie -i https://www.bilibili.com/video/BV12J411D7qK?from<span class="token operator">=</span>search<br><br>$ annie -f <span class="token number">64</span> https://www.bilibili.com/video/BV12J411D7qK?from<span class="token operator">=</span>search<br><br> Site:      哔哩哔哩 bilibili.com<br> Title:     【片片】1分钟包含9层反转！你的脑细胞还够用吗？《瑞克和莫蒂》史上彩蛋最多的一集<br> Type:      video<br> Stream:   <br>     <span class="token punctuation">[</span><span class="token number">64</span><span class="token punctuation">]</span>  -------------------<br>     Quality:         高清 720P<br>     Size:            <span class="token number">140.22</span> MiB <span class="token punctuation">(</span><span class="token number">147026742</span> Bytes<span class="token punctuation">)</span><br>     <span class="token comment"># download with: annie -f 64 ...</span><br><br> <span class="token number">140.22</span> MiB / <span class="token number">140.22</span> MiB <span class="token punctuation">[</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span><span class="token punctuation">]</span> <span class="token number">100.00</span>%</code></pre>
+<h6>通过av 或 eq号下载</h6>
+<pre class="language-bash"><code class="language-bash">$ annie  ep314796<br>$ annie  av21877586<br><span class="token comment"># 复合下载</span><br>$ annie  ep314796 av21877586</code></pre>
+<h6>下载播放列表</h6>
+<pre class="language-bash"><code class="language-bash">$ annie -p <span class="token string">"playlisturl"</span><br><span class="token comment"># 全部下载</span><br>$ annie -p items <span class="token number">2,3</span>,11 <span class="token string">"playlisturl"</span><br><span class="token comment"># 下载特定p2，p3，p11</span></code></pre>
+<h6>从文件读取下载列表</h6>
+<pre class="language-bash"><code class="language-bash">$ annie -F url.md</code></pre>
+<h4>you-get</h4>
+<p>you-get 非常全能，对国内外网站也更加全面，但是需要依赖python 。</p>
+<p>这是 you-get <a href="https://github.com/soimort/you-get">官方文档</a></p>
+<h5>1. 安装</h5>
+<h6>所需依赖</h6>
+<ul>
+<li>
+<p>Ffmpeg</p>
+</li>
+<li>
+<p>安装python （win下记得配置环境变量）</p>
+</li>
+<li>
+<p>安装RTMPdump （可选） 用来下载rtmp直播流</p>
+</li>
+</ul>
+<h6>安装 （win）</h6>
+<p>python 命令行输入：</p>
+<p>pip3 install you-get</p>
+<p>若无错误值返回，则安装成功。</p>
+<h5>2. 日常下载需求示例</h5>
+<p><strong><code>you-get [OPTIONS] [URL...]</code></strong></p>
+<h6>下载直播流</h6>
+<pre class="language-bash"><code class="language-bash">$ you-get <span class="token punctuation">..</span>./video.m3u8</code></pre>
+<h6>关键词下载</h6>
+<pre class="language-bash"><code class="language-bash">$ you-get <span class="token string">"rick and morty"</span></code></pre>
+<p>google并爬取相关视频 自动下载</p>
+<hr>
+<p>本文只是做了基础的演示，更多强大功能请使用 <code>-h</code> 速查。</p>
+<p><em>行文仓促，望指正</em></p>
+
+	    </div>
+	    <div class="outline"></div>
+	</article>
+
+     
+		</main>
+		<footer class="footer">
+		    <div class="footer-desc">
+			made with love&<a style="color: skyblue;" href="https://www.11ty.dev/"
+			    target="_blank">11ty</a> by beet <br> 
+			<a href="http://www.beian.miit.gov.cn/" target="_blank">ICP-20003648-1</a>
+		    </div>
+		</footer>
+    <script>Turbolinks.start()</script>
+	    </body></html>

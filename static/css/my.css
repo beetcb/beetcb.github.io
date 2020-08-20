@@ -1,8 +1,14 @@
 /* custom font */
 @font-face {
   font-family: 'pixer';
-  src: url(/src/Pixer.woff);
+  src: url(/static/Pixer.woff);
   font-display: swap;
+}
+
+/* turbolinks progress bar */
+.turbolinks-progress-bar {
+  height: 2.5px;
+  background-color: #f56476;
 }
 
 /* svg preset */
@@ -222,7 +228,8 @@ body {
   font-family: pixer;
   text-align: center;
 }
-.footer a[href="http://www.beian.miit.gov.cn/"] {
+.footer a[href="http://www.beian.miit.gov.cn/"]
+{
   color: black;
   font-size: 13px;
 }

@@ -1,0 +1,285 @@
+<!DOCTYPE html><html lang="en"><head>
+	    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content=" Beet's blog, share &amp; blogging">
+		<meta name="title" content="Git 快扶我入门 | Beet's blog, a frontEnd lover's blog site">
+
+		<title>Git 快扶我入门 | Beet's blog, a frontEnd lover's blog site</title>
+
+		<meta property="og:site_name" content="beet's blog">
+		<meta property="og:url" content="https://www.beetcb.com/">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="Git 快扶我入门 | Beet's blog, a frontEnd lover's blog site">
+		<meta property="og:description" content=" Beet's blog, share &amp; blogging">
+	    
+	    <link rel="stylesheet" href="/static/css/my.css">
+	    <link rel="stylesheet" href="/static/css/prism-dracula.css"> 
+      <script src="https://cdn.jsdelivr.net/npm/turbolinks@5.2.0/dist/turbolinks.min.js"></script>
+	    <link rel="icon" href="/static/favicon.ico">
+	    </head><body>
+	    <main class="main">
+		
+	<article class="article">
+	    <h1 class="title">Git 快扶我入门</h1>
+	    <div class="location content">
+		<a href="/">Home</a> /posts/4/<br>
+		<time datetime="Posted date: 2020 Apr 29">Posted date: 2020 Apr 29</time>
+	    </div>
+	    <div class="content">
+		<blockquote>
+<p>我正在 <code>pluralsight</code> 上学习 Git 原理 ，先写一篇文章总结一些简单的 <code>git基础</code> 吧！</p>
+<p>本文部分图片引用自：</p>
+<p><a href="https://app.pluralsight.com/library/courses/getting-started-git/table-of-contents">getting-started-git</a></p>
+</blockquote>
+<h4>Git简介</h4>
+<h5>0. Git不仅仅为开发者服务</h5>
+<p>Git完美适配开源：<em>Linus Torvalds</em> 前辈写出Git的目的也是为了对自己linux开源项目的管理，再加上github，git也成为开源项目必备协作工具。</p>
+<p>Git作为现在最流行的<strong>版本控制系统</strong>(VCS) ，不仅用于开发，还用于项目管理、团队合作、学校事务等；此外，掌握Git，编程能力并非刚需。</p>
+<p>总之，如果你想追踪项目的更改，提升多项目管理效率，就适合学习Git。</p>
+<h5>1.分散式与集中式</h5>
+<p>把 git 再精确一点说，他是 <code>分散式版本控制系统</code>  ：可以一台电脑做版控、可以没网络做版控、还可以找台 git 服务器一群人做版控</p>
+<p>与之对比的是 <code>集中式版本控制系统</code>  比如CVS、SVN，必须依赖一台集中处理版本的服务器，不联网（准确是不连接服务器）就不能做版控。</p>
+<h5>2. 它可能是个时光鸡吧</h5>
+<p>Git 为记录文件更改而设计，它能还原之前版本的项目或文件，并清楚呈现各种更改的对比。对，当你用好了Git ，你就拥有了一台<code>时光鸡</code> 。</p>
+<p>先预告一下它时光鸡的功能（前提：此目录是一个git目录）：</p>
+<h5>3. 理解文件更改的三种状态(git tracked)</h5>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAOCAIAAABVWCAXAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADR0lEQVQ4y22T2VPbRhzH9Sd2+tZOZ/qUTpNCm3ZCH3o9tFOahk4w1BBzuXjCGBLbQDiMjQ/ANjZgZEe20GWR6LDAseVDh3VZcrLEkCYz+c5XO7/dlb67s9oP9Bqo339nx7F7vZ5pmsaNdOArXdXmjcA7juP0P9Br6GNZ1odZuv5e2CDx41l9x3ZUyW4INl8BtjjSqJ7rjUtVll5JyguxjdeaeE0EBjUY6chqU5QuhbbAty6qHWCxrqiKYdsO5CgdCzsx4itaaEpfn9FXp7UtrwHv1djzDN94jDLTBXoBeeEpnoM6zddxVkRgPrp5thkqhddR0CajJI5eKrIB2fWqkQyoMz+r9291x79Vx24rD4e1jXkin11EmeEE8kUY/ir2/MtIYSiBeMvM7ikTfoZO/J3854/4xP3k2O+x2cn03i75qiZDPY7Swz7VPSKP3ZHdP8quu/KDr7WgO5/cccH0ZzuFT7YLn0eRT8NFUI/D58t7RNBfGP018tdvURD35y+Rh6OJrbUyxzShHl8xUuvdJxPyiqu96ukEpmTfqBFbhlPxeZQdTuG309R3WfpOhhpKEXMoH0xRkY2zR67UnPvQ+yg7M5FemD5MRAiOaV1lmUcRbdMrbfuakeXWjl8OuM3UWiGT9GH8SI6+d/LyJ5gdyTP3cvQiLoTSlXgY93qySwsn/sW8b+748cLxfoziQZZ98dLMhbXVafnJZDv0dl9LD/RkAMkd+DDuhwzxTZq8m60MZajv08Qixm/k6Ng2NufOzE8d/ufJzU5mfLO5/Tgl8G3Iadev/uPBWjfqV+NP1d0VLeo3iwcseZZg6zNlbhzh/i3zLoTzlLk42zgla/AJCw5oI4hsrZaeBZDdbaxUrLaaXahvaHaN61FFE8mYpawK74u5eBU+xJDnKZQI5ctLR4j/uATaYL60XyZOSyRSpPNHdDHPgstRPOUIrHZ5IRm6BYG73u9Zfb1rKx1baWutRkPgGbpCkiROkihOINi1yzgBRkiSYlm+Xm8qsqYqelcFZFiW1bNtG3pHD+AHPAARURQZhqEoqgJcqdA3Bt2BBEGQJAl8PGAHwDRA+H8eryds27JMQJ/2Vt2Bu9ceCKz3Po8gFCAKJt8A3wZwhMg4ccoAAAAASUVORK5CYII=" alt="form pluralsight" data-src="https://m.beetcb.com/postimg/4/1.png" class="lazyload" width="1794" height="1004"></p>
+<p>Git 已追踪文件的状态（注意<code>untracked</code>：未被git追踪的状态）</p>
+<p><strong><code>Modified</code></strong></p>
+<p>更改中&amp;未准备commit&amp;还可添加更多更改</p>
+<p><strong><code>Staged</code></strong></p>
+<p>暂存&amp;准备commit</p>
+<p><strong><code>Committed</code></strong></p>
+<p>写入历史记录的更改</p>
+<blockquote>
+<p>实际上在一个 Git 项目中，文件还有一个<code>untracked</code> 状态。Git 参与这种状态的文件的管理</p>
+</blockquote>
+<blockquote>
+<p>冷门的几个文件状态：</p>
+<ul>
+<li>deleted ：已在工作区删除，只有 git add 之后git才会真正帮你删除</li>
+<li></li>
+</ul>
+</blockquote>
+<h5>4. 理解 Git 工程的三种状态</h5>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAOCAIAAABVWCAXAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADQUlEQVQ4y4WT3VMaVxTA+RM706fOpA/t9KHTdDKOD0naThqnDRhMS1IttZo2FUEEqvKpFgoCLp9m2U9odAFhFxCUL6u7LPfuLsmFmBqfeua3Z87s3vnNObP36F6jGI0QKFRVgRCC4RBxIwAA6D2AqPjvIzqpquroOl7rbrpUdOKGRUbIb20o/seFkiZdqt2W0qiA+rFcLw94TuS5dq3Cn5xwp13urFtq90rtPtfuF5vd41qnWj0Tqu2a0GnUe83GebcjSiLQtJFuPBh/OEwGBp4leXtFDtlRvvAuszsu7z62RHB/MBVbvoryIlF6jr2y7+a9W8yuNx8MFHZ9Bf8mk4qXq+UOAIpupEDApiTnTxdzn18+mxIX74vPpnpzX0QWvpu1rn+ynb0doaajzO0w9fHOy8+s2N35vSeGsPmH2NI89ospbjKEnasvSVyQBxD1pcBCZrBpvjR9Kc5Pi4tfSfPTPdOdkNnw0Or80H9wK0R9GmZuBakPAvhHK9gdU0Q/E3yqjyw8iT6djRgfBtdeHOSy/MSlqYpwBNI7sudX2bss+38bepcvPEvpwMZiGJtOHt3NlL7Olu9lSlNJ7v42a7TjL55n1n4/WLfgyGJZzvzlK7zKN4dDZexSWwJqDSR8IOkHqW2Y9EuYP5eM2rL0I5KfZerGCd9TNWO8aPbmHXbC7aA8f9JuJ7WxRsTCXOnoDAD1rYsfu5J+mN4B2SBM70qJAJ6I2jKknuTn2Lop3/iRbejpmjFW/NnDOuyk10UH3Kxvg9lYJ2N/c8V3Lm3syqcB5hm3lgqM+9r34djeapqcIaqPqNpjumagazOkYIhxC27Gbstt2kmPi95ykC5rLho6et8lQDYF4ltj9t0wviXF3bnEniVDPsArDwh+hhC+Jfhvcrw+xpk97JoVd63iLhvhtOYcFjwa4kpc+8ql9c+Uyj+QSUAagwym0JjMJEoFKnxYXi22VoqnlgmocDKNQLoajRTRXLHwVaaJeqN+PrlfKAYi0qFJ1WZVbY1RWnz3tFlud8nOJdEVyXewrX8Phf5xuVMpXXPSOO/3RLRpuskmaugPoIv2PmjX0ANUDW3HNaoGFU1R1AlXBYQK2lhJkt4ALfxoUzWsRBoAAAAASUVORK5CYII=" alt="form pluralsight" data-src="https://m.beetcb.com/postimg/4/2.png" class="lazyload" width="1789" height="1007"></p>
+<p><strong><code>Working Directory</code></strong></p>
+<p>工作区，不进入staging area的更改不会被commit</p>
+<p><strong><code>Staging Area（index）</code></strong></p>
+<p>暂存区，储存想要 commit 的更改</p>
+<p><strong><code>.git Directory</code></strong></p>
+<p>把更改写入历史 也就是commit之后所处的状态</p>
+<p>通常也说成生成项目的 <strong>snapshot</strong></p>
+<h4>开始Git之旅（不严谨的睡前故事,）</h4>
+<p>一切从小胖开始...</p>
+<p>在某个人人都用git的国度里，小胖要交一份英文作文（假如你是李强...），于老师批改，来看他的操作（看完这个故事，你应该可以去<code>github</code> 帮大佬们贡献代码改 bug 了，内含pull request 和 merge）</p>
+<p>先google 一份学霸作文，用某 seo 伪原创工具替换关键词，"写"成了一篇新的文章</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAPCAIAAACeBPOyAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACHElEQVQ4y4WTh3LbMAyG8/6v15E0XooWJXGAA1wadkH72kvs5PIfBIk88SMIgE/okjUuoAvBIyJocM7lnLevtcxLSnPOy7Ju5/P58k9PKS0xppwSOfRRG4f0inG+ipYVT5qXdV0JRH4urJzLzEfWtp2v/2y0TUjZYfA+kGKhlxVX1kq0G+uG+z/8wKKHhjRFMVsbpLRKGK0sSKslGuUdBG9icCn5nOOcfDH6WJf1fNUj60Lbow1aWuDWSAfcaeHJrAwIMdhUzKXCtSmHeVu2y0e9Y+XFaVSTFgOIEThTU08GkgEMYLi20lpAqxB1iJjXT1k3UQo8Bg32ZqCMkoZOapRFsJ5q7XygqgRKZKZSULK+ZM15thr5oMSo5Fg8xTX2isJUI2hujLROe7KAMaf5G5YzvhyQScWkZIr3MLTlmJyBHDUZZQC4IVwKeVu/zlcMs5iwPojqdWr2vDuJrpLNSZC1lWCtHDox9oICp/C/YaHLbWOef07PP8bjH14fZV2p6ihPB1G/qYHBxJWUSmtDvU3N9b4bHllzW7vnX/LltzodDH33LbIeWYfT6DVE50oPp5QeM/V4xoXWvFW6qc3IkE+ehoIHKaLR2eMcKeOp3IK7dv+ERaXRCocOukZ1LfSdZsyOg5PCgwrGEJE6JlgbQyjX+q7p7+LKVKl6P+xf+t3rsHsdDzu+34m3SrUNsN4QvalhYAbAp2tP3LH+AsXWOA7rV3ETAAAAAElFTkSuQmCC" alt="" data-src="https://m.beetcb.com/postimg/4/3.png" class="lazyload" width="1552" height="966"></p>
+<p>打开命令行（git bash） ，git it ！！！（含完整返回结果作参考）</p>
+<pre class="language-bash"><code class="language-bash"><span class="token comment"># fork 老师的作业仓库到自己的账号下，因为老师不可能给我仓库的访问权</span><br><span class="token comment"># fork 后我（小胖）的 repo 为 https://github.com/beetcb/teacher.git</span><br><br>$ <span class="token builtin class-name">cd</span> cheat_english<br><br>$ <span class="token function">mkdir</span> git_example<br><br>$ <span class="token builtin class-name">cd</span> git_example<br><br>$ <span class="token function">git</span> init<br>Initialized empty Git repository <span class="token keyword">in</span> E:/cheat_english/git_example/.git/<br><span class="token comment"># 初始化本地仓库</span><br><br>$ <span class="token function">git</span> clone https://github.com/beetcb/teacher.git<br>remote: Enumerating objects: <span class="token number">9</span>, done.<br>remote: Counting objects: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">9</span>/9<span class="token punctuation">)</span>, done.<br>remote: Compressing objects: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">4</span>/4<span class="token punctuation">)</span>, done.<br>remote: Total <span class="token number">9</span> <span class="token punctuation">(</span>delta <span class="token number">0</span><span class="token punctuation">)</span>, reused <span class="token number">3</span> <span class="token punctuation">(</span>delta <span class="token number">0</span><span class="token punctuation">)</span>, pack-reused <span class="token number">0</span><br>Unpacking objects: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">9</span>/9<span class="token punctuation">)</span>, <span class="token number">1.46</span> KiB <span class="token operator">|</span> <span class="token number">10.00</span> KiB/s, done.<br>From https://github.com/beetcb/teacher<br> * branch            HEAD       -<span class="token operator">&gt;</span> FETCH_HEAD<br><span class="token comment"># 拉取最新的repo信息到本地 ，经常还会用到 git pull 用于更新并与本地merge</span><br> <br>$ <span class="token builtin class-name">echo</span> <span class="token string">"xipangs hard_work"</span> <span class="token operator">&gt;&gt;</span> hard_work_by_xiaopang.md<br><span class="token comment"># 做作业</span><br><br>$ <span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span><br>warning: LF will be replaced by CRLF <span class="token keyword">in</span> hard_work_by_xiaopang.md.<br>The <span class="token function">file</span> will have its original line endings <span class="token keyword">in</span> your working directory<br><span class="token comment"># 把作业放到暂存区（此warning 是linux和windows的锅，可暂时忽略）</span><br><span class="token comment"># 或者使用 git add hard_work_by_xiaopang.md</span><br><br>$ <span class="token function">git</span> commit -m <span class="token string">"hard_work_by_xiangpang"</span><br><span class="token punctuation">[</span>master ddfa044<span class="token punctuation">]</span> hard_work_by_xiangpang<br> <span class="token number">1</span> <span class="token function">file</span> changed, <span class="token number">1</span> insertion<span class="token punctuation">(</span>+<span class="token punctuation">)</span><br> create mode <span class="token number">100644</span> hard_work_by_xiaopang.md<br><span class="token comment"># 确认需要提交该作业</span><br><br>$ <span class="token comment"># 一切准备就绪  交作业了</span><br><br>$ <span class="token function">git</span> remote <span class="token function">add</span> origin https://github.com/beetcb/teacher.git<br><span class="token comment"># 建立与github的连接 origin只是默认名字，可更改</span><br><br>$ <span class="token function">git</span> push -u origin master<br>Enumerating objects: <span class="token number">4</span>, done.<br>Counting objects: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">4</span>/4<span class="token punctuation">)</span>, done.<br>Delta compression using up to <span class="token number">8</span> threads<br>Compressing objects: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">2</span>/2<span class="token punctuation">)</span>, done.<br>Writing objects: <span class="token number">100</span>% <span class="token punctuation">(</span><span class="token number">3</span>/3<span class="token punctuation">)</span>, <span class="token number">340</span> bytes <span class="token operator">|</span> <span class="token number">340.00</span> KiB/s, done.<br>Total <span class="token number">3</span> <span class="token punctuation">(</span>delta <span class="token number">0</span><span class="token punctuation">)</span>, reused <span class="token number">0</span> <span class="token punctuation">(</span>delta <span class="token number">0</span><span class="token punctuation">)</span><br>To https://github.com/beetcb/teacher.git<br>   ea2bb71<span class="token punctuation">..</span>ddfa044  master -<span class="token operator">&gt;</span> master<br>Branch <span class="token string">'master'</span> <span class="token builtin class-name">set</span> up to track remote branch <span class="token string">'master'</span> from <span class="token string">'origin'</span><span class="token builtin class-name">.</span><br><span class="token comment"># 正式提交到repo</span><br><br>$ <span class="token comment"># 提交完还得检查一下</span><br><br>$ start https://github.com/beetcb/teacher<br><span class="token comment"># 打开repo查看作业 嗯 写滴不错</span><br><span class="token comment"># 然后回到 github 点击右边绿色的 [Compare &amp; pull request]即可提交申请</span><br><span class="token comment"># 老师看到小胖的作业，先merge ，再批改。</span><br><span class="token comment"># 小胖想查看修改后的作业，只需更新下 fork 源（网上很多教程），就行了</span></code></pre>
+<p>以上故事纯属虚构，如有雷同，怎么可能会有？</p>
+<p><strong>好了，进入正题:</strong></p>
+<h5>Git 之外[在命名行操作的必备命令]</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">COMMAND</th>
+<th style="text-align:center">explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>pwd</code></td>
+<td style="text-align:center">print working directory</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>cd</code></td>
+<td style="text-align:center">change working directory</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">ls/dir</td>
+<td style="text-align:center">list files or directory</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">touch/mkdir</td>
+<td style="text-align:center">creat new emply file&amp;directory</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h5>安装 Git</h5>
+<h6>linux</h6>
+<pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">git</span><br><span class="token comment"># debain</span><br><span class="token function">sudo</span> yum <span class="token function">install</span> <span class="token function">git</span><br><span class="token comment"># fedora</span></code></pre>
+<h6>Windows  &amp; mac</h6>
+<p><a href="https://git-scm.com/">下载链接</a> — 手动安装 &amp; 或如下命令行</p>
+<pre class="language-bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">git</span> <br><span class="token comment"># mac only</span></code></pre>
+<h5>配置 Git</h5>
+<p>设置全局身份</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> config --global user.name <span class="token string">"beet"</span><br><span class="token comment"># 设置全局用户名</span><br><span class="token function">git</span> config --global user.email <span class="token string">"sweetcbebe@gmail.com"</span><br><span class="token comment"># 设置全局邮箱</span></code></pre>
+<p>已在用git？显示配置信息</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> config --list<br><span class="token function">git</span> config user.name</code></pre>
+<p>不小心忘记了Git命令？</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">man</span> <span class="token function">git</span> <br><span class="token comment"># git 全指南</span><br><span class="token function">git</span> <span class="token builtin class-name">help</span><br><span class="token comment"># git 简化指南</span></code></pre>
+<h5>本地创建 Git 仓库</h5>
+<p>**新建repo **</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> init <br><span class="token comment"># 初始化当前所在目录</span><br><span class="token function">git</span> init <span class="token punctuation">[</span>new dir<span class="token punctuation">]</span><br><span class="token comment"># 新建new dir 文件夹并初始化</span></code></pre>
+<p>在此repo下会创建<code>.git</code> 文件夹，保存了所有git的用于版本控制的信息</p>
+<p>引用stack overflow的介绍 ，<code> .git</code> 目录主要包含</p>
+<blockquote>
+<p><code>4 sub-directories:</code></p>
+<ul>
+<li>hooks/ : example scripts</li>
+<li>info/ : <code>exclude</code> file for ignored patterns</li>
+<li>objects/ : all "objects"</li>
+<li>refs/ : pointers to commit objects</li>
+</ul>
+<p><code>4 files:</code></p>
+<ul>
+<li>HEAD : current branch</li>
+<li>config : configuration options</li>
+<li>description</li>
+<li>index : staging area</li>
+</ul>
+<p><code>Here "object" includes:</code></p>
+<ul>
+<li>blobs(files)</li>
+<li>trees(directories)</li>
+<li>commits(reference to a tree, parent commit, etc)</li>
+</ul>
+</blockquote>
+<p><strong>本地拉取云端项目</strong></p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> clone <span class="token punctuation">[</span>url<span class="token punctuation">]</span> <span class="token punctuation">[</span>directory<span class="token punctuation">]</span><br><span class="token comment"># 克隆master到自定义目录</span><br><span class="token function">git</span> clone -b <span class="token punctuation">[</span>branch<span class="token punctuation">]</span><span class="token punctuation">[</span>remote_repo<span class="token punctuation">]</span><br><span class="token comment"># 克隆branch分支</span><br><span class="token function">git</span> pull <span class="token punctuation">[</span>url<span class="token punctuation">]</span><br><span class="token comment"># 把本地项目更新 相当于git fetch +git merge</span></code></pre>
+<h5>Git repo 云托管</h5>
+<p>几个有名的 Git 托管服务 <code>Github</code> <code>Gitlab</code> <code>Bitbucket</code></p>
+<p>以Github 为例，首先完成 <code>sign up</code> 、<code>creat new repository</code></p>
+<h6>https / ssh 安全管理</h6>
+<p>两者区别，详见</p>
+<blockquote>
+<p><a href="https://help.github.com/en/github/using-git/which-remote-url-should-i-use">Which remote URL should I use?</a></p>
+</blockquote>
+<h4>还有很多 Git 命令</h4>
+<p>先来张图压压惊</p>
+<p>一些常用的</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAMCAIAAAAYkIEcAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABJklEQVQoz52TCW7EIAxFc//rdTYSMNuk5+iDn1rTmS5SpS+wjf3xAsv9vv+E1nop1SwLOZdaG8be7wAB1S34L2zo+KVkHgOFE21bFHAQnbiQZUfA+eAiJsYUwqozZCjGneLCDKb9P1wpkduIAqRY6rGitkG0ezXOfnCpch2oQNRYWijtmsd6y0O42JCtEjG6ue/vDvV30UYw5ayzFuWcag9ZXP1W2iW3s1UsNrN7nAlQfweXEqa1zoU3McHKabO3EE9rOsd8tbqVnmfVOKshhABUGJbH8WMCuoRCpuVLsmoIMj2VXVyog0tJkedsuXnMJ5etcyaarKak96G2skog5JgjZ5qjstVcnh6kcocLILy+7d+4nuCearbfJxxc/if8f3zL9Sc+AE8NFOiJlFW/AAAAAElFTkSuQmCC" alt="" data-src="https://m.beetcb.com/postimg/4/4.png" class="lazyload" width="1354" height="643"></p>
+<p>前面已经提过了 <code>init</code> <code>clone</code> <code>pull</code>  <code>add</code> <code>commit</code>   <code>push</code></p>
+<p>先列举几个我用到的</p>
+<p><strong><code>git commit -a -m "somemessage"</code></strong></p>
+<p>git add 同时 commit  （untracked 状态的文件不会被commit  ，例如新建的 new.txt 文件，会出现如下结果）</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAADCAIAAADpxjPJAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAgUlEQVQI123OWw6CMBCFYbajiLRNay/TCzMFJMb9r8epIZKoyf9wXubLdJY2WB7l/oS6mTKPYRp9kWGSgCqSiigjqkQcj8Hls4GTDhyPrzpdFocrQx5Xk6sAFAfUalbcrasvF5v6W/yFmsVnOpHLs81VpyqBuA/0to4hoH09uP/cC39QMdFflxyCAAAAAElFTkSuQmCC" alt="" data-src="https://m.beetcb.com/postimg/4/5.png" class="lazyload" width="1461" height="211"></p>
+<p><strong><code>git status</code></strong></p>
+<p>显示工作目录和暂存区的状态</p>
+<p>还有一个显示仓库名的小命令 <code>git remote show</code>  默认仓库名在 remote add 时定义，很有可能会忘掉，此命令为健忘正解。</p>
+<p><strong><code>git tag</code></strong></p>
+<p><strong>为分支、版本打标签</strong></p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> tag <span class="token punctuation">[</span>tagname<span class="token punctuation">]</span> <span class="token punctuation">[</span>commitid<span class="token punctuation">]</span><br><span class="token comment"># commitid 可选，留空则为最新commit</span><br><span class="token function">git</span> push origin master --tags<br><span class="token comment"># push 所有标签</span></code></pre>
+<p><strong><code>git reset/checkout/revert</code></strong></p>
+<p>三者都可进行撤销操作，详见：</p>
+<p><a href="https://github.com/geeeeeeeeek/git-recipes/wiki/5.2-%E4%BB%A3%E7%A0%81%E5%9B%9E%E6%BB%9A%EF%BC%9AReset%E3%80%81Checkout%E3%80%81Revert-%E7%9A%84%E9%80%89%E6%8B%A9">代码回滚：Reset、Checkout、Revert 的选择</a></p>
+<p>这张图太直观了，必须放上来（git reset 对比）</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAOCAIAAABVWCAXAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADWElEQVQ4y3WT21MaVxzH90/rTB/61rTpJJ1p004mk+l0+mKqiVFpoq1JppdkMloxmoBELgpCiJCsyB3C/aaAIJdlQUGFRZSFXXYPeyFdtCUZZ/qbz5yH8/A5v998zw96L1Svdw7PcSzDdAEANC3woUC/6HNomqL6dwzDcBzf+1DvoQsuZuACAxs4d4GBi/4fl2DgiRaHHbD7OWY/R+9lKTRNIimsmC+UK6mj43S1kak10rVGqtpIV+rZYi2fOyrkqyW0Xt5rlPdOsFqbaNOCF+pxLFvcBe51SiemjVLarKLfyAj9QtK4qne45iI5SaIo3ylJ4uhsNCd2pl6+Seg022/1yQ1DCn69o9dsu235Qr4OAAP1hJkidvLFFH73cuv+N+2HN4nJa43xq6bp4V/mn3+lc1+Hwz+Zo9fh0BevPFcWrD8+2pgUwY+nLTN/OJ48tE1PwNJnvoAXJUnwn+v5JH7789b4ldbUd23R1eM7Xxqmhn6eXfh0xXnpdeBrY/CS3v/Jquuz2c1rk8a7I+sPRBt//mZ5dM8kGjYszLi9LoQkBBfLMrltCl4m5scJ8RgxP0GKx5riCYds7net8XvT1g1r8gdb4oY5/u1G7OaKf+yZ6+kTx+KMWzLvXZz1/P3YqVuJbUXKVKcL9cM7LHYjdvqtrGOUkkZpxyDBjUuBTcOiwz/syQ55crc82VvvMkPvshNw4q/V8JLEr5QGVLKQUhaSS4IWOJ1JVwHNQP34D0vdhA/YtZRV0+mjblnXwi7Lkjc2FkTvBNHRQGHUXxDOX627M6+2FPLQmiKypoxplFG1POKwZPNZDAAWOq7X8cIuGXVSFjVpUhGbKsKkbG6uBG0miTs86suP+JDbZ4z4kfvm1FNdTL4cVMvDakVUYHU5bDdnc5kaoFkIw2pNwRVzU3btWVMaobu2TRtxWV/6YqIQOh4qDnhgz8ytx1WK8Flf0bULfeF4k6xWaDQFhDHjXpDwduNeKuFDUnFHBlXma4qP0CYP4GDJ7UK8TsTrKgh4nEhy++Cw0uwK/4vnOZ7u8HiDwyocVj4/WaxyWsdKjebOCZk87QzYrbeRA3yvdLJfPNkv/Uv1CG+eksKSQmfr2F8kIdCP4fuP8Czfu4CwKxdgWU7IjyA7/wCr0FPB6KOcjwAAAABJRU5ErkJggg==" alt="form pluralsight" data-src="https://m.beetcb.com/postimg/4/6.png" class="lazyload" width="1783" height="981"></p>
+<p><strong><code>git diff</code></strong></p>
+<p><strong>比较工作目录中当前文件和暂存区域快照之间的差异</strong></p>
+<p>例如：git diff --staged</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAOCAIAAABVWCAXAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACDElEQVQ4y3WT2XKjMBBF/f//ZxuDWiuprGNk0IKQZM/FmbgmTIa6T4I61bc52hnTa22U0n8iFYKT3vR9/4S3z88v1l6WZbnebptsnp3SRkjFSBCXSEccIRxpA9Ana7A2pjSXGu6JpS61lut1Q9wJZVou9x0dGD8ycWS8YRwnQhv9YA3W+ejCbKeAjH6OKZdatywJFslDS4cTNS0/tbzrEMFJKqlX1svL+TyMo7PWvb/Zt1f78WscpxjnvCwlL6WUeh8RHZVmLZ32XXPoupYTE4KkYEKS1F+s4Ty40U2DG97s+XWwH+N0CSEsMSxzXIn3EW87rbQEYt+yfcsbEqjXCUSTNMo8OgYfo09+jO4S/BSDS/FfFraCEagh1hB1kpPCqhQoun/s3g529j5jEueWaco+5LVhybmWjL/w1REsdBFMslYgnEnJJYZdMQ8nhiEFV+KUnc1uyGGsKV5r3Tph4JTgYl04Q+CFIjJSwrq/Weg2u3O4vAb7HKf3FMda88YzsJTkjLMjp4bTSfJOc2bUdxb8wrYWH+cxzJeYxpQDum1ZWmshGa1WHYgfhejANvp7R2vnFHNJKcfP5LLUa/2HZQyEZ6I54V8CJ1u4YPqn/p7vd+i6yScCi68YspQdvoYV0Ak6ACQUaa3Wy/jDffyZBVDOeU5pd7/bMFwIxRG1Cqr7n+a6/eeBXSkl7/1vXX7OXE2r8RIAAAAASUVORK5CYII=" alt="form pluralsight" data-src="https://m.beetcb.com/postimg/4/7.png" class="lazyload" width="1780" height="987"></p>
+<p><strong><code>git log</code></strong></p>
+<p>显示 commit 历史 (完全显示hash 、author、date)</p>
+<p>用不同的git log 命令，可以精确显示你想要的信息</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> log -6<br><span class="token comment"># 只显示最近 6 条 commits</span><br><span class="token function">git</span> log --onelist<br><span class="token comment"># 简化显示</span><br><span class="token function">git</span> log --stat<br><span class="token comment"># 次详细——显示文件更改</span><br><span class="token function">git</span> log --patch<br><span class="token comment"># 最详细——显示文件内容更改</span></code></pre>
+<p><strong><code>git rm/mv</code></strong></p>
+<p>简单删除和重命名</p>
+<p><strong>git rm didntwantfiles</strong></p>
+<p>不被Git 所追踪的同时删除了文件</p>
+<p><strong>git rm -cached didntdelete</strong></p>
+<p>不被Git 所追踪的同时不删除文件</p>
+<p><strong><code>git mv prename.md ranametheprename.md</code></strong></p>
+<p>改名 prename.md 为 ...</p>
+<h4>Git的分支系统</h4>
+<p>单纯的用文字描述容易被绕晕，我推荐这个在线网站，通过可视化的图片理解Git branch</p>
+<p><a href="http://git-school.github.io/visualizing-git">visualizing-git</a></p>
+<p>你可以尝试这几条命令入门</p>
+<p>分支相当于<code>自立门派,相当于贴纸一样附在commit上面</code> , 不影响主分支，更不会影响commit物件</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> branch<br><span class="token comment"># 查看所有分支</span><br><span class="token function">git</span> branch new_branch_no_checkout<br><span class="token comment"># 创建新的分支[new_branch_no_checkout] 但未切换</span><br><span class="token function">git</span> checkout -b new_branch<br><span class="token comment"># 创建并切换到 [new_branch] 分支</span><br><span class="token function">git</span> checkout master<br><span class="token comment"># 切回主分支</span></code></pre>
+<h4>issues</h4>
+<p>目前遇到两个问题，解决也很简单</p>
+<h5>1.push rejected</h5>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAGCAIAAAC5C6J6AAAACXBIWXMAABYlAAAWJQFJUiTwAAAA50lEQVQY03XOaW7CQAwF4FyHJSFAMos9q2M8gfb+56mT9l9B+jR6sqU37qYYr6lcYu2x9j6fXTyZcJzxOMFhAs0D5BHr4LNmnWyrf3SlOqwLkgA1W5ujVV9T5IY0Qh1cvviiYYTS23TaPsDD7m1jR0wszE0WkaU1EqkPCZUwV0h5l1wIM+Ddweigt3rs++u6hUOTsKoW11d+vsrXd1mfqa2JH5E4EcdCiAks+jv4wX3uymSIN8tjw2KkbVgssS3kfsXiIDsT/NX786cuJBsWG3eJTWZTZVYaoFqb/pjk1A39Re+a33f9AG+MZNwcdBDaAAAAAElFTkSuQmCC" alt="" data-src="https://cdn.jsdelivr.net/gh/beetcb/pic/a5/i1.png" class="lazyload" width="1616" height="373"></p>
+<p>解决：<a href="https://stackoverflow.com/questions/24114676/git-error-failed-to-push-some-refs-to-remote">git error: failed to push some refs to remote</a></p>
+<h5>2.remote denied</h5>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAGCAIAAAC5C6J6AAAACXBIWXMAABYlAAAWJQFJUiTwAAAA8UlEQVQY03WQDW6EIBBGvU7rLmpFBYEZflW02fsfp4O2m03aJi+TyRAezFcxoZlQxF3omzD1ZOpR16OqB0VNI/FDew6x055JpMn7oP6EjipuYAQYETjaDnxrfKtcO9uCsiTqIXCMvQmkI/VtMv/pKh0dLs5tzmyLXPMQco+xU45ov7EnpWc/rjc+/6ZyOYd9D8fujk88Hjo/VDpk2F4RvtTJr7RsM9u7AIJJYGdTmIDeqGDdYc1m2VTa5rSLkCe3DpguaLsB41nTlRqtSQqqJG1mLM05KS55XuaYeiih0AXi6XrlSo02bUqUjrzPHK7PfgGEvmZw9autwQAAAABJRU5ErkJggg==" alt="" data-src="https://cdn.jsdelivr.net/gh/beetcb/pic/a5/i2.png" class="lazyload" width="1622" height="382"></p>
+<p>多数情况下是在用https push 时出现</p>
+<p>原因可能是你更换了账户，而win 保存了原账户的用户名密码，自然不匹配</p>
+<p>解决：<code>使用ssh</code>  或者 <code>修改git 凭据</code></p>
+<p><strong>修改git 凭据的方法</strong> （win）</p>
+<p>控制面板 用户账务 凭据管理器  管理win 凭据 修改对应凭据</p>
+<h4>道阻且艰</h4>
+<p>除了这些，还有其他的更多命令，更要理解Git 的原理，了解它是如何工作的，提升工作效率和问题解决能力。</p>
+<p>我觉得必须掌握的还有 commit 的规范，优秀的commits 会让我们的生活没有那么难。<code>Chris Beams </code>的博客写好了七个最重要的commit指南，一起学习吧！。</p>
+<blockquote>
+<p>https://chris.beams.io/posts/git-commit</p>
+</blockquote>
+<p><cite>行文仓促，望指正</cite></p>
+
+	    </div>
+	    <div class="outline"></div>
+	</article>
+
+     
+		</main>
+		<footer class="footer">
+		    <div class="footer-desc">
+			made with love&amp;<a style="color: skyblue;" href="https://www.11ty.dev/" target="_blank">11ty</a> by beet <br> 
+			<a href="http://www.beian.miit.gov.cn/" target="_blank">ICP-20003648-1</a>
+		    </div>
+		</footer>
+    <script>Turbolinks.start()</script>
+	    <script>
+            (function (selector, src, preferNativeLazyLoad) {
+  var images = document.querySelectorAll(selector);
+  var numImages = images.length;
+
+  if (numImages > 0) {
+    if (preferNativeLazyLoad && 'loading' in HTMLImageElement.prototype) {
+      for (var i = 0; i < numImages; i++) {
+        var keys = ['src', 'srcset'];
+
+        for (var j = 0; j < keys.length; j++) {
+          if (images[i].hasAttribute('data-' + keys[j])) {
+            var value = images[i].getAttribute('data-' + keys[j]);
+            images[i].setAttribute(keys[j], value);
+          }
+        }
+      }
+
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = src;
+    document.body.appendChild(script);
+  }
+})(
+              'img',
+              'https://m.beetcb.com/lib/lazysizes.min.js',
+              false
+            );
+          </script></body></html>

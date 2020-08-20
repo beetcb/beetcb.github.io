@@ -1,0 +1,373 @@
+/* custom font */
+@font-face {
+  font-family: 'pixer';
+  src: url(/static/Pixer.woff);
+  font-display: swap;
+}
+
+/* turbolinks progress bar */
+.turbolinks-progress-bar {
+  height: 2.5px;
+  background-color: #f56476;
+}
+
+/* svg preset */
+.svg-icon {
+  width: 16px;
+  height: 16px;
+  fill: var(--text);
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: var(--text);
+}
+
+.svg-icon circle {
+  stroke: var(--pink);
+  stroke-width: 1;
+}
+
+/* pre clear */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  text-rendering: optimizeSpeed;
+  font: 400 14px;
+  font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
+  word-wrap: break-word;
+  line-height: 1.6rem;
+  overflow: auto; /* add bfc to avoid body 'collapse' */
+}
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: var(--text);
+}
+ol,
+ul {
+  margin: 0;
+  display: inline;
+  list-style: none;
+}
+code {
+  font-size: 16px;
+}
+/* =========
+  global layout 
+========= */
+html {
+  --bg-body: #282a36;
+  --bg-edge: #06375e;
+  --bg-tag: #012d4e;
+  --text: white;
+  --border: #b0dde9;
+  --border-hover: #04d481;
+  --link: #bd93f9;
+  --alink: #47ebb4;
+}
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--bg-body);
+}
+
+.main {
+  width: 100%;
+  /* display: flex; => bad!!! */
+  flex: 1;
+}
+.footer,
+.post-container,
+.article {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 88px;
+}
+
+/* =========
+    index components  
+========= */
+
+/* main layout */
+.main img,
+.main video {
+  width: 100%;
+}
+.post-container {
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-around;
+}
+.post-collection {
+  padding-top: 20px;
+  width: 60%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+}
+
+.page {
+  margin-top: 2.5em;
+}
+.post {
+  display: flex;
+  /*flex-shrink: 0;*/
+  margin-bottom: 15px;
+  padding: 30px 10px;
+  border-radius: 10px;
+  align-items: center;
+  border: 1.5px solid var(--border);
+  box-shadow: 4px 4px 4px rgba(235, 235, 235, 0.3);
+  transition: 0.3s transform ease-in-out, 0.3s filter ease-in-out,
+    0.5s border-left-color ease-in-out;
+}
+.previous-page {
+  float: left;
+  cursor: default;
+  color: gray;
+}
+.next-page {
+  color: gray;
+  cursor: default;
+  float: right;
+}
+.previous-page[href*='/'],
+.next-page[href*='/'] {
+  cursor: pointer;
+  color: var(--link);
+}
+/*post aside*/
+.post:hover {
+  transform: scale(1.02);
+  filter: brightness(0.99) contrast(1.2);
+  border-left-color: var(--border-hover);
+  box-shadow: 6px 6px 6px rgba(235, 235, 235, 0.3);
+}
+
+.post-aside {
+  margin-top: 18px;
+  width: 35%;
+}
+.header {
+  text-align: center;
+}
+.header a {
+  color: var(--border);
+}
+.header a:hover {
+  color: var(--text);
+  cursor: pointer;
+  background-color: var(--link);
+  border-radius: 5px;
+}
+.header img {
+  width: 3em;
+  height: 3em;
+  margin: 0.5em auto 2em;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+}
+.post-aside p {
+  text-align: center;
+  color: var(--link);
+}
+.beetsaid small {
+  color: var(--border);
+}
+
+.tagList {
+  display: flex;
+  padding-top: 3em;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.tagList .tag {
+  padding: 0.5em;
+  color: var(--text);
+  background-color: var(--bg-tag);
+  border-radius: 108em;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+/* post content layout */
+.post h1 {
+  font-size: 1em;
+  color: var(--text);
+}
+.post .post-nailimg {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  margin-left: 5px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* footer */
+.footer {
+  color: var(--text);
+  background: var(--bg-edge);
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
+  line-height: 0.8em;
+}
+
+.footer-desc {
+  padding-top: 5px;
+  font-size: 1.1em !important;
+  font-family: pixer;
+  text-align: center;
+}
+.footer a[href="http://www.beian.miit.gov.cn/"]
+{
+  color: black;
+  font-size: 13px;
+}
+
+/* =========
+   article   
+========= */
+.article {
+  margin: 0 auto;
+  color: var(--text);
+  padding-top: 5px !important;
+}
+.article a {
+  color: var(--alink);
+}
+.article a::after {
+  position: relative;
+  content: '↪';
+  top: 3.5px;
+  left: 4px;
+}
+.article .title {
+  padding: 20px 0 30px 10px;
+  width: 70%;
+  margin: 0 auto;
+}
+.article .location {
+  color: var(--border);
+}
+article .location time {
+  color: var(--text);
+}
+.article .content {
+  width: 70%;
+  padding: 5px 10px 20px;
+  margin: 0 auto;
+}
+.content blockquote {
+  position: relative;
+  padding-left: 1.5em;
+  margin-left: 0;
+  margin-right: 0;
+  border: solid var(--border) 1px;
+  border-left: 5px solid var(--link);
+  border-radius: 0.2em;
+}
+.content blockquote::before {
+  position: absolute;
+  font-size: 3em;
+  left: 0;
+  top: 0.2em;
+  content: '\201c';
+  color: var(--link);
+}
+.content code {
+  background: #2c2769;
+  display: inline-block;
+  padding: 0.5px 5px;
+  border-radius: 5px;
+}
+.content h4,
+.content h3,
+.content h2 {
+  font-size: 1.4em;
+}
+.content h2::after,
+.content h3::after,
+.content h4::after,
+.content h5::after,
+.content h6::after {
+  content: '#';
+  color: var(--link);
+  margin-left: 0.2em;
+  margin-top: 0.5em;
+  font-size: 1.1em;
+}
+.content h5 {
+  font-size: 1.2em;
+}
+.content h6 {
+  font-size: 1.1em;
+}
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+  border: solid var(--border) 1px;
+}
+/* =========
+   bug fix 
+========= */
+
+/* =========
+  mobile layout 
+========= */
+
+@media (max-width: 788px) {
+  /* clear padding */
+  .post-container,
+  .post,
+  .article,
+  .footer {
+    padding: 0 1em;
+  }
+  /* fix width and flex layout */
+  .logo {
+    margin-right: 10px !important;
+  }
+  .nav-container {
+    margin-left: -15px !important;
+  }
+  .post-container {
+    width: 100%;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .post-aside,
+  .post-collection {
+    width: 90%;
+  }
+  .post-aside {
+    order: -1;
+  }
+  .post-aside .tagList {
+    display: none;
+  }
+  .article .content,
+  .article .title {
+    width: 100%;
+  }
+  .post-collection {
+    margin-bottom: 20px;
+  }
+}
+
+img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}

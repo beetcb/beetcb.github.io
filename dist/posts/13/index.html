@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="en"><head>
+	    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content=" Beet's blog, share &amp; blogging">
+		<meta name="title" content="WSL2中使用proxychains ng代理加速 | Beet's blog, a frontEnd lover's blog site">
+
+		<title>WSL2中使用proxychains ng代理加速 | Beet's blog, a frontEnd lover's blog site</title>
+
+		<meta property="og:site_name" content="beet's blog">
+		<meta property="og:url" content="https://www.beetcb.com/">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="WSL2中使用proxychains ng代理加速 | Beet's blog, a frontEnd lover's blog site">
+		<meta property="og:description" content=" Beet's blog, share &amp; blogging">
+	    
+	    <link rel="stylesheet" href="/static/css/my.css">
+	    <link rel="stylesheet" href="/static/css/prism-dracula.css"> 
+      <script src="https://cdn.jsdelivr.net/npm/turbolinks@5.2.0/dist/turbolinks.min.js"></script>
+	    <link rel="icon" href="/static/favicon.ico">
+	    </head><body>
+	    <main class="main">
+		
+	<article class="article">
+	    <h1 class="title">WSL2中使用proxychains ng代理加速</h1>
+	    <div class="location content">
+		<a href="/">Home</a> /posts/13/<br>
+		<time datetime="Posted date: 2020 Jul 21">Posted date: 2020 Jul 21</time>
+	    </div>
+	    <div class="content">
+		<blockquote>
+<p>情景：windows 已开启代理，需要 WSL2 走主机的代理</p>
+</blockquote>
+<p>依以前的做法，直接使用 <code>export http_proxy="http://127.0.0.1:7899"</code>就可以临时使用，但是 WSL2 下访问主机已经没有这么简单, 官方文档有说明：</p>
+<blockquote>
+<p>If you want to access a networking app running on Windows (for example an app running on a NodeJS or SQL server) from your Linux distribution (ie Ubuntu), then you need to use the IP address of your host machine. While this is not a common scenario, you can follow these steps to make it work. - Obtain the IP address of your host machine by running this command from your Linux distribution: cat /etc/resolv.conf - Copy the IP address following the term: nameserver. - Connect to any Windows server using the copied IP address.</p>
+</blockquote>
+<p>所以，依据文档，我们需要使用 <code>/etc/resolv.conf</code> 文件中的 <code>nameserver</code> 值作为 hostIP，而且这个 hostIP 是动态的，需要使用脚本动态获取，下面是初步的尝试:</p>
+<h4>初步方法(<code>http_proxy</code>)</h4>
+<p>思路：使用 gerp 配合正则匹配 IP 地址，动态写入   http_proxy; 至于端口，如果不想设定固定值，需要用 powershell 获取系统代理的端口值</p>
+<pre class="language-bash"><code class="language-bash"><span class="token comment"># 获得 hostIP</span><br><span class="token builtin class-name">export</span> <span class="token assign-left variable">hostIP</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">grep</span> -oP  <span class="token string">"(\d+\.)+(\d+)"</span> /etc/resolv.conf<span class="token variable">`</span></span><br><span class="token comment"># 获得端口号 =&gt; 这需要后台启动powershell，如果在意速度问题，建议直接设定成定值，以后少改动端口就行</span><br><span class="token builtin class-name">export</span> <span class="token assign-left variable">hostPort</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token punctuation">(</span>powershell.exe Get-ItemProperty -Path <span class="token string">"Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\'Internet Settings'"</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token function">tail</span> -n <span class="token number">13</span> <span class="token operator">|</span> <span class="token function">grep</span> -oP <span class="token string">'\d{4}'</span><span class="token variable">`</span></span><br><span class="token comment"># 设置alias，防止启动shell默认挂代理</span><br><span class="token builtin class-name">alias</span> <span class="token assign-left variable">setProxy</span><span class="token operator">=</span><span class="token string">'export http_proxy="http://<span class="token variable">$hostIP</span>:<span class="token variable">$hostPort</span>"'</span></code></pre>
+<p>以上设置可以写入 <code>~/bashrc</code>(或 <code>~/.zshrc</code>), 以后在想要使用代理的时候输入 <code>setProxy</code> 即可启用代理</p>
+<h4>改进方法(<code>proxychains ng</code>)</h4>
+<p>使用 <code>proxychains ng (又名 proxychains4 )</code> 可以有更佳的代理体验，相比于 <code>http_proxy</code>, <code>proxychains ng</code>可以给特定的程序设定代理</p>
+<ul>
+<li>比如 git 就不需要额外设定 <code>git proxy</code> 了；</li>
+<li>还有 vim 插件安装程序，只需要安装时使用<code>proxychains ng</code>, 就全部使用代理进行安装，这是极其方便的；</li>
+<li>另外，<code>proxychains ng</code> 不会占用全局代理，只要加上一个前缀就可以使用代理，不加前缀不不会走代理。</li>
+</ul>
+<p>查看<a href="https://github.com/rofl0r/proxychains-ng">官方repo</a>进行安装</p>
+<p>安装完成后需要更改配置文件，加入代理，同样由于 hostIP 是动态的，这里需要用脚本曲线更改此文件, 下面是详细步骤</p>
+<p>1.<code>proxychains4 -h</code> 可以查看配置文件位置, 位于<code>/etc/proxychains4.conf</code></p>
+<p>2.<code>cat -n /etc/proxychains4.conf</code>
+设置代理的那一行的位置，就在这几行注释的下面 <code># add proxy here # meanwile # defaults set to "tor"</code>, 可以看到是115行</p>
+<p>所以在脚本里面写上：</p>
+<pre class="language-bash"><code class="language-bash"><span class="token comment"># 获得hostIP</span><br><span class="token builtin class-name">export</span> <span class="token assign-left variable">hostIP</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">grep</span> -oP  <span class="token string">"(\d+\.)+(\d+)"</span> /etc/resolv.conf<span class="token variable">`</span></span><br><span class="token comment"># 获得端口号=&gt;这需要后台启动powershell，如果在意速度问题，建议直接设定成定值，以后少改动端口就行</span><br><span class="token builtin class-name">export</span> <span class="token assign-left variable">hostPort</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token punctuation">(</span>powershell.exe Get-ItemProperty -Path <span class="token string">"Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\'Internet Settings'"</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token function">tail</span> -n <span class="token number">13</span> <span class="token operator">|</span> <span class="token function">grep</span> -oP <span class="token string">'\d{4}'</span><span class="token variable">`</span></span><br><span class="token comment"># 替换配置文件里设置代理那一行</span><br><span class="token function">sudo</span> <span class="token function">sed</span> -i <span class="token string">"115c http <span class="token variable">$hostIP</span> <span class="token variable">$hostPort</span>"</span> /etc/proxychains4.conf</code></pre>
+<h4>简化操作</h4>
+<p>给 <code>proxychains4</code> 命令设定 alias</p>
+<pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">alias</span> <span class="token assign-left variable">px</span><span class="token operator">=</span><span class="token string">'proxychains4'</span><br><span class="token comment"># 此后只需输入 px git pull 即可</span></code></pre>
+<blockquote>
+<p>注意：<code>px gp</code> 如此的连续两个alias是无法识别的，依旧需要使用<code>px git pull</code></p>
+</blockquote>
+<p>最后，放一张 <code>proxychains ng</code> 体验图
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAMCAIAAAAYkIEcAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAChUlEQVQozz3S2W6bQBQGYJ6mV22lpIkUO/GCDTiJ0ihqlZs2a+3IsYNtVmObZWAWNgPOI/eMiSL9QgMSH2f+QVDmgawzUc9FY9vV85657Ro5LLpaLmpbSS8kvZSNsrfYKovil1E9We9DrbqfprdDdv3Izv+ywR96eYevHyNBMWLFyiWr7NWW8WG1F1l7nnXmeXuWtdWsMUna0+Rmkb04hbbKZxZ71choRh+m7H5Cn97waBYJfauU7Uq2udXR8g4oWtZapE01brzFTZ6kMYmPXmhzTG+0WN2kHooDRP2AugFz3NheU2dDNh4R5GU5cCplWYq1pfGhOlp2Nk8bH1xyMmEHQ3w8wj9nZLpibkCCAAcIo5AGiPkBgSBEBcWpauuzKUAhfEw92+vZqZocjsCKrmrLJ56PPc5RH1FvfxsEewsg2CN/3+RK3ywgvEGTPwELpvv+Lzx4Rpdv0atDwfLB8jFsE+LxW8KtwWpXjybZZY3CQuZr+EY1WFbAtebp0Zgcv0RXKh4voRrsuqHrRp9csI8gO1V/WUjLsm8X0J1kFz2TRzT4tW8Vn6O1puy3zmabGCEWhjQMWRTFEFjAk31fq53kVCACB1HsQjG3F9b23MjPTZ6BkSt61lPZhUqfDLpxWRrFCY4JSTBOwEIhg+KCgAiD9buy3smrCsQeQLBNM7+0C1AuOJRJWirO4tNx1B+Hd4tovaHcIglYEa6H4hDsV5CgEfgh7KJjbdtGLpq5qGcyEHoKSm+etKbkZBwdPnunQ/9WRZaDKaIE3kfwK0BfvHW/trpW0YZ2jbyppU04fi1rLtL6eqZlJ2r845V8HaIvD963Z38wDccOcfnZ1fWH9Qlyy8P/ARIxiWH5SBO4AAAAAElFTkSuQmCC" alt="px test" data-src="https://m.beetcb.com/postimg/13/13.png" class="lazyload" width="1987" height="927"></p>
+<p>参考及补充：</p>
+<ul>
+<li><a href="https://www.hi-linux.com/posts/48321.html">通过 ProxyChains-NG 实现终端下任意应用代理</a></li>
+<li><a href="https://docs.microsoft.com/en-us/windows/wsl/compare-versions#accessing-windows-networking-apps-from-linux-host-ip">Accessing Windows networking apps from Linux (host IP)</a></li>
+</ul>
+
+	    </div>
+	    <div class="outline"></div>
+	</article>
+
+     
+		</main>
+		<footer class="footer">
+		    <div class="footer-desc">
+			made with love&amp;<a style="color: skyblue;" href="https://www.11ty.dev/" target="_blank">11ty</a> by beet <br> 
+			<a href="http://www.beian.miit.gov.cn/" target="_blank">ICP-20003648-1</a>
+		    </div>
+		</footer>
+    <script>Turbolinks.start()</script>
+	    <script>
+            (function (selector, src, preferNativeLazyLoad) {
+  var images = document.querySelectorAll(selector);
+  var numImages = images.length;
+
+  if (numImages > 0) {
+    if (preferNativeLazyLoad && 'loading' in HTMLImageElement.prototype) {
+      for (var i = 0; i < numImages; i++) {
+        var keys = ['src', 'srcset'];
+
+        for (var j = 0; j < keys.length; j++) {
+          if (images[i].hasAttribute('data-' + keys[j])) {
+            var value = images[i].getAttribute('data-' + keys[j]);
+            images[i].setAttribute(keys[j], value);
+          }
+        }
+      }
+
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = src;
+    document.body.appendChild(script);
+  }
+})(
+              'img',
+              'https://m.beetcb.com/lib/lazysizes.min.js',
+              false
+            );
+          </script></body></html>

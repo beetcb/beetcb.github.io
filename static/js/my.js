@@ -1,4 +1,5 @@
 let judge = false
+
 /* $event listener call$ method
         - <event> `str`
         - <function> 
@@ -8,7 +9,7 @@ let judge = false
         */
 function listen(event, call) {
   const item = document.getElementById(arguments[2])
-  item.addEventListener(event, (currentEvent) => {
+  item.addEventListener(event, currentEvent => {
     const tar = currentEvent.target,
       tag_selector = arguments[3],
       data_selector = arguments[4]
@@ -34,7 +35,7 @@ listen(
   function () {
     // find coresponding tag index, define addCss();
     const index_attr = this.getAttribute('data-index'),
-      addCSS = (s) =>
+      addCSS = s =>
         ((d, e) => {
           d.head.removeChild(d.head.children[d.head.children.length - 1])
           e = d.createElement('style')

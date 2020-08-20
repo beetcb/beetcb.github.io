@@ -2,7 +2,7 @@ const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight'),
   lazyImagesPlugin = require('eleventy-plugin-lazyimages'),
   yaml = require('js-yaml')
 
-module.exports = (eleventyConfig) => {
+module.exports = eleventyConfig => {
   //add postIndex filter
   eleventyConfig.addFilter('removeAtSymbol', function (value) {
     return value.replace(/@/g, '')
@@ -14,11 +14,11 @@ module.exports = (eleventyConfig) => {
   /* plugin */
   e.addPlugin(pluginSyntaxHighlight)
   e.addPlugin(lazyImagesPlugin, {
-    scriptSrc: 'https://m.beetcb.com/lib/lazysizes.min.js',
+    scriptSrc: 'https://m.beetcb.com/lib/lazysizes.min.js'
   })
 
-  /* rendless but needed copy */
-  e.addPassthroughCopy('src/')
+  /* rendless but needed a copy */
+  e.addPassthroughCopy('static')
 
   /* default layout template */
   e.addLayoutAlias('base', 'layouts/base.11ty.js')
@@ -26,19 +26,16 @@ module.exports = (eleventyConfig) => {
   e.addLayoutAlias('post', 'layouts/post.11ty.js')
 
   /* use custom data as a blog config set -> Yaml */
-  e.addDataExtension('yaml', (contents) => yaml.safeLoad(contents))
+  e.addDataExtension('yaml', contents => yaml.safeLoad(contents))
 
   return {
-    /*
-        dir: {
-            input: "build",
-            output: "sequel",
-            includes: "templates"
-        }, 
-        custom 11ty settings
-        */
+    dir: {
+      input: 'src',
+      output: 'dist'
+    },
+
     templateFormats: ['html', 'md', '11ty.js', 'njk'],
     htmlTemplateEnging: 'njk',
-    markdownTemplateEngine: 'njk',
+    markdownTemplateEngine: 'njk'
   }
 }

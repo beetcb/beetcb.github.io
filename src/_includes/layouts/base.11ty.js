@@ -8,7 +8,7 @@ class Base {
       get(data.title),
       $.blog.title,
       get(data.summary),
-      $.blog.description.metatag,
+      $.blog.description.metatag
     ]
 
     return `<meta charset="UTF-8">
@@ -31,7 +31,8 @@ class Base {
 	    ${this.betterSeo($, data)}
 	    <link rel="stylesheet" href="${$.link.my_css}">
 	    ${this.cleanJsnCss($, data.page.url)}
-	    <link rel="icon" href="/src/favicon.ico">
+      <script src="${$.link.turbolinks}"></script>
+	    <link rel="icon" href="${$.link.favicon}">
 	    </head>
 	`.trim()
 
@@ -46,7 +47,7 @@ class Base {
 			<a href="http://www.beian.miit.gov.cn/" target="_blank">ICP-20003648-1</a>
 		    </div>
 		</footer>
-
+    <script>Turbolinks.start()</script>
 	    </body>
 	`.trim()
 

@@ -1,0 +1,206 @@
+<!DOCTYPE html><html lang="en"><head>
+	    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content=" Beet's blog, share &amp; blogging">
+		<meta name="title" content="BrowserStack-浏览器引擎及渲染机理(含重排和重绘) | Beet's blog, a frontEnd lover's blog site">
+
+		<title>BrowserStack-浏览器引擎及渲染机理(含重排和重绘) | Beet's blog, a frontEnd lover's blog site</title>
+
+		<meta property="og:site_name" content="beet's blog">
+		<meta property="og:url" content="https://www.beetcb.com/">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="BrowserStack-浏览器引擎及渲染机理(含重排和重绘) | Beet's blog, a frontEnd lover's blog site">
+		<meta property="og:description" content=" Beet's blog, share &amp; blogging">
+	    
+	    <link rel="stylesheet" href="/static/css/my.css">
+	    <link rel="stylesheet" href="/static/css/prism-dracula.css"> 
+      <script src="https://cdn.jsdelivr.net/npm/turbolinks@5.2.0/dist/turbolinks.min.js"></script>
+	    <link rel="icon" href="/static/favicon.ico">
+	    </head><body>
+	    <main class="main">
+		
+	<article class="article">
+	    <h1 class="title">BrowserStack-浏览器引擎及渲染机理(含重排和重绘)</h1>
+	    <div class="location content">
+		<a href="/">Home</a> /posts/14/<br>
+		<time datetime="Posted date: 2020 Jul 21">Posted date: 2020 Jul 21</time>
+	    </div>
+	    <div class="content">
+		<h3>渲染引擎和JS引擎?</h3>
+<p>网页在客户端的呈现, 重度依赖于浏览器。因此，了解浏览器在网页渲染方面的过程和机理，必利于网页开发。</p>
+<p><strong>如何解释两个引擎？</strong></p>
+<p>现代浏览器都有两个基本工作, 把页面呈现出来[渲染引擎(HTML、CSS)]和对JS的处理[JS引擎], 两个过程可以通过DOM数据结构联系起来。</p>
+<p><strong>那什么是浏览器内核？</strong></p>
+<p>内核其实就是引擎的别名，起初包含JS引擎，（随着JS的扩展，不仅仅只有浏览器使用JS引擎），现在一般只表示渲染引擎</p>
+<h3>主流浏览器和引擎</h3>
+<p><strong>1.看市场, 了解趋势</strong></p>
+<blockquote>
+<p>2020年浏览器的市场份额占比</p>
+</blockquote>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAJCAIAAABIXRCvAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABg0lEQVQoz5WSS0vDQBRG8y/du1YQNy4VQRDR4sbqQrQPUHdKfdSiVBRpC6KiraS2krT1kTQmaTNzM9M4mdQxFZ/g4+PwzebOGS6MBAAYY8dxEEIYIWJanqazxm1I4wdoveHc3hvao2EhC9G225E6YSghrqDdhlLR3d2BZAyScTeZcBMJiMchHgv7EygWe1hZLaczlZKsmzbxmMTD+L7vMUadFpxk8eosmh7QJwbV0WF1fMyIRPD8PI5Gv9NcWla2tmuybLcdn3OpJ2KMeU9PFFluaQdvjzajfdXp/svJkerCnLG2Rjc3SSol+g0iOpWy0+n7XE5TVYRxtxtIocUTaxLSccEEI2NXp5TjoYu9mbOD9bp85ejNAIADBN/ghHDPC7gfBMEXFwXXNFuZ68pMITd2WtioqzeEEsZeRl+mfyDMhx07Xgu3ikp2P7+4d7RYLp8jBL9bPrp6h7gglIiQolI6OMnmzw61hzvxwKvrb3l3BZxjyuSadl5WK0pd/JB/iUSeARc3XstESCYDAAAAAElFTkSuQmCC" alt="" data-src="https://m.beetcb.com/postimg/14/1.png" class="lazyload" width="1481" height="513">
+<a href="https://en.wikipedia.org/wiki/Browser_engine">浏览器引擎</a></p>
+<p><strong>2.主流的浏览器都用什么引擎</strong></p>
+<p><strong><a href="https://en.wikipedia.org/wiki/Comparison_of_browser_engines">主流渲染引擎</a></strong></p>
+<ul>
+<li>firefox:  <code>Gecko</code></li>
+<li>chrome &amp; opera:  <code>Blink</code>[Google联手Facebook、IBM、Opera等大厂开发]</li>
+<li>safari:  <code>Webkit</code></li>
+<li>IE:  <code>Trident</code></li>
+<li>Edge:  <code>Edgehtml</code> =&gt; <code>Blink</code>[2020年发布]</li>
+</ul>
+<p><strong><a href="https://en.wikipedia.org/wiki/JavaScript_engine">主流JS引擎</a></strong></p>
+<ul>
+<li>firefox:  <code>SpiderMonkey</code></li>
+<li>chrome: <code>V8</code>[目前最通用，用于Nodejs和Deno项目]</li>
+<li>safari:  <code>javascriptcore</code></li>
+<li>IE:  <code>chakra</code></li>
+<li>Edge:  <code>chakra</code> =&gt; <code>V8</code>[2020年更新]</li>
+</ul>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAOCAIAAABVWCAXAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADUUlEQVQ4y01T3WscVRSff6SFgiKkFR/EJ23Vvvnic8SX4pNPLbGIvoggghWRCoqSothE061Ia/xoQVPTWhoaP2KzTXazO9lNdnd2dnfmzsz9mPt9Z1bPZkVy+HE5HO75nXN/vxnvs7ZYjfVAFs45IQSlFGNMCIETcnYQkEBlerI8V0oPhP15IC/6+bm1cPbKn0+/+93xucvepT1xF5lIOmet5IIdNEzjMNc0JkVGpZSpMvdiNd/OX1sfzn6z8cx7P8wA1+WOvJ+YiDFOUYpCnCWw1rQNYQxIDrFihOKgkwx6KU6qqax0+JsbaPZa9eQHN2fmFryrPfk3tgknnCPGImOkK4pyPC7KUjjLjRHWQg4VCCclR0MWhzlJu7m+EYp3trLZ5dqpi7/MzC3CXmI10m1CBhR10qhN8jYzHe4CYfvCDIUOuO5x2xUAF2IeDofBIGxFqJqp5b64UCcv32g+9/Hq8fNfe191xMpI7XEz0jaQZoeah8RsEdNgpidcpFyH2xqdVAC7zIR8ggbRG5n+KRQf+fTMSvv5T3878fqSd60v78TKp7bLbJuaGvmvDW4HVEW57jL9P1eT2d5kZdegZhPrWyM5v5e/ertzev7eiTeueusJTHP72DRi2UQy4oaYgtiScMWihI1inOJUu8wU2JQBs/uZ2kvFiOtI2SoxSz1+9m5w+ovfZ95a9nzmYlUMYKlE7ieSKzsVutTaokRFscZ46gZEKmxIVB8LoUxuC5/ZyoSrf2rhwaMXfvX+ysw2vAjrRqLqSPpEtZjZzW2XyCjOoijpxsSnepfZvdz6WPup3EG8iWWd6LVEX2qxV26HTy3Vj33yh1fFGjQC15AuBtKBIqALyN/K7Ug5pEF7V6N2m5o6NV1ukXIj6cCiNaS+DcTbW/jFlfDxin/084fwRlDU9IVLdDFUBXABEeh64KPtS+tTtZkK+DJrRIOzMBJmbGJzvS/eb9Az6+jkzf5jld0jX9Y86UqALsa2HJtyLIuS2iIxbqhMT0Kz6hIWZgTRnGmrihLuCFeCs4ud/OyD9IU7oyd/DB6ptI4s7Hjl+B/A+BB0WWbWdqWq5Xyb5vUo7gyHaZLALw0OlAdc64n+sElfuo+evTV44vvg2JXW0cXGv7P0lRurXdwlAAAAAElFTkSuQmCC" alt="from lambdatest" data-src="https://m.beetcb.com/postimg/14/2.png" class="lazyload" width="1280" height="720"></p>
+<h3>渲染引擎机理(简)</h3>
+<p><strong>1.渲染引擎的主要工作</strong></p>
+<p>为了呈现页面，渲染引擎需要：</p>
+<ul>
+<li>
+<p>1.解析成对象模型:</p>
+<ul>
+<li>
+<p>找到页面结构(内容)：<br>
+首先, 读取HTML文件, 根据其编码把它转换成字符;利用html的标签以及标签之间的层级关系创建 <code>DOM tree</code>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAALCAIAAAAFlbGkAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACNElEQVQoz2VTaU8UQRDd//8HTIyJ0fiFjyZGEQwrAoFdFGN0T1iYs2f6mJ4+po+5WnsWFkmoVCaVmZpX9V6/Hv29D+e22T8U/9+53rnacA6/56t32fxlmY6tyvpdz9MYDb8417WmMYWtQK1x26i269vONa2rt6m0LODv9Po9WO+V+aQ22G2x3JDDxPtyNAD1nVWQwysaH1AwkTzRtql3QD4rxTG4ihd78fwtSc60Ql3vHpg8xeq6xlgtWETAlIT7MDot8JqJUltrm842rTaeISZwDsNjHH9lZKk0t/djmr5u/NjKU+laO1LlmmZTHHyGwZciOoDBIbr7WKSnmm9qy2qNKvqHpeMiPqLpN4F/KZEYozyWHbgLWW4EvKjwpSoXI1nMSHKKoyOG51qmgq6LxM8/LvHKb8dYVmQ/YHCAkklJk8rU0vRC91L3yvayYhTNUHhI4jFHP/1eKw6nPDuryrVVwIiA5ZcoPk+ieQwykIUoOsmXb7LFaxiOCYlzIlLIM8yZNIKDIhmD2Yts8YoEHwa92kZvCdf9EJ1XivIqhSzOBcAS4RiEk/Rm3z8RihLIA+A/MSpMVZWczHB4ONDye+2c9Wgr592gdFOwClOZEw5AdLu+2Mw+3SxPwug69qQRw1SIyhrNvawSnks0HfR6juWPezBX53TdU2H9gpsw24TpbZT7uuBe+c43eFsMLLp68OOW1ui5fR+R/alTbqKMXQf4JiJ3SZEiwYTxVtj1PN6W4cL8A1SSAVarTvUHAAAAAElFTkSuQmCC" alt="image" data-src="https://m.beetcb.com/postimg/14/3.png" class="lazyload" width="665" height="284"></p>
+</li>
+<li>
+<p>看看页面长啥样: 同理 <code>DOM tree</code>, 分析CSS生成<code>CSSOM Tree</code></p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAOCAIAAABVWCAXAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACrUlEQVQ4y32T2Y7UOBSG8/4Pws3QGg1oBkbQLXUzcDGCK6iqVPY4i/fEsbM4cZLmVAmhFi1x9CuKrOQ7229v2/bFbXbZ7Lza5YfgxK2bc9MyqXnk89S6Zdy29fG34c1uM73lsiNMYnoR5UqqURtj2rStPjbZm7a8H1XoZr3v++NPPWdN89Z0Y0narGSgvOQFabEcuTKSRzS9w+cbkvyrxWm2F9aTeMaC7nQ/MdFhKkA1JjUuqjrBtU+rLxzd8/yOok8NPegmnTSyfb3YbluX5/V563Ve07xO1o12Nabp+FHk70X2WhQPWvq9EVpLxQOe38vkrwa96+XJTgp+/CW8Zd3dCrjdzvtgt65rFT+I7C2Lblh2p2W4zMM4DZ2Iqui2PP1Rh/+09Jvp1Tjvs9ufEr1WT40aRGOYNJibmgqGoYRben6B/Rcivx1UAqU1Is+j/9PTbRp8oDhoIWXvun42wzjPdtvchYVqmSIcRJkf5scgDzNaYga4Or4rTy9x9MaIQ9cJ3ugkr4IoBaGKUd5wXtHqK0OfFP486WyxxksQD9PqFCR+mJ3DLEWMgClEIor/aPyKpe+MOColqAAWjpICVNScCSFZgtOH0v+TxG8hnx1bjwlNWFNhWhMOwkxR0QkpCMnq8lxXsZS0AX+okXBFmAAbitbIVgmWlslH5P+NgvesPrSt8C4bvMpenpsenFQD0IsKvEZBYBSgt9qawV0+WzYY+TAtQjZplgTBtzA8ogKByT3wx0XXgIWacYH8cYKOp+DrwT8czzBKGBCsCChXQ11imBx0HWbkFCJQlJGsbJ6xhisrLfxzCDg/iJOsrIjsejs/YUETjerLmmWozFFZYc6k9p5eAjALsKg0cU6CuDhHKM4xLBpOoF6w9A+vPz7Cez85aBzunzKjGebRuu8vYs3nx0Tc4wAAAABJRU5ErkJggg==" alt="image" data-src="https://m.beetcb.com/postimg/14/4.png" class="lazyload" width="1142" height="644"></p>
+<blockquote>
+<p>为什么要解析成<code>对象模型</code>: 比如DOM和CSSOM两者都是对象模型( <code>OM</code> 后缀), 从上面的图例也可以看出它们都是树形数据结构，而树形结构的最基本单元 ——— <a href="https://en.wikipedia.org/wiki/Node_(computer_science)"><code>node</code></a> 节点, 其中每个 <code>node</code> 节点都含一个对象（比如 <code>document.documentElement</code> 是根node，通过这个node的信息我们知道它对应的对象是整个HTML）, 对象里的属性和方法就可以描述或和操作这个节点（这就可以很好地解释我们通过JS获取的元素集合为什么是 NodeList），所以可以理解为有了对象模型, 页面文档具有编程接口, 就可以利用js操作页面中的内容。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>2.根据 js 更改 <code>DOM Tree</code> <code>CSSOM Tree</code>[js没有更改则跳过]</p>
+</li>
+<li>
+<p>3.合并<code>DOM Tree</code>和<code>CSSOM Tree</code> , 生成 <code>Render Tree</code>:</p>
+<ul>
+<li><code>Render Tree</code> 是最终用于布局, 所以一些不参与布局的内容不会被加入到<code>Render Tree</code>中(比如<code>&lt;meta&gt;</code> <code>&lt;link&gt;</code> <code>display:none</code>等)</li>
+<li><code>DOM Tree</code> 和 <code>CSSOM Tree</code> 不会被删除 , 方便js的交互</li>
+</ul>
+</li>
+<li>
+<p>4.计算布局(computing layout)</p>
+<p>根据<code>Render Tree</code>来排版布局, 以计算每个节点的几何信息(位置 尺寸) <br><strong>注意</strong>：（只要几何布局不改变）第二次渲染并不一定需要此步骤，比如改变了元素颜色，不需要进行二次排版布局</p>
+</li>
+<li>
+<p>5.绘制页面(paint)</p>
+<p>布局完成后, 浏览器根据布局确定每个像素点的显示，利用GPU, 完成网页的绘制;至此, 一个UI制作完毕，我们就可以看见页面啦!</p>
+<p>我画了一个简单的流程图简要概括以上的五个步骤:</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAIAAABLixI0AAAACXBIWXMAAA7DAAAOwwHHb6hkAAADSElEQVQ4y5VUa1ejSBD1//+lXdcYHXe/mIejqwESEgKEZ3fTL/o5ZwvR9RGdcfrc1Kl0waXq9oUTa62zyhnuNPkYUDLK9r1hzBBiCH6Oz0nXWSGcMSfOAVVneK66SNNId1FPQoFWAgU9DjRdG3mwEmuM+jQVm0isIx6FNAxosILIwoBv1qoqrRQDl+YlrW5RMsX7iy77hvYXVTyptpN6OyHZN9Hea5rzNGmXi+rqsv77qry6zKeT/eQsn55n55PynysSBpqQketAqyVKznA66bIp2p9V8Z9VfFpvT0k2Fe2d7lKebNH8ur44by6n1XSSn52mp39AzP86rS6nZHUPjQ9cpkccr7tyTqsFr5esnHeHWVfMSTFj9VKS2PBalkUXrNBygW+WeLFoZ7P6+rpdzJv5DN/esGQHag5czkpnQOYK4PvS88KLwsvSw19VPZa4Fdyg1lTlgPwAsACQCVDXlnZOq0cuZ6E5Z/UArRwXjnJPuZPSA0TvpfIC9nvH5ADMXScsk1YpC9druBEY3Mjl/P8LUmW9NF5oK4zmWhIliIKo+LAzlnxvvLb+7XrD5cafsV4ZKzQnfVWw3Q5t1vU2RsWBMtwbrgc6ZZyxzj/dO8YjrrHgvDGOML0r2V2MF2H9fY02OUVUw0DePa8vcQ3NOSpN3op1ildxEyYorXknzNCNf2H7gOu4MPjOgNyWoB43krSSSQOj26HqjtdRXy+J77WFLhDTqJFPoBp2pH5P98mMzwkMQoRJSna/Q7dB8W9UAx4Ssis55uOYX+AaHwnCt1RHOV1EzfV9MV9VgOUahRltQP63kv20LzccN5gxbUSYkoeoDjZtsGnCrNvXghzJ/6n240EPM3KdtzIueLyngG3K4kJkrcRMHx/lT/SCE7Q1kVFGllG9WJVLQFBBHuxxiYR6dPzX+vqI62bgaj7ket/X8YyYKTAn6BXGKIzbIe4JnCyiPTzpi1xP2lNpq87uW73N2CYhoFfSqLID09l3nvhFX+B4xAwQBbm8i8nNuoX4kMmk0S01UP0N7UdPHLCJqx489ZBgiJuyz7F59uqv/PXyERveoWFMxA2YtukUROgUdqSyr69/nZ/4j9ePkRHw+JV6nbhPbvH/AYTu9zoXLdw+AAAAAElFTkSuQmCC" alt="image" data-src="https://m.beetcb.com/postimg/14/5.png" class="lazyload" width="708" height="704"></p>
+</li>
+</ul>
+<h3>重排和重绘 [reflows/layouting &amp; Repaints]</h3>
+<blockquote>
+<p>注：<code>reflows</code> 又可称作 <code>layouting</code>（回流）</p>
+</blockquote>
+<p>简单点说, 初次浏览器渲染后, 由于CSS、JS有动画存在，JS 也可以进行许多动态操作, 会导致网页会进行二次渲染，再次执行以上的步骤</p>
+<p><strong>注意</strong>：渲染的第四步(computing layout)可以在二次渲染的时候跳过，前提是不改变页面的几何布局</p>
+<p>因为第四步的可跳过性，我们把二次渲染分为重排和重绘（分别对应第4、5步）</p>
+<blockquote>
+<p>前三步也会执行，但是处理速度很快，所以忽略</p>
+</blockquote>
+<p><strong>如何区分两者？</strong></p>
+<ul>
+<li>重排：对于影响布局的更改，浏览器会进行重排
+<ul>
+<li>实列：设定宽高、浮动、定位、<code>input</code>内容更改、DOM操作等等</li>
+</ul>
+</li>
+<li>重绘：相对直观——只要页面可视内容发生改变，一定会重绘。比如透明度、 颜色等</li>
+</ul>
+<p><strong>为什么要关注重排和重绘？</strong></p>
+<p>它们成为前端性能优化的切入点，需要减少重回和重排的次数来尽量优化性能，绘制更流畅的UI，获得更佳的用户体验</p>
+<p><strong>浏览器有帮我们优化吗？</strong></p>
+<ul>
+<li>
+<p>浏览器也很懒，不会傻到每一次小的变动都去重新渲染，多个连续的页面变化会暂时集中储存到一个队列，每一个frame批次执行更改并且清空队列，再去执行渲染步骤。不过有几个列外（当我们需要实时获取页面的状态时，队列会被强制清空用于获取最新最精确的状态）：</p>
+<ul>
+<li>请求JS盒子模型的属性，如<code>clientTop</code> <code>scroolTop</code>等等</li>
+<li>请求获得元素样式、宽高：<code>ele.width</code> <code>ele.getComputedStyle()</code>等等</li>
+</ul>
+</li>
+<li>
+<p>第一步不一定需要全部重新执行（可以只有部分重新更改）</p>
+</li>
+<li>
+<p>第二步本身是不存在于初次渲染中的，但如果页面载入时JS便对页面DOM或CSSOM进行了更改，为避免连续渲染两次，会先执行更改，再执行第三步</p>
+</li>
+<li>
+<p>只要重新渲染，第三步一定重新执行，重新生成 <code>Render Tree</code></p>
+</li>
+</ul>
+<p><strong>自己如何优化？</strong></p>
+<p>网络上有比较好的例子，在这里备注提供几个地址</p>
+<ul>
+<li><a href="https://gist.github.com/faressoft/36cdd64faae21ed22948b458e6bf04d5">Minimizing Repaints And Reflows</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2015/09/web-page-performance-in-depth.html">网页性能管理详解</a></li>
+</ul>
+<h3>JS引擎</h3>
+<p><a href="">JS引擎机制（基本）🥳</a></p>
+<h3>参考及补充：</h3>
+<ul>
+<li><a href="https://hacks.mozilla.org/2017/05/quantum-up-close-what-is-a-browser-engine/">Quantum Up Close: What is a browser engine?</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model">Constructing the Object Model
+</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction">Render-tree Construction, Layout, and Paint</a></li>
+<li><a href="https://medium.com/schaoss-blog/%E5%89%8D%E7%AB%AF%E4%B8%89%E5%8D%81-03-css-reflow-%E5%8F%8A-repaint-%E6%98%AF%E4%BB%80%E9%BA%BC-36293ebcffe7">前端三十｜03. [CSS] Reflow 及 Repaint 是什麼？</a></li>
+</ul>
+<blockquote>
+<p>欢迎讨论、指正</p>
+</blockquote>
+
+	    </div>
+	    <div class="outline"></div>
+	</article>
+
+     
+		</main>
+		<footer class="footer">
+		    <div class="footer-desc">
+			made with love&amp;<a style="color: skyblue;" href="https://www.11ty.dev/" target="_blank">11ty</a> by beet <br> 
+			<a href="http://www.beian.miit.gov.cn/" target="_blank">ICP-20003648-1</a>
+		    </div>
+		</footer>
+    <script>Turbolinks.start()</script>
+	    <script>
+            (function (selector, src, preferNativeLazyLoad) {
+  var images = document.querySelectorAll(selector);
+  var numImages = images.length;
+
+  if (numImages > 0) {
+    if (preferNativeLazyLoad && 'loading' in HTMLImageElement.prototype) {
+      for (var i = 0; i < numImages; i++) {
+        var keys = ['src', 'srcset'];
+
+        for (var j = 0; j < keys.length; j++) {
+          if (images[i].hasAttribute('data-' + keys[j])) {
+            var value = images[i].getAttribute('data-' + keys[j]);
+            images[i].setAttribute(keys[j], value);
+          }
+        }
+      }
+
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = src;
+    document.body.appendChild(script);
+  }
+})(
+              'img',
+              'https://m.beetcb.com/lib/lazysizes.min.js',
+              false
+            );
+          </script></body></html>

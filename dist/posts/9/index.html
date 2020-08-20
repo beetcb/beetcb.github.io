@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="en"><head>
+	    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content=" Beet's blog, share &amp; blogging">
+		<meta name="title" content="对ECMAScript数据类型的理解 | Beet's blog, a frontEnd lover's blog site">
+
+		<title>对ECMAScript数据类型的理解 | Beet's blog, a frontEnd lover's blog site</title>
+
+		<meta property="og:site_name" content="beet's blog">
+		<meta property="og:url" content="https://www.beetcb.com/">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="对ECMAScript数据类型的理解 | Beet's blog, a frontEnd lover's blog site">
+		<meta property="og:description" content=" Beet's blog, share &amp; blogging">
+	    
+	    <link rel="stylesheet" href="/static/css/my.css">
+	    <link rel="stylesheet" href="/static/css/prism-dracula.css"> 
+      <script src="https://cdn.jsdelivr.net/npm/turbolinks@5.2.0/dist/turbolinks.min.js"></script>
+	    <link rel="icon" href="/static/favicon.ico">
+	    </head><body>
+	    <main class="main">
+		
+	<article class="article">
+	    <h1 class="title">对ECMAScript数据类型的理解</h1>
+	    <div class="location content">
+		<a href="/">Home</a> /posts/9/<br>
+		<time datetime="Posted date: 2020 Jun 04">Posted date: 2020 Jun 04</time>
+	    </div>
+	    <div class="content">
+		<h3>数据类型和值</h3>
+<p>一门语言是用来储存和传递信息的，在计算机世界中，这些信息一般叫做 <code>value</code> ; 再把 <code>value</code> 分类，产生了<code>data types</code>(数据类型)</p>
+<p>先斗胆康康官方 spec 的规定：</p>
+<blockquote>
+<p>The ECMAScript language types are <code>Undefined, Null, Boolean, String, Symbol, Number, BigInt, and Object.</code> An ECMAScript language <code>value is a value that is characterized by an ECMAScript language type.</code></p>
+</blockquote>
+<p>ES 数据类型: 可分为 <code>原始类型(primitive)</code> 、<code>对象(引用类型)</code>  , 一个变量的类型可以动态变化，可在声明后改变(这说明了JS是一种弱类型、动态类型的语言)：</p>
+<blockquote>
+<ul>
+<li>
+<p>原始类型即上面提到的 <code>undefined, null, boolean, string, symbol, number, bigInt</code></p>
+<p>原始类型没有属性，如果不注意的话，会报错</p>
+<p>TypeError</p>
+<p>=&gt; cannot read property ... of undefined</p>
+</li>
+<li>
+<p>对象(引用类型) ：</p>
+<p>我们的对象大法在 JS 语言里囊括万物</p>
+<p>一个简单的解释就是：对象是属性和方法(方法提供了操作对象的接口)的集合，属性又可以包含基本类型和引用类型。</p>
+</li>
+</ul>
+</blockquote>
+<p>ES 值：对一个数据类型来说，值与之对应，是可以直观认识这种数据类型的方式</p>
+<blockquote>
+<ol>
+<li>原始值( primitive values )：</li>
+</ol>
+<p>原始类型的值都是原始值( 值本身无法被改变 =&gt;  immutable value)，存储于 stack 栈内存空间</p>
+<p>来看一个列子：</p>
+<p><code>let instanceP = 22;instanceP = 222;</code> 代码执行时，<code>22</code>这个原始值会储存在当前作用域下( 属于 stack 栈内存空间 ) ，当变量<code>instanceP</code>声明后，把值关联给变量( 赋值过程 )。</p>
+<p>把<code>222</code> 赋值给变量时， <code>22</code> 并不会变化，因为num属于原始值，<code>222</code> 只能创建一个新的栈内存空间，重复如上的赋值过程</p>
+<ol start="2">
+<li>引用值( reference values ):</li>
+</ol>
+<p>对象类型的值即引用值，存储于 heap 堆内存空间</p>
+<p>附带一个可以访问的<code>16进制地址</code> (该地址一般放在栈内存中，作为对象的指针，用于引用对象)</p>
+<ol start="3">
+<li>通俗理解</li>
+</ol>
+<p>原始值占的内存小，不需要重复利用，值不允许改变；</p>
+<p>而引用值一般是一大坨东西，需要重复利用免得浪费</p>
+</blockquote>
+<h4>Undefined</h4>
+<p><code>value: undefined</code> =&gt; 未定义</p>
+<p>未赋值的变量都有 <code>undefined</code> 这个值</p>
+<p>控制台输入一个<code>没有返回值的语句</code> 返回undefined</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAKCAIAAADOyWIBAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABQUlEQVQoz42SbW+DMAyE+f8/cVNXFa2EEJI0b3bihHUGtFXqNrRH9wGhcL6c6WqtVCgoZ3s9vcn+JE+n6eV1Op/NMAQ7B0wpBRcZZwv4HG5Or++9w9bax8Z9o1uWpVL1xs2DEhfxfhF9P14uoxDGmJgiViIquTAZGuWaEaFgyjlX/vbZi6haG6bJiHFSzKy01iEEPv49+TfuT3R8upTqXWYFj+ULTtPaY/J/6Livkin6klzFyOWxdeNALH7YxSW02la15cC9I64+U7ohKEgzRJutzdMESiFrntEa4Na4IIgZgXj2US4eW7gcA6CTN2AMSpnYbnd8eCX2qgcNcq51Ucklr5wetBqNlPZ61UJYKb2xGANvkChTRr7B6nX/gy1Xrbyy9Qfa8H6XBwBe8fKDoztyLkTcvfzGbso/6bbNB8shn4En1h+lxPp1AAAAAElFTkSuQmCC" alt="console" data-src="https://m.beetcb.com/postimg/9/1.png" class="lazyload" width="436" height="183"></p>
+<h4>Null</h4>
+<p><code>value: null</code>  =&gt; 空</p>
+<p>比如<code>querySelector('#box')</code>  如果没有 id 为 box 的元素，则为<code>null</code></p>
+<h4>Boolean</h4>
+<p><code>value: true/false</code> =&gt; 逻辑判断 (真假)</p>
+<pre class="language-js"><code class="language-js"><span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//=&gt; false</span><br><span class="token comment">// 0/NaN/null/undefined/空str =&gt; 转换为boolean为false，其他都为true</span></code></pre>
+<h4>String</h4>
+<p><code>value: a set of "elements" of 16-bit unsigned integer values</code> =&gt; 字符串</p>
+<p>'apple' 及 "pie" 表示文本数据 : 简单说由引号包裹的内容都视为字符串</p>
+<h4>Number （Numeric Types）</h4>
+<p><code>value:&nbsp;The Number type has exactly 18437736874454810627ℝ (that is, 2ℝ64ℝ - 2ℝ53ℝ + 3ℝ) values</code> =&gt; 数字</p>
+<blockquote>
+<p>也就是 2ℝ64ℝ - 2ℝ53ℝ + （<strong>+∞</strong>）+ （<strong>-∞</strong> ）+ NaN</p>
+</blockquote>
+<blockquote>
+<p>其中 2ℝ64ℝ - 2ℝ53ℝ 为有限数（ finite number）</p>
+</blockquote>
+<p>其中的特殊value：</p>
+<ul>
+<li>
+<p>正无穷 positive Infinity ：<strong>+∞</strong></p>
+</li>
+<li>
+<p>负无穷 negative Infinity ：<strong>-∞</strong></p>
+</li>
+<li>
+<p>NaN =&gt; 不是一个有效的数字</p>
+<p>isNaN() 方法可以判断是否 不是一个有效的数字</p>
+</li>
+<li>
+<p>正零 positive zero：+0</p>
+</li>
+<li>
+<p>负零 negative zero：-0</p>
+</li>
+</ul>
+<h4>BigInt （Numeric Types）</h4>
+<p><code>value: arbitrary precision integer</code>  =&gt; 大数字</p>
+<p>创建方法：</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> bigInt <span class="token operator">=</span> <span class="token number">1234567890123456789012345678901234567890n</span><span class="token punctuation">;</span><br><span class="token comment">// 方式一：数字末尾加n</span><br><span class="token keyword">const</span> sameBigint <span class="token operator">=</span> <span class="token function">BigInt</span><span class="token punctuation">(</span><span class="token string">"1234567890123456789012345678901234567890"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token comment">// 方式二：用BigInt()构造，注意字符串</span></code></pre>
+<p>注意：</p>
+<pre class="language-js"><code class="language-js"><span class="token number">1n</span> <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">;</span><br><span class="token comment">// 报错，不能混用</span><br><span class="token comment">// 只能用 BigInt() 和 Number() 来相互转化</span></code></pre>
+<h4>Symbol</h4>
+<p><code>value:&nbsp;<strong>unique</strong> and <strong>immutable</strong> primitive value/non-String value</code></p>
+<p>常用于对象属性名(key)</p>
+<hr>
+<h4>Object</h4>
+<p><code>value:  属性的集合或[特殊的Object]</code></p>
+<h5>属性(Properties) ：</h5>
+<p>① 属性名 (key)</p>
+<p>只能是 str 或 Symbol</p>
+<p>② 属性值 (value)</p>
+<p>可以是任何数据类型</p>
+<blockquote>
+<p>两种已规定值的属性</p>
+<ul>
+<li>data property</li>
+<li>accessor property</li>
+</ul>
+</blockquote>
+<p>③ 创建方式</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><br>	key<span class="token operator">:</span> value<span class="token punctuation">,</span><br>	age<span class="token operator">:</span><span class="token number">99</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">//多组键值对 </span><br><span class="token keyword">let</span> o <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>④ 一些特殊的对象</p>
+<ol>
+<li>
+<p>functions</p>
+<p>Functions are regular objects with the additional capability of being <em>callable</em>.</p>
+<p>函数只是可以被调用（未调用时，作为字符串储存起来）的对象,一个可以重复使用的功能体</p>
+<p>$ 创建方法：</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> <span class="token function-variable function">funcOpt1</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">n</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">// function body</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br><span class="token keyword">function</span> <span class="token function">funcOpt2</span><span class="token punctuation">(</span><span class="token parameter">i</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">// function body</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br><span class="token keyword">let</span> <span class="token function-variable function">funcOpt3</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">m</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span> <span class="token punctuation">{</span><br>	<span class="token comment">//func Body</span><br><span class="token punctuation">}</span><br><span class="token function">funcOpt3</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// call this function</span></code></pre>
+<p>$ 用于函数调用的形参和实参：</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// 此处的参数叫做形参: 入口，形参是变量(two 和 two2)</span><br><span class="token keyword">function</span> <span class="token function">sumUp</span><span class="token punctuation">(</span><span class="token parameter">two<span class="token punctuation">,</span>two2</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token operator">+</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><span class="token comment">// 此处传递的是实参：实参是具体的数据值</span><br><span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token comment">//按照次序形参变量接收</span></code></pre>
+</li>
+<li>
+<p>Array</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array">Arrays</a> are regular objects for which there is a particular relationship between integer-key-ed properties and the <code>length</code> property</p>
+<p>以数字为属性名索引、包含length属性的对象</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAKCAIAAADOyWIBAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABcklEQVQoz42SiY6jMBBE+f9P3AmQEMJpY4P78AFkGpKVdkea0ZRKFio1z90tZ0qpYRjk1FrDOEJVUVlQWXLbhtmGeY5K8TssuHlIGJflDG9c36Ftx2FuNTfTmjnn7GSNNmInrHuF+QWLnNrWC4goORe1CkN/eJqSJMyvMGrtrVkWshANbFmMkYDBgrMOtMbH4wBdS+o6L/eHsMW4Ma8Ah4m2lLZ1fYdi72NMIW4h7dm+74kTLx5nQj1R0+Dlgh9/sKpY6xSjFDy/WHR+/KMjyJ77c/VrwECOcTLSDpYlFgXWtTdm/ZH1l/j8j+UhsGMylodeFo8yY9OEZZFx9tfPv9DJCgeLDME4Yy8r66BTZF306T3AL1n7tqeQPAa2TBpJOVKWjJOpY1hFKb3OQ+uPbWZS4flcvELXiQE1gfEE0S0kL0brSSQP0BgDAFL/XbOZ956QnHGoEYaTNSJOJOszk+n7/nq93m63PM/ruhZiCOE71iect9ELPSXgNAAAAABJRU5ErkJggg==" alt="console" data-src="https://m.beetcb.com/postimg/9/2.png" class="lazyload" width="478" height="192"></p>
+<p>$ 创建方法：</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li>
+<p>Typed Array (类数组)</p>
+</li>
+</ol>
+<p>比如由 <code>.getElementsByTagName('li')</code> 得到的 HTMLcollection</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAICAIAAACDAcMKAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABEklEQVQoz3WRi3KDIBBF/f/vbDQmwPJYFgXRXrB20klzZBBX5ngXB5GUnCQjrCK7aMlq9RzH8X6B9e12Gy+maUJxnuezqOdZiBbnhHlIKYmPTGyVs+SIyBIZQ845ay1m6tgXXOcssvdrjCWldVkGEYkcObB3IQQGqCzLknNeX8gXv4/nXHKupdSt0V3xtAUsEBObSil413bU2u51B8dx7H85OvtVbz1CgUgI7J1v2XD1hKhHSSw5rVvZ9neOix8X2mk6jqStnrS+a/OwZHAgDCmCvruODwxn50hglVVfWmNMRMpDhz/QRosbA7ejwIfR/ifdUDrQJZ/Cg8OdwzNKWIMXiJRSWmtjjO5479FErfVf1zeBA0AzHUcyAgAAAABJRU5ErkJggg==" alt="console" data-src="https://m.beetcb.com/postimg/9/3.png" class="lazyload" width="658" height="220"></p>
+<ol start="4">
+<li>
+<p>JSON</p>
+</li>
+<li>
+<p>Date日期</p>
+</li>
+<li>
+<p>...</p>
+</li>
+</ol>
+<h4>判断数据类型的方法</h4>
+<p>注意区分 <code>typeof</code> 和 <code>instanceof</code></p>
+<h5><code>typeof</code></h5>
+<p>用途：获得原始数据值的数据类型</p>
+<p>返回值：原始数据类型、object、 function</p>
+<p>比如：</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// 如果直接输出，输出的是字符串</span><br><span class="token keyword">typeof</span> <span class="token number">1</span> <span class="token punctuation">;</span><span class="token comment">// "number"</span><br><span class="token keyword">typeof</span> <span class="token string">""</span><span class="token punctuation">;</span><span class="token comment">// "string"</span><br><span class="token keyword">typeof</span> <span class="token boolean">false</span><span class="token punctuation">;</span><span class="token comment">// "boolean"</span><br><span class="token comment">// or </span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// number</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// string</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// boolean</span><br><br><span class="token keyword">typeof</span> <span class="token keyword">function</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token comment">// "function"</span><br><br><span class="token keyword">typeof</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">// "object"</span></code></pre>
+<p>问题：</p>
+<p>①不能区分具体的Object类型</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">typeof</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// "object"</span><br><span class="token keyword">typeof</span> <span class="token operator">/</span>foo<span class="token operator">/</span><span class="token punctuation">;</span><span class="token comment">// "object"</span></code></pre>
+<p>②使用<code>new</code> 构造的数据都当成 "object"</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">typeof</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">'object'</span><span class="token punctuation">;</span><br><span class="token keyword">typeof</span> <span class="token keyword">new</span> <span class="token class-name">Number</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">'object'</span><span class="token punctuation">;</span></code></pre>
+<p>③迷惑的<code>null</code></p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">typeof</span> <span class="token keyword">null</span><span class="token punctuation">;</span><span class="token comment">// "object"</span></code></pre>
+<p>注意：typeof 一般不会报错，一般返回undefined；但是遇到let造成的暂时性死区时，报错"ReferenceError"</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAALCAIAAAAFlbGkAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAB+0lEQVQoz4WS2W7YIBBF/f/f1iZtEqWxzTIsNnjDu42NocVpKvWhUUdHozsDXBCa5HSnnfdVTRMyY94b6BWrCGEYEYJBiIKBAMopZZzLWAohowDgCFGUYyFE3/fHcfwMIbmu61zspucZhp6OFRs5dIRooDecNwA1QBWJ+p0aaIWxxkRxrpq6XdfFOXd7uao+VLMzvUI9Yd1hXeWFzmSNZJ3LKhNRV/mta1TcUKWxKrNCp9wQscjybFvfdcGYxAFYYBaRA1H7I19f3uaXdEnJhtmK2PJGlgzWSA6xvDtQzBEi4x6bE0dokDJwFgASh/GR5+frq3t5Dg9fw8MX//zkce4Z9UA8QZ6SD4DezVJ6VfhCBIoDRgHjwCAQEkXim/oqy4vBlb6Fp+/h2+PtlWUeI59nPk19nnvy2wi8FL7S8Yiva6+VV2XModIhZq0SP43emHtNFp7QyEWo49wxcEDjD5yMnYV0qryiS9uGYQjz9M78h48yuZbFjfPZTYfqD9FYWa9MDpT2Wdan6ZCmJoLQAHQrS2e6sCxh2/5J4o7jXHfbzVvZ77LbVTfrxmjdaW2aeug60zambaPY4q1xjq7rM5LTuWO3ezetIr5Ir1LPRWkKaaoqDuE0z2OMaYpitzYOY/g83r0Oa8dhV+XO2Y3gWyGt6U5r/V8R/he/ALBz/EDY1/W1AAAAAElFTkSuQmCC" alt="console" data-src="https://m.beetcb.com/postimg/9/4.png" class="lazyload" width="544" height="236"></p>
+<h5><code>instanceof</code></h5>
+<p>The <code>instanceof</code> operator tests whether the <code>prototype</code> property of a constructor appears anywhere in the prototype chain of an object<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAFP0lEQVRIx51WeVCTVxB/dGqd1o71n1ZRsPYAUWZaaEqtQcSDw0AgQKFGFDXCCAlBQ4BWDrGIck1AyxkgRBNEizNQwEKAcGrKKdIgyhGqFEEsrUF0LBT5vtf3Po1Dp3Kkv5k3u0l23+6+vQLAHCAIAvw2OAgghODihXwwNTX14kyCyclJ0NXVRf3W09MDZmZmgF4gSRL0IkUMfElZaSnY6+39HzknBgNkZGSAv5FhjOamJkp3UQYkEgnF//7gwaId6+zspOipU6cWFm5ra6Nob2/vy+/Gtdo3frh0aVVCfPyn34SFbQ0NDbWNPXmSJpVKjTs6Ot7C0WLU1dVRtKGhYW4DOAcY/f19uqcyyBaL3z1yJMjay8srwMHePmH7tm1Z27dvE9vb2Yk8PDwEAQEBO0Ui0Wok+xrWaW1t/dddr8TTp09f5uLMmTOGnIMHmS4uzBSbLVsaN23adPdzGu0hjfaZ9gsrq3t0Or2VwWBk7du71yMpKWmNLqLp6en5IwkPD6d4hUKx/PDhw44uTGYWuvBXU1PTZ++vXQuNjNZAY2Nj+MG6ddDE5GPC0tJyyN7eXsLhcBgVFRXvYF0elwt0Bl+ZdB2QZ+vd3d0i6Js3d5mYmJDICLSysiIcHRxId3d3ks3eTTCZTNLGxgafbicnp+ikxMSNOv27d+7MnxOMkJCQrTt37MiysLD4c4OZGUQXEnw+nzwZEwNjY2PJZJEIxp0+TXqz90CUn8dbrK0vCAQCZxTBEqzf0tIyfyQ4VC6X62Brays1NzefMDffCAN5PEImPQ+v1V8l65Q1ZPPPTWSLqolMTfkeBnJ5E24sVgGqPFekuxTf0d7evvBzIQU6qqZ0SwuLMZRwiEqWVCEDmtt9sLGunrxa30DeUt8kq8oVMEecfTc4WHA2Ojr6S2TkdV1jLmgkMTHxIzabzUVdXenp6TmWnpo21dneAUeHRshbXTeh+hc1OdCngddb26drlTW1eXl5/lVVVe9h3ciICDA8PDx3hcXFxVG0uLj4bZQD2qFDHH+hUFiQJ5F0o8smkYewuqqaLCspgorysmdVip8GapTK5JKSEnpjQwOVD5VKNf9I0ZUepqjr36ysrDQqLCz8Oj8/v0Aul43K5XKIKCHNToW5mSl/ZacmKM5LpZyiouKV6o42A6w7MjKCGrp/4cTPRlpamhmqqtioyMh+9O7wxInomWNCHjwWHDD2bdCBdHFmhrVOVq1WLzy7sBc6Q25uLMqzlOTkDejJYoL4/H5UdTAokDvD92PDEJ7PYGiAV0JmVvYnWM7NlWmA9TQazeKm6osJTBlBPWHh6+ub6OOzbwgVAfTe/RWx32sX5B5gafgcVkxKqtiUSnhkpIFWq138TsGNudpwFcVnpKeZ+fn5nvDew+5lODkTLGe7KTaTTgb6ON4S+rlEnc2Uf4jlEhLiDfRaXAQxA1gsV4qX5klWRh8/zouMCL8mFIbeDwvcdy+MYzf6HW9Xc8xRz+Bzl2sMKWcy0g0IfTYkjgQNPIpHO2OJXCZzzs3NQe0gbcwThXTkRLndzIlg1GRG7fFXtg6vwHJFlwuB3ng0Pg5WrKD0gbK62uzKlSv7a2trQ5QXT8dXpu8/WybyiitK8XO8/cfzUaKqrwF6PhcBBgYGgEBwlPpcWlqyXCaTrS/9sZhWfu64Q12OP6sy7QBDIRaY9g0/HyXtqnrwvzC7Z/CmxGf84eOlE9pHy56MTyybejKxZHYD643ZW1IfZ/T+a9Td3U3xGjQmbty4AfrQH4zBnuvgfv/zMzrQ+dLAk0dz98g/+Hvmu5npy2oAAAAASUVORK5CYII=" style="zoom:25%;" data-src="https://tva3.sinaimg.cn/large/005K67iLgy1gfg7dzq9lcg306o06oq3a.gif" class="lazyload" width="240" height="240"></p>
+<p>比如：</p>
+<pre class="language-js"><code class="language-js"><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token keyword">instanceof</span> <span class="token class-name">Array</span><span class="token punctuation">;</span> <span class="token comment">// true 解决问题①②</span><br><br><span class="token keyword">class</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span><br><span class="token keyword">let</span> foo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>foo <span class="token keyword">instanceof</span> <span class="token class-name">Foo</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// true 可以识别自定义构造类 解决问题②</span><br><br><span class="token keyword">null</span> <span class="token keyword">instanceof</span> <span class="token class-name">Object</span><span class="token punctuation">;</span> <span class="token comment">// "false"  解决问题 ③</span></code></pre>
+<p>一个经验易懂的解释</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAZCAIAAABo0EPhAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAB5klEQVQoz0VS2W7cMAzU//9fEWzXsXVQpC5LXtvrTZE+dGSnCUDohaPhzJDKebbOo7wECVEkhBBbW47j+Pz8i1ITiT7LcLQcSWJMubZl25/P44VSg+XRyURBUzQ+kaRcam2P5bEtjxWv+nXXb4O5je420aC9tiwhgWWuC3Ao9dYR9jb537qTGR845JTnMje027KqYbJ3TYOVwQXMshw8pGQAMGSHGmXJWx+cJBcKxexjlpgzZjxWyHx9/FFMLKdRjOezgEhl7ghAOsJ5IQ9q5ugloYCIgNQFRvoU0o5hwDhn2UKHE9+hkDJftpUx3hkiQ0A4CqAT0MBOqZcdNRrRViza7pzGMcTS3dblikS9mzDaMAFE4IfeDHL0kMRXYoMW0EwGSgRToDSkGSPms90Rkw3aRQONPhJHlgQjl8avTA2dbWiEhY7AASQ4gRRseF13hcH4h13ga0rlehFqKT2QHXlwPyGCUSQLKLbve6wd2jm2TSEGsh7Zs+9GOJaQayoNFK1fyarGyWuNuDxR5+i/c81z+7mPuwnv8MIgz0ga8uaKxvpdynCmUDjN8YwZo7GwddvX7XmVEvT64Fr67/Y493kcH1j8VeoShYvCTbUFAWz7fqDx+l+KU42lpVMacH0Ejm97gumqfx2S8xb5gv7qAAAAAElFTkSuQmCC" alt="stack overflow" data-src="https://m.beetcb.com/postimg/9/5.png" class="lazyload" width="597" height="1300"></p>
+<p>后续补充......</p>
+<h4>参考</h4>
+<ul>
+<li><a href="https://tc39.es/ecma262/#sec-ecmascript-data-types-and-values">ECMAScript Language Types</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures">JavaScript data types and data structures</a></li>
+<li>[<a href="https://segmentfault.com/a/1190000002789651"> JS 进阶 ] 基本类型 引用类型 简单赋值 对象引用</a></li>
+</ul>
+
+	    </div>
+	    <div class="outline"></div>
+	</article>
+
+     
+		</main>
+		<footer class="footer">
+		    <div class="footer-desc">
+			made with love&amp;<a style="color: skyblue;" href="https://www.11ty.dev/" target="_blank">11ty</a> by beet <br> 
+			<a href="http://www.beian.miit.gov.cn/" target="_blank">ICP-20003648-1</a>
+		    </div>
+		</footer>
+    <script>Turbolinks.start()</script>
+	    <script>
+            (function (selector, src, preferNativeLazyLoad) {
+  var images = document.querySelectorAll(selector);
+  var numImages = images.length;
+
+  if (numImages > 0) {
+    if (preferNativeLazyLoad && 'loading' in HTMLImageElement.prototype) {
+      for (var i = 0; i < numImages; i++) {
+        var keys = ['src', 'srcset'];
+
+        for (var j = 0; j < keys.length; j++) {
+          if (images[i].hasAttribute('data-' + keys[j])) {
+            var value = images[i].getAttribute('data-' + keys[j]);
+            images[i].setAttribute(keys[j], value);
+          }
+        }
+      }
+
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = src;
+    document.body.appendChild(script);
+  }
+})(
+              'img',
+              'https://m.beetcb.com/lib/lazysizes.min.js',
+              false
+            );
+          </script></body></html>

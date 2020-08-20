@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="en"><head>
+	    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content=" Beet's blog, share &amp; blogging">
+		<meta name="title" content=" Beet's blog, a frontEnd lover's blog site">
+
+		<title> Beet's blog, a frontEnd lover's blog site</title>
+
+		<meta property="og:site_name" content="beet's blog">
+		<meta property="og:url" content="https://www.beetcb.com/">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content=" Beet's blog, a frontEnd lover's blog site">
+		<meta property="og:description" content=" Beet's blog, share &amp; blogging">
+	    
+	    <link rel="stylesheet" href="/static/css/my.css">
+	    <style>
+	    ol,ul {
+		display: block !important;
+	    }
+	    .post-aside {
+		order: -1;
+	    }
+	    .post-container {
+		flex-flow: column nowrap;
+		align-items: center;
+	    }
+	    .post-aside,
+	    .post-container {
+		width: 100%
+	    }
+	    .subPage ul {
+	        padding-bottom: 2em;
+		padding-left: 0;
+		color: var(--link);
+		font-size: 1.3em;
+		line-height: 1.5em;
+
+	    }
+	    .subPage ul li {
+		font-size: .8em;
+		color: var(--text)
+	    }
+	</style>
+      <script src="https://cdn.jsdelivr.net/npm/turbolinks@5.2.0/dist/turbolinks.min.js"></script>
+	    <link rel="icon" href="/static/favicon.ico">
+	    </head><body>
+	    <main class="main">
+		<div class="post-container">
+	    <section id="postList" class="post-collection">
+            <div class="subPage">
+    <ul>
+
+	&gt; JS
+	
+	
+	<li><a href="/posts/15/">BrowserStack-JS引擎机理(浅解)</a></li>
+	
+	<li><a href="/posts/12/">解构赋值表达式和...操作符</a></li>
+	
+	<li><a href="/posts/9/">对ECMAScript数据类型的理解</a></li>
+	
+
+	&gt; git
+	
+	
+	<li><a href="/posts/11/">Git之修改commit记录</a></li>
+	
+	<li><a href="/posts/4/">Git 快扶我入门</a></li>
+	
+
+	&gt; share
+	
+	
+	<li><a href="/posts/16/">刷机pixelExp，获得原生安卓体验</a></li>
+	
+	<li><a href="/posts/7/">tcb硬核博客加速,解决pages的龟速问题</a></li>
+	
+	<li><a href="/posts/5/">咋就避不开这个话题呢-下载（下）</a></li>
+	
+	<li><a href="/posts/3/">咋就避不开这个话题呢—下载(上)</a></li>
+	
+	<li><a href="/posts/1/">超简单搭建甜菜一盘记录-oneindex</a></li>
+	
+
+	&gt; ssh
+	
+	
+	<li><a href="/posts/17/">读Openssh Manual</a></li>
+	
+
+	&gt; wsl
+	
+	
+	<li><a href="/posts/13/">WSL2中使用proxychains ng代理加速</a></li>
+	
+
+	&gt; RickAndMorty
+	
+	
+	<li><a href="/posts/10/">DontLookBack | RickAndMorty</a></li>
+	
+
+	&gt; svg
+	
+	
+	<li><a href="/posts/2/">微信推文能用上的svg特效 | 文字篇</a></li>
+	
+
+	&gt; fullStack
+	
+	
+	<li><a href="/posts/14/">BrowserStack-浏览器引擎及渲染机理(含重排和重绘)</a></li>
+	
+
+    </ul>
+</div>
+
+	    </section>
+	    
+	    <section class="post-aside">
+		<section class="header">
+		    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsSAAALEgHS3X78AAAGQklEQVRIx31We2xTVRi/dVs2RoxAGIRHJIaJQHBBBCSTKDBeUxkMBgiKAqK8CQRBEBmCMFD+EAIhGkwAUUGEsu492IBB5569t3u0Xbv1cW/fz3Vr2Yuu9Xfu7UYn6E1++Xq+853f73zfObffpSg8XC5NWcRa8pOyl2moyCcUCvHWxWiTvBpzlrfJWAh7HOMpkfN9j02q4q21VIU5N/XMY5cKAmxBTTRXUBtvyKmKNxUzMcTnUXCz23W2C4C8XW8736rkkonfWEzHkDgSz+bXREcKDXgs95VAA/9b91dFVGuTMbGtxZIKZADTQPQSSFN8rOOyz2DnYC9hPM9UIh+C+enAyjatZTHWjdfdkEbxnA8aqGDQ81SElMtcUi+I3CiPw6JFfs7xAyDGrg+55NqZLrlubluz5VybxkzDniVjd51uls9gy/QhDrGn2prN87V/SmN5kbJGlMsnCLC36QFZaa9LYxH8gd/o/M1vclqx81rsep+jWpPmluuPAFeJddRolraquIOYZxBnQfwVr8aUqr3+6FkRPpMCWsQVMFHme4oXIBKDg52M3W0BsiEod9frr9krmrbbHil32P9u2gy7y17ZtBP+G8iaQdwtH2v/3Ks2TWr+vYwvl+lOncAtRhIcMuGy6TGchH4NSGQlsjjrw4Y4TyM7EWKrkMUpp6zlR5tUudV0R/6J+W7duyBYbytXbXPRLWeQTRbiMhA/wfKgPi6yKkZxuEoQEUEkGQLpQCrOZxjxqy/di3JUq4ehLFMhsMLyoDHdVCwnmAUsJ2P4l2M+CVkNqTstFrG3ZSI2j45jc4E8OqZfCCJREFkN7GOz6a0QGUUmvfUGUX8582tH4CpPBfn7QBqQaixikuAfHrlzcCSwEnoqjxyBhxPLBBE2W7YWAQdht0NkJJl0VChFdqlKJBxiQwxKlQikQGAd7EJggr1KGf0vkYkQWA2shMhk3ndL1p8JETmATHZD5BUQRJmK5DyBQSwTwTfUWMDMMhbKl0JkjfmOfKbprnwcl0cPBeFoYBRIB4NjDji+BbLgW0hKxqGERCSa68+EPoHJ5UAyskrEwkGEhMuhpwEbILbTmM9sNBYyM2Anwzcd8yuANOBtcHwIjtPATxhnYH4IuEXhTMIiEvoksANB2wAiNpMXlNBLcSn2AYewcDOQAsyGPx34MowN4PgM675/nkhfJl9j4giwHUHfscKYLP6I90no/QC5HJvCvjX8hiT0V2Gs4zOR0JlAFqqwgC0EN3/w2eTg6bWsUK4vEDAXdjPsN7C/YPf7gUzsajWwGJiP8Q7gAO/HjhH7HrlR4FoIuxfYA5EZ4YMXUbjT5D1JIzuH3R9eRHa5Eb+PAscwdxFntMsgrl1suFUzjRXXfop3gmR7EfO7ILwEpK9i/QL4DrFkjYRexBYzUdxNZMKG1CSbN/h0hR1+DCzA+C0QYWeyvVwu86upsO68pbRxt+2hahXsHozPwX+FnBViUiAylhPOcH24vHNwu2JtR6vC91tCDwPeBBYRIGASbs9oR1XzdGet9rCbMZR4Go1MW7O11M85//CxzqveJnOei9bftZerL0AUhywbh7Vjw5dlHjCFvPlPX6JihuLIdc2hh+OaJuhvVg+yl6vG4F91BXrHlQ6rR9PpbPN2eXzenvbHlh5/h67b69c9trjV+N+67WJ0G6xlijFC22AGg+tFCMazOTJRfy953uOoVCehC57odHhbAl3doWCwtzcUCob4ByYYCISedHQFO51ehU9vO2yvVE96Hg/EnjYtMsAOKGeNVhQWeR0ixzrsrZpgVw9Ygzx7byAQ7O15EuLR2R3qcLSq0Ngy+0TctF5EeAgfKkMNyIQtZChbeSPl45xCJlXqke066zKU5FyXp70cJTIEurv9gc6uIH77u1p9evgfYRNn0E+W4N84gaxDeSkHraDYIoHXmC9/Nj1buZK3phIm2qNgX4ZQit/k2oayncc5VIBcS0QfWz1n0Q23oGmRNjyWza3mm5X5fj31vw8+GITPmYcK3l4bv4kyZFfG4iNjBJrSOyjLSbTby7DHMU5GT0kg8z/HLxPWh3dvrWz4bxEfa6A8DSzV97UR+U1lvl83GH0+A7Xf5KjSpBuLZHGR32bmUqHdOmtaqA6nYQDvP40Vm5Rj2yrZAAAAAElFTkSuQmCC" data-src="/static/beet-logo.png" class="lazyload" width="125" height="125">
+		    <p class="beetsaid"> <strong>b b</strong><br><small>(🙉 short for beet's blog)</small> </p>
+		    <a href="/">Home</a>&nbsp;|&nbsp;
+		    <a href="/tags/">Tags</a>&nbsp;|&nbsp;
+		    <a href="/about/">About</a>
+		</section>
+	
+		<p>
+		d<a href="https://github.com/beetcb/beetcb.github.io">
+                          <svg class="svg-icon">
+                              <use xlink:href="/static/icon.svg#github"></use></svg>
+                      </a>r<a href="https://twitter.com/beetcb1">
+                          <svg class="svg-icon">
+                              <use xlink:href="/static/icon.svg#twitter"></use></svg>
+                      </a>o<a href="https://www.zhihu.com/people/ur-apprentice/posts">
+                          <svg class="svg-icon">
+                              <use xlink:href="/static/icon.svg#zhihu"></use></svg>
+                      </a>p<a href="null">
+                          <svg class="svg-icon">
+                              <use xlink:href="/static/icon.svg#wechat"></use></svg>
+                      </a>i<a href="https://qm.qq.com/cgi-bin/qm/qr?k=eaqvtvbTAtD7iw-HXwverJr736BwdPs6&amp;noverify=0">
+                          <svg class="svg-icon">
+                              <use xlink:href="/static/icon.svg#qq"></use></svg>
+                      </a>c<a href="https://t.me/@beetbeet">
+                          <svg class="svg-icon">
+                              <use xlink:href="/static/icon.svg#telegram"></use></svg>
+                      </a>e 
+		</p>
+			
+	    </section>
+
+	</div> 
+		</main>
+		<footer class="footer">
+		    <div class="footer-desc">
+			made with love&amp;<a style="color: skyblue;" href="https://www.11ty.dev/" target="_blank">11ty</a> by beet <br> 
+			<a href="http://www.beian.miit.gov.cn/" target="_blank">ICP-20003648-1</a>
+		    </div>
+		</footer>
+    <script>Turbolinks.start()</script>
+	    <script>
+            (function (selector, src, preferNativeLazyLoad) {
+  var images = document.querySelectorAll(selector);
+  var numImages = images.length;
+
+  if (numImages > 0) {
+    if (preferNativeLazyLoad && 'loading' in HTMLImageElement.prototype) {
+      for (var i = 0; i < numImages; i++) {
+        var keys = ['src', 'srcset'];
+
+        for (var j = 0; j < keys.length; j++) {
+          if (images[i].hasAttribute('data-' + keys[j])) {
+            var value = images[i].getAttribute('data-' + keys[j]);
+            images[i].setAttribute(keys[j], value);
+          }
+        }
+      }
+
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = src;
+    document.body.appendChild(script);
+  }
+})(
+              'img',
+              'https://m.beetcb.com/lib/lazysizes.min.js',
+              false
+            );
+          </script></body></html>

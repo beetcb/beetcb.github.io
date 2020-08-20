@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="en"><head>
+	    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content=" Beet's blog, share &amp; blogging">
+		<meta name="title" content="解构赋值表达式和...操作符 | Beet's blog, a frontEnd lover's blog site">
+
+		<title>解构赋值表达式和...操作符 | Beet's blog, a frontEnd lover's blog site</title>
+
+		<meta property="og:site_name" content="beet's blog">
+		<meta property="og:url" content="https://www.beetcb.com/">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="解构赋值表达式和...操作符 | Beet's blog, a frontEnd lover's blog site">
+		<meta property="og:description" content=" Beet's blog, share &amp; blogging">
+	    
+	    <link rel="stylesheet" href="/static/css/my.css">
+	    <link rel="stylesheet" href="/static/css/prism-dracula.css"> 
+      <script src="https://cdn.jsdelivr.net/npm/turbolinks@5.2.0/dist/turbolinks.min.js"></script>
+	    <link rel="icon" href="/static/favicon.ico">
+	    </head><body>
+	    <main class="main">
+		
+	<article class="article">
+	    <h1 class="title">解构赋值表达式和...操作符</h1>
+	    <div class="location content">
+		<a href="/">Home</a> /posts/12/<br>
+		<time datetime="Posted date: 2020 Jul 09">Posted date: 2020 Jul 09</time>
+	    </div>
+	    <div class="content">
+		<blockquote>
+<p>解构赋值和部分<code>...</code>运算符是ES6带来的新语法糖,  有了他们, 平时看似整洁的代码瞬间也变得冗余了, 快来尝试一下这两个新语法吧</p>
+</blockquote>
+<p>词条列表(点击前往相关文档)</p>
+<table>
+<thead>
+<tr>
+<th>terms</th>
+<th>translation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">Destructuring Assignment</a></td>
+<td>解构赋值</td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters">Rest parameters</a></td>
+<td>剩余语法</td>
+</tr>
+<tr>
+<td><a href="https://tc39.es/ecma262/#sec-ordinary-and-exotic-objects-behaviours">Exotic Object</a></td>
+<td>特异对象</td>
+</tr>
+<tr>
+<td><a href="https://tc39.es/ecma262/#sec-standard-object">Standard Object</a></td>
+<td>标准对象</td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">Spread syntax</a></td>
+<td>展开语法</td>
+</tr>
+</tbody>
+</table>
+<h4>解构赋值的原理及语法</h4>
+<p>我的理解: <strong>解构都是对标准对象的解构</strong></p>
+<p><strong>标准对象</strong>: 包含普通对象和特异对象(<code>Array</code> <code>String object</code> 等)</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAJCAIAAABIXRCvAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABMklEQVQoz52RzZIkIQiE6/2fc2eny38UBBHdsfo8l96MDCM4+EWSXL0SRwTXXMC7cqrcu4yhe+9/H+rS8xG5FPjO8U8Jr5ILInaetmx9xrvWWjoVGBy6L/j+Cy42AOpDTef6jGVmU7UzARdP3qPPvcKZxVifaCffXPPYttlah6/2+Al+ZtuPzwZ7XzbmRGXoUOGAAoXUW8Lh60zNGmsTzD0nOk1i41F5RVqJDPpJoEJTcCo/jVwmNorSzeXGkJID7yC7SK+XultTkpxbiPm+U3A1RkowQpu/s0RGL9x8Lw5jKg7CYflI/tZ4a0lSMqYE/i7JY4691JFpVjaUKeNQpnab8madFQo+bRMMISXu2JGQpc5RbaApHS+BYxNUlXkq3r/pypxijyCVlc9N117v93/0A3rWjmMdmJhRAAAAAElFTkSuQmCC" alt="" data-src="https://m.beetcb.com/postimg/12/1.png" class="lazyload" width="703" height="248"></p>
+<p>如图, <strong>解构赋值的格式</strong>可以通写为:</p>
+<p><code>let {matchedKey: varName} = {key: balue}</code></p>
+<blockquote>
+<p><code>matchedKey</code> : 与<code>=</code>右边对象匹配的键</p>
+<p><code>varName</code> : 使用let声明的变量名
+<strong>实际栗子，对象中函数访问对象键值</strong></p>
+</blockquote>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> chart <span class="token operator">=</span> <span class="token punctuation">{</span><br>    price<span class="token operator">:</span> <span class="token number">1000</span><span class="token punctuation">,</span><br>    name<span class="token operator">:</span> <span class="token string">'sorb'</span><span class="token punctuation">,</span><br>    isNew<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token function">getComputedPrice</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token comment">// 对this结构赋值，方便函数操作</span><br>        <span class="token keyword">let</span> <span class="token punctuation">{</span><br>            price<span class="token punctuation">,</span><br>            name<span class="token punctuation">,</span><br>            isNew<br>        <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span><br>        isNew <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>price <span class="token operator">*=</span> <span class="token number">0.8</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token keyword">return</span> price<span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>看似依旧有点复杂, 并不比单行单行来得轻松多少,好在可以简写</p>
+<p><strong>第一种简写:</strong> 把<code>varName</code> 默认作为<code>matchedKey</code>, 只写<code>matchedKey</code></p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> <span class="token punctuation">{</span>name<span class="token punctuation">}</span> <span class="token operator">=</span> obj<span class="token punctuation">;</span></code></pre>
+<p><strong>第二种简写:</strong> 数组或类数组[甚至说一切可遍历的数据结构] , (从对象的角度说)不用设置属性名, 直接写出变量名 =&gt; 语法格式为:</p>
+<p><code>let [varName, varName2] = ary;</code></p>
+<p>由于此类数据结构的可遍历性, 也就是说每个成员的顺序是可以确定的, 不必匹配键名我们也可以达到一一对应的效果</p>
+<p>此外, 正因为它是有顺序[或者说有索引]存在的标准对象, 所以使用 <code>[]</code> 来包围 <code>varName</code> 就有理可循了</p>
+<p><em>到这里有些小甜菜可能有会疑问了?</em></p>
+<p>误解=&gt; 这种简写之所以使用<code>[]</code> ,是因为<code>=</code>右边是数组, 两边格式需要匹配</p>
+<p>纠正=&gt; 使用两张图反对这种观点:</p>
+<ul>
+<li><code>{}</code>与<code>[]</code>并不一定需要匹配</li>
+</ul>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAICAIAAACDAcMKAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABUUlEQVQoz42RyW4sIQxF+///MS1Vp2uAAoMx2Gao5CF1K8oii3d1hYwXx9NteO2P3JecjG7QlzAOrJSL87BbsJ4sFCSxgY2L6+Fmvtb69db39I9uL1ZbMm55tXw3ZfUSiR3gfuJ2kgH2kQ2UzcZJnyzOonkIDqXe67iu6wW+XVj7wX3nZMictBhafQESwHyGcvh8RnaxeBTjcBYIMRYSDp1sy161tDHGm9VC44fQB/uPtN/T446fa9zAL259GPu5g3fqbAEQY8j75F1MIWeof7Fo8NlorfjU8FTYxFky8Vzg8Tz3w/oEil4y1gSCMWOgTKVKbzya9N5+zaill9DQVjSKR6WzUmTIsKX1AAMQBRtj1dwkNSbJiZnlp5ffupU6xyfkNE1SWLX30UbTrtp0nmz0a2bGuMZ8X56f6+sPVpDgeC7E2mJmXFq53rd++/u/9Q/xiT3YKodKMwAAAABJRU5ErkJggg==" alt="" data-src="https://m.beetcb.com/postimg/12/2.png" class="lazyload" width="440" height="147"></p>
+<ul>
+<li>下图再次证明有索引就适合用<code>[]</code>表示</li>
+</ul>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAARCAIAAACn2JBZAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACdElEQVQ4y6WU2ZbjJhCG9f5Pl8uZbrtla0Nip6pYheRgTzpJzzm5mMl/QNzAp78W6KpMpadywcDipvde19Hs0sUQkgO/yPB9cH9czNsI4woOY0r5PM/H43ycP/S5nmdXdSqj3+8UtyBUGmScdNaYQipAkZvYM7rMeN88k2QgIoVc9lLKUY89H3s8Sqh7OZq6qlIZaO8pLLht2K/2Y6XVBEu5nWysD9ZANEnPFW7ab8o5DESUU/Eme17dmrzLzW9XXSlrzFMMK0kGy2xGRu2MwiCcExaXZgeTdtm5KHRsRGXQ2paF9DMrm+LH6N6DvvjtQvM7TD1Nix7U+savVzZc76vkqLZgpJc8Co5SOLEpaOmEnNzhTUm+5Fy6DHvgBcZsh6TvUd2TZVlp5Mh7c+v5OM6bEUQ6kUmkMsrkJFkJRL7Wev5LXRY59B6/kb3AdsOhBzb7ReBi1FXOVzb107oy4xQ64c0c1S3IETR3SLT/w3oWtqtQ9i0WFiMno/wqQNmkIFkfFQXpUBhQGgKFiJlkcUs2zJON+dUcL8xf6rIqdI/um9fvtF5ofId18PNqJ729idsHG+7jKphtpkAEx5IeohicXCwA/h3jJ8sfwVRg7YfFTtmOudXFaODAb6YfxLgsHKQnnb1LAYq3CbQ3AhBp3/cv+YpYvC7AMqz59S0oMzjfumKGVk/GhWoRBVcC5LY5YPYY0VLw4WcWIjRZY1uNnYO2o1W3NXE96l73H6PW4z90fmU1knPGWPeSD6Hdj/O31BFhs9b6GF4KT9b+v1jN0XMBDCH+PutJeMUIrxi/+nr80ugayVqrlDbGtPl8AD7z9fhF/QntDMPgt/7zkwAAAABJRU5ErkJggg==" alt="" data-src="https://m.beetcb.com/postimg/12/3.png" class="lazyload" width="388" height="259"></p>
+<p><strong>不过, 大可不必过于纠结, 毕竟有了简写, 谁会像上图一样垒字呢😋</strong></p>
+<p><strong>第二种简写的延申:</strong> 类比第二种简写方式, 我们可以利用等号左右一一对应来对多个变量赋值, 语法格式为:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> <span class="token punctuation">[</span>name<span class="token punctuation">,</span> sex<span class="token punctuation">,</span> age<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'beet'</span><span class="token punctuation">,</span> <span class="token string">'unknown'</span><span class="token punctuation">,</span> <span class="token number">99</span><span class="token punctuation">]</span></code></pre>
+<p>这也是最常见的解构赋值, 通过一行代码, 我们同时声明了<code>name</code> <code>sex</code> <code>age</code> 三个变量, 非常简单易用</p>
+<p><strong>扩展: 解构不到值?</strong></p>
+<p>如果结构赋值语句不能与<code>=</code>右边标准对象匹配, 变量值为<code>undefined</code></p>
+<p>一个极简单的🌰:</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAJCAIAAABIXRCvAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABcklEQVQoz32Q604jMQyF5/2fcBFtgXbuSezEce4zA6ag1a5Q+WTZ/pFz5JxuC7VhaSpVm6MLFJLjjHHzqbnUUt1crOijFIeQc/aeHQVL0frMoRgbwbKlUErpdqptSa0PVUUPpCxP4AfMq42LzSKQPhtaLZP3KSVr3WrcrOysWQMPi5tW0EAp5W5ztQwpnTheAw40Tb4f6LqkUfsb0IRwVfZt0P2IWiEzi5coV+0WwwZ5XGle0aCXk7tKW5iKu2R7yeYcl3OcnnnueVz0Gwx/5qen8Xy63PpXtQ7giGJKMZUQc4glpiy79FLqtm1dCXuAzQ3N9dVeq7sXrRnlLzxf4PSqXm79uN5AT5bI19qO49j34yddy3umjXVlVWnJX8WYiRgDjDRMdlYGHDAhhxhba8cDOsk/MCMgGDDGIKJFKwCil7Bz3r85vsdjPr0kUYBPI621LHhHFvGSJO7P3v8K3h/zn5fYOCf5ktz25SWh/q7/lw8nZ4Ozw7UcAwAAAABJRU5ErkJggg==" alt="" data-src="https://m.beetcb.com/postimg/12/4.png" class="lazyload" width="352" height="124"></p>
+<p>我们再次对变量d进行操作, 极有可能会报错, 以至下文代码需要条件判断d的值, 不必烦恼, 解构赋值可以让我们提前判断: 使用<code>默认值</code> , 其语法就是在左边解构赋值语句种给变量赋予默认初始值</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> <span class="token punctuation">[</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> unmatchedKey <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+<p>当解构失败, 变量值不再是<code>undefined</code>, 而是我们设置的默认值</p>
+<p>把上面代码优化一下:</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAHCAIAAAByV3HfAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABLUlEQVQoz5WOWW7DMAxEc/8bNkWRpI5jWStFiVoo2a3sfrdAB4PRAvANL1vu3Za2JNYp2GiRhEs6sAnsiXWowtJtgZcE43wpxftgIawajU/KpUV54wJR2vf9spXeXe0is8nBkoYoDEnIGovFI8fzIUAosIC1FsR4srwGUo7EYEGgdLJa7Gku+Eb+neRHfH6Ez1t8zHBX8ro+rvN8vYnr+zpNSluotUZKHmnsYn0ykJQNgJRzOVi9bAV6FIwv9nN1U/FLsRoVyru7fcppXla1ODCYUtpO9d5bO3xcjujj82BxaQkY14oLh0FcOCpGIBvNE6enmYVUVnqEmHP+mflNF6ox5IA5cOvbKGijdzQPt9pK4VK5Nm7tXGP/UxebtCQpSfHW9q99+Izz/Nr/pW9nNPZQYSxsTgAAAABJRU5ErkJggg==" alt="" data-src="https://m.beetcb.com/postimg/12/5.png" class="lazyload" width="399" height="120"></p>
+<p>所以, 解构时的默认值可以替代两个语句: 判断值是否undefined =&gt; 是undefined赋予初始值, 这在函数形参赋值中极为好用, 我们继续往下看!</p>
+<p><strong>扩展: 函数形参的解构赋值</strong></p>
+<p>函数形参是函数作用域内的变量, 所以同样可以解构赋值并设置默认值, 根据形参赋值的原理, 我们可以想象成如下语法格式</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> <span class="token punctuation">[</span>parameter1<span class="token punctuation">,</span> parameter2<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>argument1<span class="token punctuation">,</span> argument2<span class="token punctuation">]</span><span class="token punctuation">;</span><br><span class="token comment">// parameter =&gt; 形参</span><br><span class="token comment">// argument  =&gt; 实参</span></code></pre>
+<p>把此表达式抽象到函数, 我们可以猜到对形参进行解构赋值的语法了</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> <span class="token function-variable function">foo</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">[</span>parameter1<span class="token punctuation">,</span> parameter2<span class="token punctuation">]</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>parameter1 <span class="token operator">+</span> parameter2<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAGCAIAAAC5C6J6AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA6ElEQVQY052OSW7DMAxFff87pinQ1EmsgRapiYPcKl6123y8BfFBPHJR18kLRA2Rvc+rS9cNL759er6DPJKsIB9OL06vrq2heiCkSrXnrpmPzKPy6GIiuihyTZKTIWiK1cW0QrpBvgO7xIHEJfkG+Yp6A37OBjsWpirYbG9jgm2Urq3z0pBLYgLG0BHajrgXglxSESySm1JVKBqyhWJQbCpKf0Gn6J+LYkWomCphraXPqOnEbKgNs2Oifxk/No7JnOXk7OemLeGx+w2cg7gnylPGY4zjrSzbc9s2tzkP04X0+mteGccb/AIRs7Hzi72oFAAAAABJRU5ErkJggg==" alt="" data-src="https://m.beetcb.com/postimg/12/6.png" class="lazyload" width="792" height="190"></p>
+<p>配合<code>...</code>操作符, 解构赋值还有更强的功能( 详见:<a href="####%60...%60%E6%93%8D%E4%BD%9C%E7%AC%A6"><code>...</code>操作符</a> )</p>
+<h4><code>...</code>操作符</h4>
+<p>对于可遍历的数据结构, 我们可以使用<code>...</code> 快速实现<code>开</code> <code>合</code> 两种效果</p>
+<h5><strong><code>开</code> =&gt; 展开语法</strong></h5>
+<p>1.可将可遍历的结构[把其中的每一项内容称作子项]=&gt;展开为以逗号分隔的各个子项</p>
+<pre class="language-js"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token string">'str'</span><span class="token punctuation">)</span><span class="token comment">// s t r</span></code></pre>
+<p>2.还可以在构造字面量对象时, 将对象表达式按key-value的方式展开</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> cloneObj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token operator">...</span>obj<span class="token punctuation">}</span><span class="token punctuation">;</span> </code></pre>
+<p><span style="color:lightcoral">克隆数组和对象</span></p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> ary <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span><br>    cloneAry <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>ary<span class="token punctuation">]</span><span class="token punctuation">;</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>ary<span class="token punctuation">,</span> cloneAry<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token comment">// Array(3) [ 1, 2, 3 ] Array(3) [ 1, 2, 3 ]</span><br><br><span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><br>    one<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span><br>    two<span class="token operator">:</span> <span class="token number">2</span><br><span class="token punctuation">}</span><span class="token punctuation">,</span><br>    cloneObj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token operator">...</span>obj<span class="token punctuation">}</span><span class="token punctuation">;</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> cloneObj<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token comment">// Object { one: 1, two: 2 } Object { one: 1, two: 2 }</span></code></pre>
+<blockquote>
+<p>注意:</p>
+<p><code>cloneAry</code>是一个新的数组, 指向一个新的堆内存地址, <code>cloneAry</code> 与 <code>ary</code>互不影响, 同理, <code>cloneObj</code>与原对象也不影响</p>
+</blockquote>
+<p><span style="color:lightcoral">数组方法的实现</span></p>
+<p>concat =&gt; array = [...array, ...ary];</p>
+<p>unshift =&gt; ary = ['unshift item', ...ary];</p>
+<p>push =&gt; ary = [...ary, 'push item'];</p>
+<p>join(',') =&gt; ary = `${[...ary]}`;</p>
+<p>实例:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> array <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> ary <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>array <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>array<span class="token punctuation">,</span> <span class="token operator">...</span>ary<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">//concat</span><br>ary <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">...</span>ary<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">// unshift</span><br>ary <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>ary<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">// push</span><br>ary <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token punctuation">[</span><span class="token operator">...</span>ary<span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span><span class="token comment">// join(',')</span></code></pre>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAUCAIAAAD3FQHqAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADG0lEQVQ4y4WUjY7bOAyE/f6vuW2zsf4oipRIydneKNk9tIcWRwhBYMsj8uOIxxXtug+9W67re72+0RXaqmIikkgK98xWmsUimYRax9tTrqyTpWdq98S3s8ZcierhwcfN6puVOO/Z38kSj9q61J6D5vvIYVAx4s7ca+kh+j1AWkvllOkeyu2eQiq5lMPSHOds3yenVYpnCMloMjobJ6N3o2CtmKp1tUaWTwv3nlKjunOBXIg5F/yth5LXNNNtprhKxvnSRFRHb0vjkh+O8nvy2Xy12YtJGiVslcLMgs0KGr33McaB07h5onnWR6gr1s6iTfFqGa9J7mTOPtlX9dG6qlbhpo07Pp3m6xkX4hjDWD3LPOVxthnrAFTpZn65XqvtjKb64r2G4nttxrs3ZmNe8/r4N45Os+XJZdY2A+mZW66QcrPV65JoHKQR5BVC0oCJSi3E2NRtzuvxi5a3y+o1ePmYTTo6CPATWc/L5NLinLuwggf0Ubl8heG0tT5+iUPQ7+gxeqB5y3qLnAqqHFhEmmNNYfeIlcGKVQEbhQL2RFLXZ4U/n3GYO/IgXVEeSVZpQ7BzuLrx0DYaHnTv6qrTBzJ5fPwtji7G7LnOk9dZYVTU2FUMlZIoaSWBSdsWtaHg7RvA4/EHyWPU1culNHG07OwHWgV8kiesBxn4GwuAkK7sGmX75XdS/9Uafb4sN55aml3r5DaoCcFPuk+BMZu0/jctoVGyx+R32JVGxAVGVfuhptJiLViZiRruNbxBpaHe4es36l/szTb7vqK+2Buc1IcBzWYPbibIWEz7xoDfZweuP7HXarV4yh543cluadu1grYO/JaCYVAJFoXHIN3btsXGCp/uJlzP2/NqxeH8MLpAbY6FDSSe6rardZjikugl9LqfINHtVTBtYIYdMK/7p+JLS/LgMGqQ3gYQY+aFxLUprgGuhCSnOLYpdF9RqL205Kk1n/GyyOaF7IE33BNlwhzakwjNM9vJ+2P2y/pyW3AVannNhGc281XaK15NODDRQjjfvr29v7/fbj/O88RcwtbP3nz8/Pha/xv/AH4coG6Y9J0wAAAAAElFTkSuQmCC" alt="" data-src="https://m.beetcb.com/postimg/12/7.png" class="lazyload" width="512" height="412"></p>
+<p><span style="color:lightcoral">函数传参(数组)与返回</span></p>
+<p><strong>传参数组</strong> : 我们可以利用展开语法替换Function.prototype.apply()方法</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> <span class="token function-variable function">foo</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token function">foo</span><span class="token punctuation">(</span><span class="token operator">...</span>ary<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token function">foo</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token operator">...</span>ary<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// =&gt; true</span></code></pre>
+<p><strong>数组返回结果的展开输出 :</strong> 当函数返回结果包含多项的时候, 我们常常把他们放在一个数组中用于返回输出, <code>...[]</code> 可以更加直观地输出</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> <span class="token function-variable function">foo</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">]</span><span class="token punctuation">;</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token function">foo</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 1 2 3</span></code></pre>
+<p>配合结构赋值, 把输出的结果赋予各个变量</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> <span class="token function-variable function">foo</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">]</span><span class="token punctuation">;</span><br><span class="token keyword">let</span> <span class="token punctuation">[</span>one<span class="token punctuation">,</span> two<span class="token punctuation">,</span> three<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span><span class="token function">foo</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>one<span class="token punctuation">,</span> two<span class="token punctuation">,</span> three<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 1 2 3</span></code></pre>
+<h5><strong><code>合</code> =&gt; 剩余语法</strong></h5>
+<p>可将有序不定数量的参数按序拼成一个数组 (函数中的剩余语法是把实参按需拼成数组, 如果没有传参 =&gt; 拼成空数组)</p>
+<p>语法: <code>let [...ary] = [1,2,3]</code></p>
+<p><code>ary</code>为变量名</p>
+<blockquote>
+<p><strong>注意</strong>: 如果函数体有对这个数组的操作, 报错</p>
+</blockquote>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAKCAIAAADOyWIBAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABcUlEQVQoz52S6W6DMBCEef83bJs0IgmHwWuvr8UXaRdo2l9VpY4+DfZYnhWIpmL2uhiVtI5owmT8iA6MD0Q5l5X1eGysmx9anxz6eKqpVBYsQSY7LUr5UdtOa4FaOesoUqqUH5RWXkQmM+uSty2TSuVZP10xpGhSVIkgGiRwfnJGeV76ENPeclCXP7uCiWRicilTTrEumZ+RMvEISnnZbj7Y95Yay5rKyr7nNe9d/JIHjVFkTHSBr9VSt+/ybzVWWjMbnNAru2iXjSvWFRe+sP7LD76T71P7kzQBEAepbgK7iQTESfkBsFe6Ywc7gGF6cAOQUBkwS735gXyyb5s4o72NcL6K1wucWn3p5nN/fxtvL8P9bZjexfguxHmUF+HucxIqjZC5dNpIArZE7IlQTcaAgx7aqT31ohWqB92r4aq6FtihR9lp2aEeDElX0NffaRIGEO561a8neWul7DVJ62ZnZ8dO4Pk3YV+U56nV0vo7n1vczJBjqyTrAAAAAElFTkSuQmCC" alt="" data-src="https://m.beetcb.com/postimg/12/8.png" class="lazyload" width="937" height="365"></p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> <span class="token function-variable function">foo</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>ary</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>ary<span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">return</span> <span class="token punctuation">(</span>ary<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">plus<span class="token punctuation">,</span> index</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> plus <span class="token operator">+</span> index<span class="token punctuation">)</span><span class="token punctuation">)</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><span class="token function">foo</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// Array(3) [ 1, 2, 3 ] 6</span></code></pre>
+<p><span style="color:lightcoral">数组方法的实现</span></p>
+<blockquote>
+<p>注意: 由于<code>...</code>剩余运算符只能放在解构赋值语句的末尾, 所以操作数组的方法有限, 实际用处不大</p>
+</blockquote>
+<p>shift =&gt; [, ...ary] = ary;</p>
+<p>multi-shift =&gt; [,,, ...ary] = ary;</p>
+<p><span style="color:lightcoral">把类数组转换为数组</span></p>
+<p>类数组: <code>HTMLCollection</code> <code>Nodelist</code> <code>arguments</code>等</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAKCAIAAADOyWIBAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABtUlEQVQoz4WSyY5jIQxF8/+/2KoklelNDLYBY2NepUlKrWr1pq2zYME9vkgcJNUWq3j1vl2DHb1NaD42WhXOGs+6PuLNP45wPMXjCY7HOPg4h8vNzw4wFzazfd+fz+dBWQxFndCmyyY3JysKopbY0mxpacHTStsjPaY0ffM607ySg5y4yo+rNzNuEjQt6ieZ17RG3CD5IH7r3mvEAowg8FrxBmocYKUiLDry/U8v0UpctsJLLZtQzJAIcsHSkPfEvepY97r9mq9/+JmXq4kxSdrqAH0JAZ1D74pzGmKPYJk6kyl3a9/Z51/8qAYHLgog3kkcz0hMmRMKo1XqWr7ZJfW3q//HlUuLaKuzNegGJVJGYAaraC0PuuRe0Dh3rX23/WswnG+G3d6z96/BIVKdQD+DXaMtqJAlsZZiQmZR96gKLUEDaglVSQ1bh9aDdi/scok5YakkNdRDTHUGvbxdQzo+REg6khlaXWubq0yVFnFL9ksilziIONGZ7c58w/xAehOu/hDSq9dwDe6xPaCtZI4MRp2pyrXIZ+E7u0tcb94tkaKUVeq1tHOuZ+ITlhOGj/X+6/obBHHLfG++sPMAAAAASUVORK5CYII=" alt="" data-src="https://m.beetcb.com/postimg/12/9.png" class="lazyload" width="848" height="331"></p>
+<p>用剩余语法转换成数组:</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAICAIAAACDAcMKAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABb0lEQVQoz1WQiWojMRBE/f9/uCwEj5OxZY3ubvUljZPxOpBNUQhRqF6LPinwKNKTbskuaa5lRFDsglnAWblYuMIt+KUu53Je6vl55uUjXV2KuQIxzzkfn0+djHRUoU3yplcvLnEC6iS9KYRRnaWAoaY73l926Bw4DyFBhd5F9Yc1dBgqei5OvOs+tQQNOgFYzjMGi6lnqIVK03a4Sq1SmrQuxCJm44elor1x9R08Q+ytIRKSCukO8mg8u5i+Cv9pf/zS54tFrBUkZi5FABiJSPkYp2Nne5DtYnOMue/70fguHZfflG/W8dfYZKucgYCISZXG7GOnoV2E9fDkudPcj7CPiab4zJX+5c+Xc5JZ11MG8c1ckVCxALZKlMQ8z03wXltsJTXJYlHmxtOz3nq7lZoapGOjOo4wqgaiDU6xsSu6RnpuvUKNhFeWM9qC6c1vH9t9DXjr8t7tDPaG9CeHv86vW1gTX0kXHO+dLrUu8QueRj0V6kAqxAAAAABJRU5ErkJggg==" alt="" data-src="https://m.beetcb.com/postimg/12/10.png" class="lazyload" width="949" height="303"></p>
+<p>借此我们可以替换掉<code>Array.prototype.slice.call(list)</code> 或<code>Array.from(list)</code></p>
+<p><span style="color:lightcoral">函数传参接收</span></p>
+<p>函数普通的传参(不传数组)可以使用剩余运算符接收传进来的实参</p>
+<p>语法: <code>let foo = (...ary) =&gt; console.log(ary);</code></p>
+<p>当然, ary位置也可以变为解构赋值语句</p>
+<pre class="language-js"><code class="language-js"><span class="token punctuation">(</span><span class="token function-variable function">foo</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span><span class="token punctuation">[</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">]</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 1 2 3</span></code></pre>
+<hr>
+<p><span style="color:lightcoral">箭头函数取代arguments</span></p>
+<p>除了普通函数可以用剩余运算符</p>
+<p>当然, 还有更多的功能等待我们去尝试, 就叨叨到这儿, 大家快去实操把 🤘</p>
+
+	    </div>
+	    <div class="outline"></div>
+	</article>
+
+     
+		</main>
+		<footer class="footer">
+		    <div class="footer-desc">
+			made with love&amp;<a style="color: skyblue;" href="https://www.11ty.dev/" target="_blank">11ty</a> by beet <br> 
+			<a href="http://www.beian.miit.gov.cn/" target="_blank">ICP-20003648-1</a>
+		    </div>
+		</footer>
+    <script>Turbolinks.start()</script>
+	    <script>
+            (function (selector, src, preferNativeLazyLoad) {
+  var images = document.querySelectorAll(selector);
+  var numImages = images.length;
+
+  if (numImages > 0) {
+    if (preferNativeLazyLoad && 'loading' in HTMLImageElement.prototype) {
+      for (var i = 0; i < numImages; i++) {
+        var keys = ['src', 'srcset'];
+
+        for (var j = 0; j < keys.length; j++) {
+          if (images[i].hasAttribute('data-' + keys[j])) {
+            var value = images[i].getAttribute('data-' + keys[j]);
+            images[i].setAttribute(keys[j], value);
+          }
+        }
+      }
+
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = src;
+    document.body.appendChild(script);
+  }
+})(
+              'img',
+              'https://m.beetcb.com/lib/lazysizes.min.js',
+              false
+            );
+          </script></body></html>

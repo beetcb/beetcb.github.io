@@ -1,7 +1,7 @@
 class Home {
   data() {
     return {
-      layout: 'base',
+      layout: 'base'
     }
   }
 
@@ -52,7 +52,7 @@ class Home {
       array.push(
         `<a href="${socialIcon[i]}">
                           <svg class="svg-icon">
-                              <use xlink:href="/src/icon.svg#${i}" /></svg>
+                              <use xlink:href="${data.config.link.icon}#${i}" /></svg>
                       </a>
               `.trim()
       )
