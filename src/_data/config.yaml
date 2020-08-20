@@ -17,11 +17,8 @@ blog:
       telegram: https://t.me/@beetbeet
 
 link:
-  favicon: /static/favicon.ico
-  blog: https://www.beetcb.com/
-  logo_src: /static/beet-logo.png
-  highlight_css: /static/css/prism-dracula.css
-  my_css: /static/css/my.css
-  my_js: /static/js/my.js
-  turbolinks: https://cdn.jsdelivr.net/npm/turbolinks@5.2.0/dist/turbolinks.min.js
-  icon: /static/icon.svg
+  favicon: /static/assets/favicon.ico
+  blog: https://www.beetcb.com/ 
+  logo_src: /static/assets/beet-logo.png
+  packed_js: /static/main.js
+  icon: /static/assets/icon.svg

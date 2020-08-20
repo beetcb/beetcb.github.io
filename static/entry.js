@@ -7,6 +7,7 @@ let judge = false
         - [tagName || false]    `str` false => 关闭查找
         - [data-(atrr)]    `str`
         */
+
 function listen(event, call) {
   const item = document.getElementById(arguments[2])
   item.addEventListener(event, currentEvent => {
@@ -30,23 +31,30 @@ function listen(event, call) {
   })
 }
 
-listen(
-  'mouseover',
-  function () {
-    // find coresponding tag index, define addCss();
-    const index_attr = this.getAttribute('data-index'),
-      addCSS = s =>
-        ((d, e) => {
-          d.head.removeChild(d.head.children[d.head.children.length - 1])
-          e = d.createElement('style')
-          e.innerHTML = s
-          d.head.appendChild(e)
-        })(document)
-    allStyle = `.tag[data-index*="${index_attr}"]{order:-2;background:#2A9D8F;transition:background .5s,order .1s .3s}`
-    // add <style></style> to dom; (need optmizing???)
-    addCSS(allStyle)
-  },
-  'postList',
-  'a',
-  'data-index'
-)
+if (!window.location.href.match(/(tags)|(about)|(posts)/g))
+  listen(
+    'mouseover',
+    function () {
+      // find coresponding tag index, define addCss();
+      const index_attr = this.getAttribute('data-index'),
+        addCSS = s =>
+          ((d, e) => {
+            d.head.removeChild(d.head.children[d.head.children.length - 1])
+            e = d.createElement('style')
+            e.innerHTML = s
+            d.head.appendChild(e)
+          })(document)
+      const allStyle = `.tag[data-index*="${index_attr}"]{order:-2;background:#2A9D8F;transition:background .5s,order .1s .3s}`
+      // add <style></style> to dom; (need optmizing???)
+      addCSS(allStyle)
+    },
+    'postList',
+    'a',
+    'data-index'
+  )
+import './css/my.css'
+import './css/prism-dracula.css'
+import './Pixer.woff'
+import Turbolinks from 'turbolinks'
+
+Turbolinks.start()

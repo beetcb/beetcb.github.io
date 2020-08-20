@@ -29,10 +29,9 @@ class Base {
   getData($, data) {
     const head = `<head>
 	    ${this.betterSeo($, data)}
-	    <link rel="stylesheet" href="${$.link.my_css}">
-	    ${this.cleanJsnCss($, data.page.url)}
-      <script src="${$.link.turbolinks}"></script>
+	    ${this.cleanCss($, data.page.url)}
 	    <link rel="icon" href="${$.link.favicon}">
+      <script defer src="${$.link.packed_js}"></script>
 	    </head>
 	`.trim()
 
@@ -47,14 +46,13 @@ class Base {
 			<a href="http://www.beian.miit.gov.cn/" target="_blank">ICP-20003648-1</a>
 		    </div>
 		</footer>
-    <script>Turbolinks.start()</script>
 	    </body>
 	`.trim()
 
     return [head, body]
   }
 
-  cleanJsnCss = ($, url) =>
+  cleanCss = ($, url) =>
     (url !== '/' &&
       url.match(/(tag)|(about)/g) &&
       `<style>
@@ -85,9 +83,7 @@ class Base {
 		color: var(--text)
 	    }
 	</style>`.trim()) ||
-    (/(pages)|(^\/$)/.test(url) &&
-      `<script defer src="${$.link.my_js}"></script>`) ||
-    `<link rel="stylesheet" href="${$.link.highlight_css}"> `
+    ''
 
   render(data) {
     let dataArray = this.getData(data.config, data)

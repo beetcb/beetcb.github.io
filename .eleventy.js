@@ -18,7 +18,7 @@ module.exports = eleventyConfig => {
   })
 
   /* rendless but needed a copy */
-  e.addPassthroughCopy('static')
+  e.addPassthroughCopy('static/assets')
 
   /* default layout template */
   e.addLayoutAlias('base', 'layouts/base.11ty.js')
