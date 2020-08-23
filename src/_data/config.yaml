@@ -18,7 +18,9 @@ blog:
 
 link:
   favicon: /static/assets/favicon.ico
-  blog: https://www.beetcb.com/ 
+  blog: https://www.beetcb.com/
   logo_src: /static/assets/beet-logo.png
   packed_js: /static/main.js
   icon: /static/assets/icon.svg
+  css: /static/main.css
+  turbolinks: 'https://cdn.jsdelivr.net/npm/turbolinks@5.2.0/dist/turbolinks.min.js'

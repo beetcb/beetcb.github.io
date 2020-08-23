@@ -1,5 +1,8 @@
-let judge = false
+import './css/my.css'
+import './css/prism-dracula.css'
+import './Pixer.woff'
 
+let judge = false
 /* $event listener call$ method
         - <event> `str`
         - <function> 
@@ -34,7 +37,7 @@ function listen(event, call) {
 if (!window.location.href.match(/(tags)|(about)|(posts)/g))
   listen(
     'mouseover',
-    function () {
+    function() {
       // find coresponding tag index, define addCss();
       const index_attr = this.getAttribute('data-index'),
         addCSS = s =>
@@ -52,9 +55,5 @@ if (!window.location.href.match(/(tags)|(about)|(posts)/g))
     'a',
     'data-index'
   )
-import './css/my.css'
-import './css/prism-dracula.css'
-import './Pixer.woff'
-import Turbolinks from 'turbolinks'
 
 Turbolinks.start()

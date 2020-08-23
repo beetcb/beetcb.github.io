@@ -13,26 +13,27 @@ class Base {
 
     return `<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>${thisTitle} ${blogTitle}</title>
+    <link type="text/css" rel="stylesheet" href="${$.link.css}">
 		<meta name="description" content="${thisSum} ${descr}">
 		<meta name="title" content="${thisTitle} ${blogTitle}">
-
-		<title>${thisTitle} ${blogTitle}</title>
-
 		<meta property="og:site_name" content="${$.blog.site_name}">
 		<meta property="og:url" content="${$.blog.url}">
 		<meta property="og:type" content="website">
 		<meta property="og:title" content="${thisTitle} ${blogTitle}">
 		<meta property="og:description" content="${thisSum} ${descr}">
+	    <link rel="icon" href="${$.link.favicon}">
 	    `
   }
 
   getData($, data) {
-    const head = `<head>
+    const head = `
+    <head>
 	    ${this.betterSeo($, data)}
 	    ${this.cleanCss($, data.page.url)}
-	    <link rel="icon" href="${$.link.favicon}">
-      <script defer src="${$.link.packed_js}"></script>
-	    </head>
+      <script src="${$.link.packed_js}" defer></script>
+      <script src="${$.link.turbolinks}"></script>
+	  </head>
 	`.trim()
 
     const body = `<body>
@@ -89,7 +90,7 @@ class Base {
     let dataArray = this.getData(data.config, data)
     return (
       `<!DOCTYPE html>
-<html lang="en">` +
+      <html>` +
       dataArray[0] +
       dataArray[1] +
       `</html>`.trim()
