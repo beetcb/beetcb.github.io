@@ -57,8 +57,9 @@ ul {
   display: inline;
   list-style: none;
 }
-code {
+.article pre code {
   font-size: 16px;
+  padding: 0;
 }
 /* =========
   global layout 

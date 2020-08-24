@@ -8,7 +8,7 @@ nailimg: https://m.beetcb.com/postimg/17/download.jpeg
 tags: linux
 ---
 
-昨天在 youtube 摸鱼的时候，无意间发现了 luke 在用的神器，下面有关 `XDG 规约` 的一篇博文，一头雾水 🙄？请看下文：👇
+昨天在 youtube 摸鱼的时候，无意间发现了 luke 在用的神器，下面是介绍 `XDG 规约` 的一篇博文，一头雾水 🙄？请看下文：👇
 
 ### `$HOME`
 
@@ -38,8 +38,10 @@ ls -ah
 
 ### 支持的程序示例
 
-我看了看我的 git 配置，很遗憾，它还是在 \$HOME 目录下，从这个 commit 可见它是支持 XDG 的，我还专门去官方文档去逛了逛:
-~/.gitconfig or ~/.config/git/config file: Values specific personally to you, the user. You can make Git read and write to this file specifically by passing the --global option, and this affects all of the repositories you work with on your system.
+我看了看我的 git 配置，很遗憾，它还是在 \$HOME 目录下，从这个 [commit](https://github.com/git/git/commit/0d94427) 可见它是支持 XDG 的，我还专门去官方文档去逛了逛:
+
+> ~/.gitconfig or ~/.config/git/config file: Values specific personally to you, the user. You can make Git read and write to this file specifically by passing the --global option, and this affects all of the repositories you work with on your system.
+
 所以我们要做的就是移动它到 `$XDG_CONFIG_HOME/git` 目录下，比如：
 
 ```shell
@@ -78,11 +80,13 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
   export XDG_CONFIG_HOME="$HOME/.config"
   export XDG_DATA_HOME="$HOME/.local/share"
   export XDG_CACHE_HOME="$HOME/.cache"
+
   # set basic environment variables
   # npm: `npm config ls -l | grep /` > ensure env settings
   export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/config
   export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
   export NPM_CONFIG_TMP=$XDG_RUNTIME_DIR/npm
+
   # zsh related
   ## enhancd
   export ENHANCD_DIR=$XDG_CACHE_HOME/enhancd
