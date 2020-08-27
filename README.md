@@ -8,7 +8,7 @@
 
 - **simplicity**
 
-simple to build with the simpler [`11ty`](https://11ty.dev) generator.
+simple to build with the simpler 11ty
 
 - **configurable**
 
