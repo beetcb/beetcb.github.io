@@ -36,9 +36,60 @@
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAOCAIAAABVWCAXAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADz0lEQVQ4y1WQWVPbVhiG9Y8y0+lFe9H2oswwwZgMXmgaSAKYuCwpq8EkIZDdMRBjgzd2ZIwxXrExwtZmS5Zk6VgSRsbgUAa4SX5HRXOTzrwX7znzzXOe70AAZM7K29dl91XZXxWjoowen5DHJ0TlNmRFIdT+XchvRZBwjk8BbqfG+erlrVM5UVFIiOcPzkDgliUun4phUTyU5Jx4jMn/QxDfH6UKXhQwrIigdLrEhmQQUaSk+irEMMkqv6WyLnm3wq4BJiTzEbF8oBJv7ZRvarh8jEn/RS1AwigeR4tEhirgRaTIH0rigToDcaVUTYBV1mfmk1LwyPmteil0CuJ8MczQUZbaE9kIYGM8ty+Us3IFV3cXZYIVSJqjCJbD2ALOYaVyVr2HBJA5F4M3ortO2RXcrRDBG35PoQJYaikd82D73tKRn8ltcFQciKomrZoCERV4FLAYy+QLDEayWV48umWJ5XQNwBclV70wd0HDl8XMJZ0spnzxwNv4jh2NO9mMq4j4uXxYkvCz81L9s3BSZSSACzRSJNMUGaUKEcAnZPkIyia9eMxOx2e4xKtyxlOMrpM7nvjKdGzzeTr0mkjO0ik7ffCJyfoEKihziQo4PC7nRAFlmSxNI/ncDn6wjCYXscwqFPowsvt2IPShF7b1LttGXa8sa7aRkGsA2RpGNiw5+FkOnkTDU+juc2xvOp/4SGeW2OwqnY/mObRUKTFEEg86I3Pju7MWaM1kXOs2LHbrpjtbzB3a9rbmyaeGFdtDZLkn9b5j9+X97Zd/Bua7o4tdCXdX2vck6R9ANq1I2oeXMPnmSuLZ/LoHHjKt9bRBgTbtdluLy9A8pmvS3WvUGpv7zDrnVEfC1pm2PggNGpf79f6pR2Hb48MFE7bUk3aaUu7e2N4syh4pX75cVBUBXo/0mzYNzVCwTRs0aj16jVWv6TBq/2hv7evWOcba99+YuPdmYqZ7/1ln4p2ZcPQJ3kHJP0h5hrAVazrho0Hh/OvX6/MzENxMDJq3DRoINmgCBo3XoJloaezSN/V26l///SA800PZ++ue0dPFYdExKC4MVRaHzzzjNc+E5LbS3hdHEV8J0OfXV/8AvuBeiPz1GNY3QVv6pvXWu3ZNw5Nff2797SezodEx0oHMPmWXRqsr1tqqtbZiPfVPKN5x2W0FrknaYc3MWTKwU+CIakUSk/HE5OjOQ6MqBG3q7vpbGl/8/ovxhzsNP94x3WtwWToP50dJp4VxjTMuC+O00I6xwvwYMWfJfrSk3g0Hpnpi3jd8ISNTJOFd2nh0X/2sgLH5X3bBpGRwZMmSAAAAAElFTkSuQmCC" alt="" data-src="https://m.beetcb.com/postimg/10/1.png" class="lazyload" width="3840" height="2160"></p>
 
 	    </div>
-	    <div class="outline"></div>
+		<div class="outline"></div>
+		<div class="comment">
+			<button id="show-comments" onclick="loadDisqus();return false;">Load/Post Comments 🤗</button>
+			<div id="disqus_thread"></div>
+		</div>
 	</article>
 
+	<script>
+	var disqus_config = function () {
+		this.page.url = "https://www.beetcb.com/posts/10/"
+		this.page.identifier = "/posts/10/"
+	};
+	function loadDisqus() {
+    var d = document,
+      s = d.createElement('script'),
+      load = document.getElementById('show-comments'),
+      dot = 0
+
+    // loading animation
+    load.innerHTML = 'loading ' + '◦' + ' 😛'
+    loadInterval = setInterval(() => {
+      load.innerHTML = 'loading ' + '◦'.repeat(dot + 2) + ' 😛'
+      dot === 1 ? (dot = -dot) : dot++
+    }, 1000)
+
+    s.async = true
+    s.setAttribute('data-timestamp', +new Date())
+    s.src = 'https://beets-blog.disqus.com/embed.js'
+    ;(d.head || d.body).appendChild(s)
+
+    function listen(target, event, callback) {
+      return target.addEventListener(event, callback)
+    }
+
+    // check the comment loadding process
+    let commentPromise = new Promise((resolve, reject) => {
+      listen(s, 'load', resolve)
+      listen(s, 'error', reject)
+    })
+    commentPromise
+      .then(() => {
+        clearInterval(loadInterval)
+        s.removeEventListener('load', arguments.callee)
+        load.innerHTML = 'loadding completed 😎'
+        setTimeout(() => (load.style.display = 'none'), 1000)
+      })
+      .catch(() => {
+        clearInterval(loadInterval)
+        s.removeEventListener('load', arguments.callee)
+        load.innerHTML = '🐶 OOPS！Try to use Proxy?'
+      })
+  }	
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>                     
      
 		</main>
 		<footer class="footer">

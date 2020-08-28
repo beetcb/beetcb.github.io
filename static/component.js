@@ -2,7 +2,8 @@ import './css/my.css'
 import './css/prism-dracula.css'
 import './Pixer.woff'
 
-let judge = false
+let judge = false,
+  load = document.getElementById('show-comments')
 /* $event listener call$ method
         - <event> `str`
         - <function> 
@@ -37,7 +38,7 @@ function listen(event, call) {
 if (!window.location.href.match(/(tags)|(about)|(posts)/g))
   listen(
     'mouseover',
-    function() {
+    function () {
       // find coresponding tag index, define addCss();
       const index_attr = this.getAttribute('data-index'),
         addCSS = s =>
