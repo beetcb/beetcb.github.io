@@ -1,32 +1,28 @@
 class Home {
   data() {
     return {
-      layout: 'base'
+      layout: 'base',
     }
   }
 
   // grab all possible Tags
-  getTag(data, tags, array = []) {
+  getTag(data, tags) {
     if (!/(pages)|(^\/$)/.test(data.page.url)) {
       return ''
     } else {
-      for (let i in tags) {
-        array.push(i)
-      }
-      array.shift()
-
       return (
         '<div id="tagList" class="tagList">' +
-        array.reduce((string, cur) => {
-          cur = `
+        Object.keys(tags)
+          .slice(1)
+          .reduce((string, cur) => {
+            cur = `
 		    <span class="tag" data-index="${this.getTagIndex(tags, cur)}">
 			# ${cur}
 		    </span> 
 	    `.trim()
-          string += cur
-
-          return string
-        }, '') +
+            string += cur
+            return string
+          }, '') +
         '</div>'
       )
     }

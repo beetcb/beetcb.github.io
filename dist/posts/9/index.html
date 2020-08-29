@@ -27,7 +27,7 @@
 	    <div class="content">
 		<h3>数据类型和值</h3>
 <p>一门语言是用来储存和传递信息的，在计算机世界中，这些信息一般叫做 <code>value</code> ; 再把 <code>value</code> 分类，产生了<code>data types</code>(数据类型)</p>
-<p>先斗胆康康官方 spec 的规定：</p>
+<p>先康康官方 spec 的规定：</p>
 <blockquote>
 <p>The ECMAScript language types are <code>Undefined, Null, Boolean, String, Symbol, Number, BigInt, and Object.</code> An ECMAScript language <code>value is a value that is characterized by an ECMAScript language type.</code></p>
 </blockquote>
@@ -52,20 +52,14 @@
 <ol>
 <li>原始值( primitive values )：</li>
 </ol>
-<p>原始类型的值都是原始值( 值本身无法被改变 =&gt;  immutable value)，存储于 stack 栈内存空间</p>
+<p>原始类型的值都是原始值( 值本身无法被改变 =&gt;  immutable value)，指向固定的内存地址</p>
 <p>来看一个列子：</p>
-<p><code>let instanceP = 22;instanceP = 222;</code> 代码执行时，<code>22</code>这个原始值会储存在当前作用域下( 属于 stack 栈内存空间 ) ，当变量<code>instanceP</code>声明后，把值关联给变量( 赋值过程 )。</p>
-<p>把<code>222</code> 赋值给变量时， <code>22</code> 并不会变化，因为num属于原始值，<code>222</code> 只能创建一个新的栈内存空间，重复如上的赋值过程</p>
+<p><code>let instanceP = 22;instanceP = 222;</code> 代码执行时，<code>22</code>这个原始值会储存在当前作用域下，当变量<code>instanceP</code>声明后，把值关联给变量( 赋值过程 )，把内存地址指向这个变量。</p>
+<p>把<code>222</code> 赋值给变量时， <code>22</code> 并不会变化，因为 Number 属于原始值，<code>222</code> 只能创建一个新的内存地址，重复如上的赋值过程，把新的内存地址指向这个变量</p>
 <ol start="2">
 <li>引用值( reference values ):</li>
 </ol>
-<p>对象类型的值即引用值，存储于 heap 堆内存空间</p>
-<p>附带一个可以访问的<code>16进制地址</code> (该地址一般放在栈内存中，作为对象的指针，用于引用对象)</p>
-<ol start="3">
-<li>通俗理解</li>
-</ol>
-<p>原始值占的内存小，不需要重复利用，值不允许改变；</p>
-<p>而引用值一般是一大坨东西，需要重复利用免得浪费</p>
+<p>对象类型的值即引用值，指向的内存地址只是一个指针（指针指向的是其他数据结构）</p>
 </blockquote>
 <h4>Undefined</h4>
 <p><code>value: undefined</code> =&gt; 未定义</p>
@@ -197,7 +191,6 @@
 <ul>
 <li><a href="https://tc39.es/ecma262/#sec-ecmascript-data-types-and-values">ECMAScript Language Types</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures">JavaScript data types and data structures</a></li>
-<li>[<a href="https://segmentfault.com/a/1190000002789651"> JS 进阶 ] 基本类型 引用类型 简单赋值 对象引用</a></li>
 </ul>
 
 	    </div>
