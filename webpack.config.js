@@ -7,11 +7,11 @@ module.exports = {
   entry: './static/component.js',
   output: {
     path: path.resolve(__dirname, 'dist/static'),
-    filename: 'main.js'
+    filename: 'main.js',
   },
 
   optimization: {
-    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]
+    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
   },
 
   plugins: [new MiniCssExtractPlugin()],
@@ -24,23 +24,23 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              hmr: process.env.NODE_ENV === 'development'
-            }
+              hmr: process.env.NODE_ENV === 'development',
+            },
           },
-          'css-loader'
-        ]
+          'css-loader',
+        ],
       },
       {
-        test: /\.(woff)$/i,
+        test: /\.(woff|svg)$/i,
         use: [
           {
             loader: 'url-loader',
             options: {
-              limit: 8192 // in bytes
-            }
-          }
-        ]
-      }
-    ]
-  }
+              limit: 8192, // in bytes
+            },
+          },
+        ],
+      },
+    ],
+  },
 }

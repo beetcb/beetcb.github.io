@@ -37,7 +37,7 @@ html {
   height: 100%;
   text-rendering: optimizeSpeed;
   font: 400 14px;
-  font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
+  font-family: Georgia, Courier, monospace;
   word-wrap: break-word;
   line-height: 1.6rem;
   overflow: auto; /* add bfc to avoid body 'collapse' */
@@ -232,7 +232,7 @@ body {
 .footer a[href="http://www.beian.miit.gov.cn/"]
 {
   color: black;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 /* =========
@@ -248,12 +248,14 @@ body {
 }
 .article a::after {
   position: relative;
-  content: '🔗';
-  font-size: 12px;
   left: 4px;
+  content: '🔗';
+  transform: rotate(45deg);
+  filter: invert(1);
+  font-size: 12px;
 }
 .article .title {
-  padding: 20px 0 30px 10px;
+  padding: 20px 0 20px 10px;
   width: 70%;
   margin: 0 auto;
 }
@@ -265,7 +267,7 @@ article .location time {
 }
 .article .content {
   width: 70%;
-  padding: 5px 10px 20px;
+  padding: 5px 10px 10px;
   margin: 0 auto;
 }
 .article .comment {
@@ -300,15 +302,11 @@ article .location time {
 }
 .content code {
   background: #433e47;
-  font-size: 96%;
+  font-size: 98%;
   padding: 0.2em 0.4em;
   border-radius: 5px;
 }
-.content h4,
-.content h3,
-.content h2 {
-  font-size: 1.4em;
-}
+
 .content h2::after,
 .content h3::after,
 .content h4::after,
@@ -317,8 +315,7 @@ article .location time {
   content: '#';
   color: var(--link);
   float: left;
-  margin-left: -0.65em;
-  font-size: 1.1em;
+  margin-left: -0.8em;
 }
 .content h5 {
   font-size: 1.2em;
