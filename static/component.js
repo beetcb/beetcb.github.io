@@ -4,14 +4,15 @@ import './Pixer.woff'
 
 let judge = false,
   load = document.getElementById('show-comments')
-/* $event listener call$ method
-        - <event> `str`
-        - <function> 
-        - <ID>    `str`=> listen to who[or as parent]
-        - [tagName || false]    `str` false => 关闭查找
-        - [data-(atrr)]    `str`
-        */
 
+/**
+ * @disc event listener plus version
+ * @parma event - event String
+ * @parma function - calling function
+ * @argument ID - who to listen to
+ * @argument tagName - search element according to tagName
+ * @argument data-attr - search element according to `data attr`'s value
+ */
 function listen(event, call) {
   const item = document.getElementById(arguments[2])
   item.addEventListener(event, currentEvent => {
