@@ -1,6 +1,6 @@
 ### info
 
-- desc: This is my blog dev repo (developed with love & [11ty](https://11ty.dev) )
+- descr: This is my blog dev repo (developed with love & [11ty](https://11ty.dev) )
 - site_name: **bb ( 🙉 short for `beet's blog` )**
 - site_url: www.beetcb.com
 
