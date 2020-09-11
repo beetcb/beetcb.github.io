@@ -22,7 +22,7 @@ function funcReturnHelper() {
     ;(d.head || d.body).appendChild(s)
 
     function listen(target, event, callback) {
-      return target.addEventListener(event, callback)
+      return target.addEventListener(event, callback, { once: true })
     }
 
     // check the comment loadding process
@@ -33,13 +33,11 @@ function funcReturnHelper() {
     commentPromise
       .then(() => {
         clearInterval(loadInterval)
-        s.removeEventListener('load', arguments.callee)
         load.innerHTML = 'loadding completed 😎'
         setTimeout(() => (load.style.display = 'none'), 1000)
       })
       .catch(() => {
         clearInterval(loadInterval)
-        s.removeEventListener('load', arguments.callee)
         load.innerHTML = '🐶 OOPS！Try to use Proxy?'
       })
   }
