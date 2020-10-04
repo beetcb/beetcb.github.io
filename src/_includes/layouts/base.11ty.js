@@ -1,6 +1,7 @@
 class Base {
 	/**
-	 * @disc create head(part) for better SEO
+	 * Create head(part) for better SEO
+	 *
 	 * @prama $ - global config file
 	 * @prama data - global data collection
 	 * @return String actual code
@@ -33,7 +34,8 @@ class Base {
 	}
 
 	/**
-	 * @disc create Main HTML code
+	 * Create Main HTML code
+	 *
 	 * @prama $ - global config file
 	 * @prama data - global data collection
 	 * @return [Array] - [codePartOne, codePartTwo]
@@ -66,10 +68,11 @@ class Base {
 	}
 
 	/**
-	 * @disc create <style></style> stylesheet
-	 * @prama $ - global config file
-	 * @prama url - page url adress
-	 * @return String actual code
+	 * Create <style></style> stylesheet
+	 *
+	 * @prama {Object} $ - global config file
+	 * @prama {String} url - page url adress
+	 * @return {String} actual html code
 	 */
 	cleanCss = ($, url) =>
 		(url !== '/' &&

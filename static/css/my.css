@@ -248,8 +248,8 @@ body {
 }
 .article a::after {
   position: relative;
-  left: 4px;
-  content: '🔗';
+  left: 2px;
+  content: '☘️';
   transform: rotate(45deg);
   filter: invert(1);
   font-size: 12px;

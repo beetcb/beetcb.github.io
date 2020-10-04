@@ -1,6 +1,6 @@
 /**
- * @disc return comments loading function
- * @return Function - loadDisqus()
+ * Return comments loading function
+ * @return {Function} - loadDisqus()
  */
 function funcReturnHelper() {
   return function loadDisqus() {

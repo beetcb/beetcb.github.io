@@ -6,10 +6,11 @@ class Home {
 	}
 
 	/**
-	 * @disc grab all possible Tags
-	 * @parma data - global data collection
-	 * @parma tags {Object} tags collection Object
-	 * @return String a link tags
+	 * Grab all possible Tags
+	 *
+	 * @parma {Object} data global data collection
+	 * @parma {Object} tags tags collection Object
+	 * @return {String} <a> link tags
 	 */
 	getTag(data, tags) {
 		if (!/(pages)|(^\/$)/.test(data.page.url)) {
@@ -34,10 +35,11 @@ class Home {
 	}
 
 	/**
-	 * @disc grab tag index
-	 * @parma tags {Object} tags collection Object
-	 * @prama cur {Object} current tag Object
-	 * @return String actual code
+	 * Grab tag index
+	 *
+	 * @parma {Object} tags collection Object
+	 * @prama {Object} cur current tag Object
+	 * @return {String} actual code
 	 */
 	getTagIndex(tags, cur) {
 		return (

@@ -2,13 +2,13 @@ import './css/my.css'
 import './css/prism-dracula.css'
 import './Pixer.woff'
 
-let judge = false,
-  load = document.getElementById('show-comments')
+let judge = false
 
 /**
- * @disc event listener plus version
- * @parma event - event String
- * @parma function - calling function
+ * Event listener comstom
+ *
+ * @parma {String} event - event String
+ * @parma {callback} - calling function
  * @argument ID - who to listen to
  * @argument tagName - search element according to tagName
  * @argument data-attr - search element according to `data attr`'s value

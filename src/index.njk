@@ -25,7 +25,7 @@ permalink: "/{% if pagination.pageNumber > 0 %}pages/{{ pagination.pageNumber }}
 {% endfor %}
 
 <div class="page">
-  <a href="{{ pagination.previousPageHref }}" class="previous-page">&lt; Previous</a>
+  <a href="{{ pagination.previousPageHref }}" class="previous-page" data-turbolinks="false">&lt; Previous</a>
 
-  <a href="{{ pagination.nextPageHref }}" class="next-page">Next &gt;</a>
+  <a href="{{ pagination.nextPageHref }}" class="next-page" data-turbolinks="false">Next &gt;</a>
 </div>
