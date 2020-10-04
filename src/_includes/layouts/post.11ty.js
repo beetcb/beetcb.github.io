@@ -58,7 +58,7 @@ exports.render = function (data) {
 	<article class="article">
 	    <h1 class="title">${data.title}</h1>
 	    <div class="location content">
-		<a href="/">Home</a> ${data.page.url}<br>
+		<a href="/">Home</a>${data.page.url}<br>
 		<time datetime="${formatDate(data.date)}">${formatDate(data.date)}</time>
 	    </div>
 	    <div class="content">

@@ -210,6 +210,7 @@ body {
   width: 40px;
   margin-right: 10px;
   margin-left: 5px;
+  background-color: whitesmoke;
   object-fit: cover;
   border-radius: 50%;
 }
@@ -250,6 +251,7 @@ body {
   position: relative;
   left: 2px;
   content: '☘️';
+  padding-right: 4px;
   transform: rotate(45deg);
   filter: invert(1);
   font-size: 12px;
