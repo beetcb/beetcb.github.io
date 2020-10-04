@@ -6,7 +6,7 @@ class Home {
 	}
 
 	/**
-	 * Grab all possible Tags
+	 * Grab all the possible Tags
 	 *
 	 * @parma {Object} data global data collection
 	 * @parma {Object} tags tags collection Object
