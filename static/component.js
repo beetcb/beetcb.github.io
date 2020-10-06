@@ -7,11 +7,11 @@ let judge = false
 /**
  * Event listener comstom
  *
- * @parma {String} event - event String
- * @parma {callback} - calling function
- * @argument ID - who to listen to
- * @argument tagName - search element according to tagName
- * @argument data-attr - search element according to `data attr`'s value
+ * @param {String} event event String
+ * @param {callback} calling function
+ * @argument ID who to listen to
+ * @argument tagName search element according to tagName
+ * @argument data-attr search element according to `data attr`'s value
  */
 function listen(event, call) {
   const item = document.getElementById(arguments[2])

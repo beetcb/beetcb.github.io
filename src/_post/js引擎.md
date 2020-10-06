@@ -333,7 +333,17 @@ v8里的Interpreter叫做 `Ignition`
 
 调用栈是追踪函数执行流的一种机制，在处理代码的过程中，遇到函数执行就放到调用栈中。每个调用都在栈中开辟一个空间，这个空间叫 `call frame` （调用帧，储存当前函数的调用位置、变量信息）
 
-Call Stack 满足[栈数据结构LIFO](https://en.wikipedia.org/wiki/Stack_(abstract_data_type))的特点。
+Call Stack 满足[栈数据结构LIFO](https://en.wikipedia.org/wiki/Stack_(abstract_data_type))的特点。*那么这种数据结构的作用何在？* 请看下一个例子，foo() 执行时会卡在 call stack，此时 bar() 会根据 call stack 的数据结构继续加入，所以执行顺序是：`bar()` -> `foo()`
+
+```javascript
+  function foo() {
+    function bar() {
+      console.trace()
+    }
+    bar()
+  }
+  foo()
+```
 
 它在 `RUNTIME` 里处理的机制是；
 - 在函数被放入栈中时，web apis会验证当前函数是否需要等待执行，如果是，立即抽出加入web apis

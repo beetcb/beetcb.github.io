@@ -1,24 +1,24 @@
 class Base {
-	/**
-	 * Create head(part) for better SEO
-	 *
-	 * @prama $ - global config file
-	 * @prama data - global data collection
-	 * @return String actual code
-	 */
-	betterSeo($, data) {
-		// in case of 'undefined'
-		const get = getWhat => (getWhat && `${getWhat} |`) || ''
+  /**
+   * Create head(part) for better SEO
+   *
+   * @param {Object} $ global config file
+   * @param {Object} data global data collection
+   * @return {String} actual code
+   */
+  betterSeo($, data) {
+    // in case of 'undefined'
+    const get = getWhat => (getWhat && `${getWhat} |`) || ''
 
-		// shorten code (* ￣︿￣)
-		const [thisTitle, blogTitle, thisSum, descr] = [
-			get(data.title),
-			$.blog.title,
-			get(data.summary),
-			$.blog.description.metatag,
-		]
+    // shorten code (* ￣︿￣)
+    const [thisTitle, blogTitle, thisSum, descr] = [
+      get(data.title),
+      $.blog.title,
+      get(data.summary),
+      $.blog.description.metatag,
+    ]
 
-		return `<meta charset="UTF-8">
+    return `<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>${thisTitle} ${blogTitle}</title>
     <link type="text/css" rel="stylesheet" href="${$.link.css}">
@@ -31,17 +31,17 @@ class Base {
 		<meta property="og:description" content="${thisSum} ${descr}">
 	    <link rel="icon" href="${$.link.favicon}">
 	    `
-	}
+  }
 
-	/**
-	 * Create Main HTML code
-	 *
-	 * @prama $ - global config file
-	 * @prama data - global data collection
-	 * @return [Array] - [codePartOne, codePartTwo]
-	 */
-	getMain($, data) {
-		const head = `
+  /**
+   * Create Main HTML code
+   *
+   * @param $ global config file
+   * @param data global data collection
+   * @return {Array} [codePartOne, codePartTwo]
+   */
+  getMain($, data) {
+    const head = `
     <head>
 	    ${this.betterSeo($, data)}
 	    ${this.cleanCss($, data.page.url)}
@@ -50,7 +50,7 @@ class Base {
 	  </head>
 	`.trim()
 
-		const body = `<body>
+    const body = `<body>
 	    <main class="main">
 		${data.content} 
 		</main>
@@ -64,20 +64,20 @@ class Base {
 	    </body>
 	`.trim()
 
-		return [head, body]
-	}
+    return [head, body]
+  }
 
-	/**
-	 * Create <style></style> stylesheet
-	 *
-	 * @prama {Object} $ - global config file
-	 * @prama {String} url - page url adress
-	 * @return {String} actual html code
-	 */
-	cleanCss = ($, url) =>
-		(url !== '/' &&
-			url.match(/(tag)|(about)/g) &&
-			`<style>
+  /**
+   * Create <style></style> stylesheet
+   *
+   * @param {Object} $ global config file
+   * @param {String} url - page url adress
+   * @return {String} actual html code
+   */
+  cleanCss = ($, url) =>
+    (url !== '/' &&
+      url.match(/(tag)|(about)/g) &&
+      `<style>
 	    ol,ul {
 		display: block !important;
 	    }
@@ -105,18 +105,18 @@ class Base {
 		color: var(--text)
 	    }
 	</style>`.trim()) ||
-		''
+    ''
 
-	render(data) {
-		let dataArray = this.getMain(data.config, data)
-		return (
-			`<!DOCTYPE html>
+  render(data) {
+    let dataArray = this.getMain(data.config, data)
+    return (
+      `<!DOCTYPE html>
       <html>` +
-			dataArray[0] +
-			dataArray[1] +
-			`</html>`.trim()
-		)
-	}
+      dataArray[0] +
+      dataArray[1] +
+      `</html>`.trim()
+    )
+  }
 }
 
 module.exports = Base
