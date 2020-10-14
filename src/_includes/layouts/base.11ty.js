@@ -29,8 +29,7 @@ class Base {
 		<meta property="og:type" content="website">
 		<meta property="og:title" content="${thisTitle} ${blogTitle}">
 		<meta property="og:description" content="${thisSum} ${descr}">
-	    <link rel="icon" href="${$.link.favicon}">
-	    `
+	  <link rel="icon" href="${$.link.favicon}">`
   }
 
   /**
@@ -51,18 +50,17 @@ class Base {
 	`.trim()
 
     const body = `<body>
-	    <main class="main">
-		${data.content} 
-		</main>
-		<footer class="footer">
-		    <div class="footer-desc">
-			${$.blog.description.footer}<a style="color: skyblue;" href="https://www.11ty.dev/"
-			    target="_blank">11ty</a> by beet <br> 
-			<a href="http://www.beian.miit.gov.cn/" target="_blank">ICP-20003648-1</a>
-		    </div>
-		</footer>
-	    </body>
-	`.trim()
+      <main class="main">
+      ${data.content} 
+      </main>
+      <footer class="footer">
+        <div class="footer-desc">
+        ${$.blog.description.footer}<a style="color: skyblue;" href="https://www.11ty.dev/"
+            target="_blank">11ty</a> by beet <br> 
+        <a href="http://www.beian.miit.gov.cn/" target="_blank">ICP-20003648-1</a>
+        </div>
+      </footer>
+	  </body>`.trim()
 
     return [head, body]
   }

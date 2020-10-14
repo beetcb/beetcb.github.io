@@ -57,39 +57,32 @@ class Home {
     for (let i in socialIcon) {
       array.push(
         `<a href="${socialIcon[i]}">
-                          <svg class="svg-icon">
-                              <use xlink:href="${data.config.link.icon}#${i}" /></svg>
-                      </a>
-              `.trim()
+              <svg class="svg-icon">
+                  <use xlink:href="${data.config.link.icon}#${i}" /></svg>
+          </a>`.trim()
       )
     }
 
-    array = array.reduce(
-      (string, cur, index) => string + cur + 'ropice'[index],
-      'd'
-    )
+    array = array.map((cur, index) => cur + ('ice'[index] || ''))
 
     return `
 	<div class="post-container">
-	    <section id="postList" class="post-collection">
-            ${data.content}
-	    </section>
-	    
-	    <section class="post-aside">
-		<section class="header">
-		    <img src="${data.config.link.logo_src}">
-		    <p class="beetsaid"> ${data.config.blog.description.header} </p>
-		    <a href="/">Home</a>&nbsp;|&nbsp;
-		    <a href="/tags/">Tags</a>&nbsp;|&nbsp;
-		    <a href="/about/">About</a>
-		</section>
-	
-		<p>
-		${array} 
-		</p>
-		${this.getTag(data, data.collections)}	
-	    </section>
-
+    <section id="postList" class="post-collection">
+      ${data.content}
+    </section>
+    <section class="post-aside">
+      <section class="header">
+        <img src="${data.config.link.logo_src}">
+        <p class="beetsaid"> ${data.config.blog.description.header} </p>
+        <a href="/">Home</a>&nbsp;|&nbsp;
+        <a href="/tags/">Tags</a>&nbsp;|&nbsp;
+        <a href="/about/">About</a>
+      </section>
+      <p>
+      ${array.join(' ')} 
+      </p>
+      ${this.getTag(data, data.collections)}	
+	  </section>
 	</div>`.trim()
   }
 }

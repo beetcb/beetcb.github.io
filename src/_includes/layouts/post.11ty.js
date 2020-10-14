@@ -56,14 +56,14 @@ let formatDate = date => {
 exports.render = function (data) {
   return `
 	<article class="article">
-	    <h1 class="title">${data.title}</h1>
-	    <div class="location content">
+    <h1 class="title">${data.title}</h1>
+    <div class="location content">
 		<a href="/">Home</a>${data.page.url}<br>
 		<time datetime="${formatDate(data.date)}">${formatDate(data.date)}</time>
-	    </div>
-	    <div class="content">
+	  </div>
+	  <div class="content">
 		${data.content}
-	    </div>
+	  </div>
 		<div class="outline"></div>
 		<div class="comment">
 			<button id="show-comments" onclick="loadDisqus();return false;">Load/Post Comments 🤗</button>
