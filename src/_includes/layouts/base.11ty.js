@@ -47,7 +47,7 @@ class Base {
       <script src="${$.link.packed_js}" defer></script>
       <script src="${$.link.turbolinks}"></script>
 	  </head>
-	`.trim()
+	`
 
     const body = `<body>
       <main class="main">
@@ -60,7 +60,7 @@ class Base {
         <a href="http://www.beian.miit.gov.cn/" target="_blank">ICP-20003648-1</a>
         </div>
       </footer>
-	  </body>`.trim()
+	  </body>`
 
     return [head, body]
   }
@@ -102,7 +102,7 @@ class Base {
 		font-size: .8em;
 		color: var(--text)
 	    }
-	</style>`.trim()) ||
+	</style>`) ||
     ''
 
   render(data) {
@@ -112,7 +112,7 @@ class Base {
       <html>` +
       dataArray[0] +
       dataArray[1] +
-      `</html>`.trim()
+      `</html>`
     )
   }
 }

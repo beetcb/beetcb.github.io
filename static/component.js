@@ -8,7 +8,7 @@ let judge = false
  * Event listener comstom
  *
  * @param {String} event event String
- * @param {callback} calling function
+ * @param {Function} calling function
  * @argument ID who to listen to
  * @argument tagName search element according to tagName
  * @argument data-attr search element according to `data attr`'s value

@@ -27,7 +27,7 @@ class Home {
 							<span class="tag" data-index="${this.getTagIndex(tags, cur)}">
 							# ${cur}
 							</span> 
-							`.trim(),
+							`,
             ''
           ) +
         '</div>'
@@ -59,7 +59,7 @@ class Home {
         `<a href="${socialIcon[i]}">
               <svg class="svg-icon">
                   <use xlink:href="${data.config.link.icon}#${i}" /></svg>
-          </a>`.trim()
+          </a>`
       )
     }
 
@@ -83,7 +83,7 @@ class Home {
       </p>
       ${this.getTag(data, data.collections)}	
 	  </section>
-	</div>`.trim()
+	</div>`
   }
 }
 
