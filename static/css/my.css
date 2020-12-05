@@ -37,7 +37,8 @@ html {
   height: 100%;
   text-rendering: optimizeSpeed;
   font: 400 14px;
-  font-family: Georgia, Courier, monospace;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Arial, sans-serif;
   word-wrap: break-word;
   line-height: 1.7rem;
   overflow: auto; /* add bfc to avoid body 'collapse' */
@@ -295,7 +296,7 @@ article .location time {
   border-radius: 0.2em;
 }
 .content li::before {
-  content: "•";
+  content: '•';
   color: var(--link);
   padding-right: 4px;
 }
