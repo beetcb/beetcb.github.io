@@ -74,7 +74,7 @@ class Home {
       <section class="header">
         <img src="${data.config.link.logo_src}">
         <p class="beetsaid"> ${data.config.blog.description.header} </p>
-        <a href="/">Home</a>&nbsp;|&nbsp;
+        <a data-turbolinks="false" href="/">Home</a>&nbsp;|&nbsp;
         <a href="/tags/">Tags</a>&nbsp;|&nbsp;
         <a href="/about/">About</a>
       </section>
