@@ -1,6 +1,6 @@
 ---
 layout: post
-title: shell 传参变量问题
+title: shell 传参变量异常问题
 author: beet
 post: '@21@'
 date: 2020-12-05 08:23:23
