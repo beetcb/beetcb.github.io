@@ -1,10 +1,10 @@
-### info
+### Info
 
 - descr: This is my blog dev repo (developed with love & [11ty](https://11ty.dev) )
-- site_name: **bb ( 🙉 short for `beet's blog` )**
-- site_url: www.beetcb.com
+- blog_name: **bb ( 🙉 short for `beet's blog` )**
+- blog_url: www.beetcb.com
 
-### features
+### Features
 
 - **simplicity**
 
@@ -18,4 +18,4 @@ easy to do so with `_data/config.yaml`
 
 When you hover a blog post, the corresponding tags will response:
 
-- more...
+- **deploy with [vercel](https://vercel.com/)**
