@@ -4,7 +4,7 @@ title: 读Openssh Manual
 author: beet
 post: '@17@'
 date: 2020-08-04
-nailimg: https://m.beetcb.com/nailimg/openssh-fish.png
+nailimg: https://static.beetcb.com/nailimg/openssh-fish.png
 tags: ssh
 ---
 

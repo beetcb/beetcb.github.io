@@ -4,7 +4,7 @@ title: 'tcb硬核博客加速,解决pages的龟速问题'
 author: beet
 post: "@7@"
 date: 2020-05-17 13:15:34
-nailimg: https://m.beetcb.com/nailimg/blog.png
+nailimg: https://static.beetcb.com/nailimg/blog.png
 tags: share
 ---
 
@@ -28,11 +28,11 @@ tags: share
 
 1.tcb 静态托管
 
-![](https://m.beetcb.com/postimg/7/1.png)
+![](https://static.beetcb.com/postimg/7/1.png)
 
 2.Github pages （部分资源已套cdn）
 
-![](https://m.beetcb.com/postimg/7/2.png)
+![](https://static.beetcb.com/postimg/7/2.png)
 
 #### 利用Github actions 自动部署到 tcb
 
@@ -58,17 +58,17 @@ tags: share
 
 登录 [腾讯云云开发控制台](https://console.cloud.tencent.com/tcb) ，创建环境 ，记录环境ID备用
 
-![](hhttps://m.beetcb.com/postimg/7/4.png)
+![](hhttps://static.beetcb.com/postimg/7/4.png)
 
 等待创建成功后，进入所创建的环境，左侧菜单栏找到静态网络托管，开启使用，进入基础配置，绑定域名并配置证书（和cdn的配置类似）
 
-![](https://m.beetcb.com/postimg/7/5.png)
+![](https://static.beetcb.com/postimg/7/5.png)
 
 ##### 访问管理（获取 secretId&secretKey）
 
 进入 [访问管理](https://console.cloud.tencent.com/cam/capi)页面，创建子账号，获取 <code>secretId & secretKey</code>  **保存备用**
 
-![](https://m.beetcb.com/postimg/7/6.png)
+![](https://static.beetcb.com/postimg/7/6.png)
 
 ##### 配置github actions
 
@@ -138,7 +138,7 @@ jobs:
 
    如下图：
 
-   ![](https://m.beetcb.com/postimg/7/3.png)
+   ![](https://static.beetcb.com/postimg/7/3.png)
 
 ##### 在repo里添加机密
 

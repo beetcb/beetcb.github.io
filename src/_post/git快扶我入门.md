@@ -2,59 +2,56 @@
 layout: post
 title: Git 快扶我入门
 author: beet
-post: "@4@"
+post: '@4@'
 date: 2020-04-28 16:31:28
-nailimg: https://m.beetcb.com/nailimg/git.png
+nailimg: https://static.beetcb.com/nailimg/git.png
 tags:
-- git
+  - git
 ---
 
-
-
-> 我正在 <code>pluralsight</code> 上学习 Git 原理 ，先写一篇文章总结一些简单的 <code>git基础</code> 吧！
+> 我正在 <code>pluralsight</code> 上学习 Git 原理 ，先写一篇文章总结一些简单的 <code>git 基础</code> 吧！
 >
 > 本文部分图片引用自：
 >
 > [getting-started-git](https://app.pluralsight.com/library/courses/getting-started-git/table-of-contents)
 
-#### Git简介
+#### Git 简介
 
-##### 0. Git不仅仅为开发者服务
+##### 0. Git 不仅仅为开发者服务
 
-Git完美适配开源：*Linus Torvalds* 前辈写出Git的目的也是为了对自己linux开源项目的管理，再加上github，git也成为开源项目必备协作工具。
+Git 完美适配开源：_Linus Torvalds_ 前辈写出 Git 的目的也是为了对自己 linux 开源项目的管理，再加上 github，git 也成为开源项目必备协作工具。
 
-Git作为现在最流行的**版本控制系统**(VCS) ，不仅用于开发，还用于项目管理、团队合作、学校事务等；此外，掌握Git，编程能力并非刚需。
+Git 作为现在最流行的**版本控制系统**(VCS) ，不仅用于开发，还用于项目管理、团队合作、学校事务等；此外，掌握 Git，编程能力并非刚需。
 
-总之，如果你想追踪项目的更改，提升多项目管理效率，就适合学习Git。
+总之，如果你想追踪项目的更改，提升多项目管理效率，就适合学习 Git。
 
 ##### 1.分散式与集中式
 
-把 git 再精确一点说，他是 `分散式版本控制系统`  ：可以一台电脑做版控、可以没网络做版控、还可以找台 git 服务器一群人做版控
+把 git 再精确一点说，他是 `分散式版本控制系统` ：可以一台电脑做版控、可以没网络做版控、还可以找台 git 服务器一群人做版控
 
-与之对比的是 `集中式版本控制系统`  比如CVS、SVN，必须依赖一台集中处理版本的服务器，不联网（准确是不连接服务器）就不能做版控。
+与之对比的是 `集中式版本控制系统` 比如 CVS、SVN，必须依赖一台集中处理版本的服务器，不联网（准确是不连接服务器）就不能做版控。
 
 ##### 2. 它可能是个时光鸡吧
 
-Git 为记录文件更改而设计，它能还原之前版本的项目或文件，并清楚呈现各种更改的对比。对，当你用好了Git ，你就拥有了一台<code>时光鸡</code> 。
+Git 为记录文件更改而设计，它能还原之前版本的项目或文件，并清楚呈现各种更改的对比。对，当你用好了 Git ，你就拥有了一台<code>时光鸡</code> 。
 
-先预告一下它时光鸡的功能（前提：此目录是一个git目录）：
+先预告一下它时光鸡的功能（前提：此目录是一个 git 目录）：
 
 ##### 3. 理解文件更改的三种状态(git tracked)
 
-![form pluralsight](https://m.beetcb.com/postimg/4/1.png)
+![form pluralsight](https://static.beetcb.com/postimg/4/1.png)
 
-Git 已追踪文件的状态（注意`untracked`：未被git追踪的状态）
+Git 已追踪文件的状态（注意`untracked`：未被 git 追踪的状态）
 
+**<code>Modified</code>**
 
-**<code>Modified</code>** 
+更改中&未准备 commit&还可添加更多更改
 
-更改中&未准备commit&还可添加更多更改
+**<code>Staged</code>**
 
-**<code>Staged</code>** 
+暂存&准备 commit
 
-暂存&准备commit
-
-**<code>Committed</code>** 
+**<code>Committed</code>**
 
 写入历史记录的更改
 
@@ -62,17 +59,16 @@ Git 已追踪文件的状态（注意`untracked`：未被git追踪的状态）
 
 > 冷门的几个文件状态：
 >
-> - deleted ：已在工作区删除，只有 git add 之后git才会真正帮你删除
-> - 
+> - deleted ：已在工作区删除，只有 git add 之后 git 才会真正帮你删除
+> -
 
 ##### 4. 理解 Git 工程的三种状态
 
-![form pluralsight](https://m.beetcb.com/postimg/4/2.png)
-
+![form pluralsight](https://static.beetcb.com/postimg/4/2.png)
 
 **<code>Working Directory</code>**
 
-工作区，不进入staging area的更改不会被commit
+工作区，不进入 staging area 的更改不会被 commit
 
 **<code>Staging Area（index）</code>**
 
@@ -80,24 +76,23 @@ Git 已追踪文件的状态（注意`untracked`：未被git追踪的状态）
 
 **<code>.git Directory</code>**
 
-把更改写入历史 也就是commit之后所处的状态
+把更改写入历史 也就是 commit 之后所处的状态
 
 通常也说成生成项目的 **snapshot**
 
-
-#### 开始Git之旅（不严谨的睡前故事,）
+#### 开始 Git 之旅（不严谨的睡前故事,）
 
 一切从小胖开始...
 
-在某个人人都用git的国度里，小胖要交一份英文作文（假如你是李强...），于老师批改，来看他的操作（看完这个故事，你应该可以去<code>github</code> 帮大佬们贡献代码改 bug 了，内含pull request 和 merge）
+在某个人人都用 git 的国度里，小胖要交一份英文作文（假如你是李强...），于老师批改，来看他的操作（看完这个故事，你应该可以去<code>github</code> 帮大佬们贡献代码改 bug 了，内含 pull request 和 merge）
 
-先google 一份学霸作文，用某 seo 伪原创工具替换关键词，"写"成了一篇新的文章
+先 google 一份学霸作文，用某 seo 伪原创工具替换关键词，"写"成了一篇新的文章
 
-![](https://m.beetcb.com/postimg/4/3.png)
+![](https://static.beetcb.com/postimg/4/3.png)
 
 打开命令行（git bash） ，git it ！！！（含完整返回结果作参考）
 
-``` bash
+```bash
 # fork 老师的作业仓库到自己的账号下，因为老师不可能给我仓库的访问权
 # fork 后我（小胖）的 repo 为 https://github.com/beetcb/teacher.git
 
@@ -120,7 +115,7 @@ Unpacking objects: 100% (9/9), 1.46 KiB | 10.00 KiB/s, done.
 From https://github.com/beetcb/teacher
  * branch            HEAD       -> FETCH_HEAD
 # 拉取最新的repo信息到本地 ，经常还会用到 git pull 用于更新并与本地merge
- 
+
 $ echo "xipangs hard_work" >> hard_work_by_xiaopang.md
 # 做作业
 
@@ -162,8 +157,6 @@ $ start https://github.com/beetcb/teacher
 # 小胖想查看修改后的作业，只需更新下 fork 源（网上很多教程），就行了
 ```
 
-
-
 以上故事纯属虚构，如有雷同，怎么可能会有？
 
 **好了，进入正题:**
@@ -186,19 +179,19 @@ $ start https://github.com/beetcb/teacher
 
 ###### linux
 
-``` bash
+```bash
 sudo apt-get install git
 # debain
 sudo yum install git
 # fedora
 ```
 
-###### Windows  & mac
+###### Windows & mac
 
 [下载链接](https://git-scm.com/) — 手动安装 & 或如下命令行
 
-``` bash
-brew install git 
+```bash
+brew install git
 # mac only
 ```
 
@@ -206,24 +199,24 @@ brew install git
 
 设置全局身份
 
-``` bash
+```bash
 git config --global user.name "beet"
 # 设置全局用户名
 git config --global user.email "sweetcbebe@gmail.com"
 # 设置全局邮箱
 ```
 
-已在用git？显示配置信息
+已在用 git？显示配置信息
 
-``` bash
+```bash
 git config --list
 git config user.name
 ```
 
-不小心忘记了Git命令？
+不小心忘记了 Git 命令？
 
-``` bash
-man git 
+```bash
+man git
 # git 全指南
 git help
 # git 简化指南
@@ -231,18 +224,18 @@ git help
 
 ##### 本地创建 Git 仓库
 
-**新建repo **
+**新建 repo **
 
-``` bash
-git init 
+```bash
+git init
 # 初始化当前所在目录
 git init [new dir]
 # 新建new dir 文件夹并初始化
 ```
 
-在此repo下会创建<code>.git</code> 文件夹，保存了所有git的用于版本控制的信息
+在此 repo 下会创建<code>.git</code> 文件夹，保存了所有 git 的用于版本控制的信息
 
-引用stack overflow的介绍 ，<code> .git</code> 目录主要包含
+引用 stack overflow 的介绍 ，<code> .git</code> 目录主要包含
 
 > <code>4 sub-directories:</code>
 >
@@ -266,7 +259,7 @@ git init [new dir]
 
 **本地拉取云端项目**
 
-``` bash
+```bash
 git clone [url] [directory]
 # 克隆master到自定义目录
 git clone -b [branch][remote_repo]
@@ -275,16 +268,15 @@ git pull [url]
 # 把本地项目更新 相当于git fetch +git merge
 ```
 
-#####  Git repo 云托管
+##### Git repo 云托管
 
-几个有名的 Git 托管服务 <code>Github</code> <code>Gitlab</code> <code>Bitbucket</code> 
+几个有名的 Git 托管服务 <code>Github</code> <code>Gitlab</code> <code>Bitbucket</code>
 
-以Github 为例，首先完成 <code>sign up</code> 、<code>creat new repository</code>  
-
+以 Github 为例，首先完成 <code>sign up</code> 、<code>creat new repository</code>
 
 ###### https / ssh 安全管理
 
-两者区别，详见 
+两者区别，详见
 
 > [Which remote URL should I use?](https://help.github.com/en/github/using-git/which-remote-url-should-i-use)
 
@@ -292,38 +284,36 @@ git pull [url]
 
 先来张图压压惊
 
-
 一些常用的
 
-![](https://m.beetcb.com/postimg/4/4.png)
+![](https://static.beetcb.com/postimg/4/4.png)
 
-前面已经提过了 <code>init</code> <code>clone</code> <code>pull</code>  <code>add</code> <code>commit</code>   <code>push</code>  
+前面已经提过了 <code>init</code> <code>clone</code> <code>pull</code> <code>add</code> <code>commit</code> <code>push</code>
 
 先列举几个我用到的
 
 **<code>git commit -a -m "somemessage"</code>**
 
- git add 同时 commit  （untracked 状态的文件不会被commit  ，例如新建的 new.txt 文件，会出现如下结果）
+git add 同时 commit （untracked 状态的文件不会被 commit ，例如新建的 new.txt 文件，会出现如下结果）
 
-![](https://m.beetcb.com/postimg/4/5.png)
+![](https://static.beetcb.com/postimg/4/5.png)
 
 **<code>git status</code>**
 
 显示工作目录和暂存区的状态
 
-还有一个显示仓库名的小命令 <code>git remote show</code>  默认仓库名在 remote add 时定义，很有可能会忘掉，此命令为健忘正解。
+还有一个显示仓库名的小命令 <code>git remote show</code> 默认仓库名在 remote add 时定义，很有可能会忘掉，此命令为健忘正解。
 
 **<code>git tag</code>**
 
 **为分支、版本打标签**
 
-``` bash
+```bash
 git tag [tagname] [commitid]
 # commitid 可选，留空则为最新commit
 git push origin master --tags
 # push 所有标签
 ```
-
 
 **<code>git reset/checkout/revert</code>**
 
@@ -333,7 +323,7 @@ git push origin master --tags
 
 这张图太直观了，必须放上来（git reset 对比）
 
-![form pluralsight](https://m.beetcb.com/postimg/4/6.png)
+![form pluralsight](https://static.beetcb.com/postimg/4/6.png)
 
 **<code>git diff</code>**
 
@@ -341,17 +331,15 @@ git push origin master --tags
 
 例如：git diff --staged
 
-![form pluralsight](https://m.beetcb.com/postimg/4/7.png)
-
-
+![form pluralsight](https://static.beetcb.com/postimg/4/7.png)
 
 **<code>git log</code>**
 
-显示 commit 历史 (完全显示hash 、author、date)
+显示 commit 历史 (完全显示 hash 、author、date)
 
-用不同的git log 命令，可以精确显示你想要的信息
+用不同的 git log 命令，可以精确显示你想要的信息
 
-``` bash
+```bash
 git log -6
 # 只显示最近 6 条 commits
 git log --onelist
@@ -362,37 +350,33 @@ git log --patch
 # 最详细——显示文件内容更改
 ```
 
-
-
-
-
 **<code>git rm/mv</code>**
 
 简单删除和重命名
 
 **git rm didntwantfiles**
 
-不被Git 所追踪的同时删除了文件
+不被 Git 所追踪的同时删除了文件
 
 **git rm -cached didntdelete**
 
-不被Git 所追踪的同时不删除文件
+不被 Git 所追踪的同时不删除文件
 
 **<code>git mv prename.md ranametheprename.md</code>**
 
 改名 prename.md 为 ...
 
-#### Git的分支系统
+#### Git 的分支系统
 
-单纯的用文字描述容易被绕晕，我推荐这个在线网站，通过可视化的图片理解Git branch
+单纯的用文字描述容易被绕晕，我推荐这个在线网站，通过可视化的图片理解 Git branch
 
 [visualizing-git](http://git-school.github.io/visualizing-git)
 
 你可以尝试这几条命令入门
 
-分支相当于<code>自立门派,相当于贴纸一样附在commit上面</code> , 不影响主分支，更不会影响commit物件
+分支相当于<code>自立门派,相当于贴纸一样附在 commit 上面</code> , 不影响主分支，更不会影响 commit 物件
 
-``` bash
+```bash
 git branch
 # 查看所有分支
 git branch new_branch_no_checkout
@@ -417,24 +401,22 @@ git checkout master
 
 ![](https://cdn.jsdelivr.net/gh/beetcb/pic/a5/i2.png)
 
-多数情况下是在用https push 时出现
+多数情况下是在用 https push 时出现
 
-原因可能是你更换了账户，而win 保存了原账户的用户名密码，自然不匹配
+原因可能是你更换了账户，而 win 保存了原账户的用户名密码，自然不匹配
 
-解决：<code>使用ssh</code>  或者 <code>修改git 凭据</code>
+解决：<code>使用 ssh</code> 或者 <code>修改 git 凭据</code>
 
-**修改git 凭据的方法** （win）
+**修改 git 凭据的方法** （win）
 
-控制面板 用户账务 凭据管理器  管理win 凭据 修改对应凭据
+控制面板 用户账务 凭据管理器 管理 win 凭据 修改对应凭据
 
 #### 道阻且艰
 
-除了这些，还有其他的更多命令，更要理解Git 的原理，了解它是如何工作的，提升工作效率和问题解决能力。
+除了这些，还有其他的更多命令，更要理解 Git 的原理，了解它是如何工作的，提升工作效率和问题解决能力。
 
-我觉得必须掌握的还有 commit 的规范，优秀的commits 会让我们的生活没有那么难。<code>Chris Beams </code>的博客写好了七个最重要的commit指南，一起学习吧！。
+我觉得必须掌握的还有 commit 的规范，优秀的 commits 会让我们的生活没有那么难。<code>Chris Beams </code>的博客写好了七个最重要的 commit 指南，一起学习吧！。
 
 > https://chris.beams.io/posts/git-commit
-
-
 
 <cite>行文仓促，望指正</cite>

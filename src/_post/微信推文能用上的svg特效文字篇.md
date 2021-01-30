@@ -2,25 +2,24 @@
 layout: post
 title: 微信推文能用上的svg特效 | 文字篇
 author: beet
-post: "@2@"
+post: '@2@'
 date: 2020-04-15 15:44:46
-nailimg: https://m.beetcb.com/nailimg/svg.png
+nailimg: https://static.beetcb.com/nailimg/svg.png
 tags: svg
 ---
+
 <style>
 aside  {display:inline-block;background-color: white; border-radius: 5px;box-shadow: 0 3px 5px rgba(0, 0, 0, .12);line-height:15px;margin-top:5px} code {background: #fff6ea;font-size:14px}
 </style>
 
-
-
-#### 基于SVG的文字动画 #
+#### 基于 SVG 的文字动画
 
 **一波儿<code>特效</code>展示**
 
 > 点击 [ tweeanimate ] 字体查看效果
 > 代码放在[CodePen](https://codepen.io/beetcb/pen/jObbBdN),请自行获取
 
-写了很多，先列举七个小hulu，爷爷给他们取名叫 <code>傻跳娃、近视娃、闪现娃、别扭娃、弹簧娃、上吊娃和徐坤娃。</code>:joy:。
+写了很多，先列举七个小 hulu，爷爷给他们取名叫 <code>傻跳娃、近视娃、闪现娃、别扭娃、弹簧娃、上吊娃和徐坤娃。</code>:joy:。
 
 <aside class="center-align waves-effect "><svg version="1.1" xmlns="http://www.w3.org/2000/svg" height="26" width="130" viewbox="0 0 130 26"
       preserveAspectRatio="xMidYMid meet">
@@ -106,7 +105,7 @@ aside  {display:inline-block;background-color: white; border-radius: 5px;box-sha
       </text>
     </svg></aside>
 
-#### 使用方法 #
+#### 使用方法
 
 既然特效都做出来了，也希望每个小甜菜们都能用上并且反馈。
 
@@ -118,31 +117,32 @@ aside  {display:inline-block;background-color: white; border-radius: 5px;box-sha
 >
 > 我们坚信写作写的是内容，所思所想，而不是花样格式。
 
-#### code 几点简单注解 #
+#### code 几点简单注解
 
 ##### 1. 简单的控制说明
 
 触发、持续时间、结束、重启
 
-``` svg
-<animate 
-begin="click" 
-dur="1s" 
-fill="freeze" 
-restart="always" 
+```svg
+<animate
+begin="click"
+dur="1s"
+fill="freeze"
+restart="always"
 />
 <!--for optional choices list：参考A Guide to SVG Animations (SMIL)-->
 ```
+
 ##### 2. **为什么写得重复且没有复用性**
 
-说到痛处了，微信图文内嵌代码是不支持引用的，比如xlink:href="#somekindofreference" 这里引用不会生效，所以最好写在内部且避免引用。
+说到痛处了，微信图文内嵌代码是不支持引用的，比如 xlink:href="#somekindofreference" 这里引用不会生效，所以最好写在内部且避免引用。
 
-同样因为引用问题,<code>css animation</code> 和 <code>tranform</code>更显鸡肋，em... js写动画，公众号平台好像也不支持，这也是我选择svg的原因。
+同样因为引用问题,<code>css animation</code> 和 <code>tranform</code>更显鸡肋，em... js 写动画，公众号平台好像也不支持，这也是我选择 svg 的原因。
 
 ##### 3. **寻求复杂的自定义效果**
 
-  可以参考<code>[A Guide to SVG Animations (SMIL\)](https://css-tricks.com/guide-svg-animations-smil/)</code>
-  感谢<code>animate.css</code>作者,动画形式上,也从中盗取了不少灵感
+可以参考<code>[A Guide to SVG Animations (SMIL\)](https://css-tricks.com/guide-svg-animations-smil/)</code>
+感谢<code>animate.css</code>作者,动画形式上,也从中盗取了不少灵感
 
 ##### 4. **记录一个小坑**
 
@@ -152,11 +152,12 @@ restart="always"
 
 原因 ##
 
-svg缩放并无中心问题，可以理解为 x y 轴的拉伸。必须要强调的是，不仅仅是元素本身拉伸，包括左、上间距同样拉伸
+svg 缩放并无中心问题，可以理解为 x y 轴的拉伸。必须要强调的是，不仅仅是元素本身拉伸，包括左、上间距同样拉伸
 
 解决 ##
 
 累加<code>translate</code>动画，把脱缰的马儿给拽回来，我写了两个个公式：
+
 $$
 translateX = (leftmargin + \frac{width}{2})  \times (1-scale)
 $$
@@ -169,10 +170,4 @@ $$
 
 两段动画持续时间必须一样，否则任意时刻的 <code>骚动</code>可不大好看哦
 
-#### 长期更新其他动画（美丽的flag:dog:）
-
-
-
-
-
-
+#### 长期更新其他动画（美丽的 flag:dog:）

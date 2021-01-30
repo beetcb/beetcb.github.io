@@ -14,7 +14,7 @@ module.exports = eleventyConfig => {
   /* plugin */
   e.addPlugin(pluginSyntaxHighlight)
   e.addPlugin(lazyImagesPlugin, {
-    scriptSrc: 'https://m.beetcb.com/lib/lazysizes.min.js'
+    scriptSrc: 'https://cdn.jsdelivr.net/npm/lazysizes@5.3.0/lazysizes.min.js',
   })
 
   /* rendless but needed a copy */
@@ -31,11 +31,11 @@ module.exports = eleventyConfig => {
   return {
     dir: {
       input: 'src',
-      output: 'dist'
+      output: 'dist',
     },
 
     templateFormats: ['html', 'md', '11ty.js', 'njk'],
     htmlTemplateEnging: 'njk',
-    markdownTemplateEngine: 'njk'
+    markdownTemplateEngine: 'njk',
   }
 }
