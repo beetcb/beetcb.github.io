@@ -26,7 +26,7 @@ module.exports = eleventyConfig => {
   e.addLayoutAlias('post', 'layouts/post.11ty.js')
 
   /* use custom data as a blog config set -> Yaml */
-  e.addDataExtension('yaml', contents => yaml.safeLoad(contents))
+  e.addDataExtension('yaml', contents => yaml.load(contents))
 
   return {
     dir: {
