@@ -13,9 +13,9 @@ module.exports = eleventyConfig => {
 
   /* plugin */
   e.addPlugin(pluginSyntaxHighlight)
-  e.addPlugin(lazyImagesPlugin, {
-    scriptSrc: 'https://cdn.jsdelivr.net/npm/lazysizes@5.3.0/lazysizes.min.js',
-  })
+  // e.addPlugin(lazyImagesPlugin, {
+  //   scriptSrc: 'https://cdn.jsdelivr.net/npm/lazysizes@5.3.0/lazysizes.min.js',
+  // })
 
   /* rendless but needed a copy */
   e.addPassthroughCopy('static/assets')

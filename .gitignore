@@ -5,3 +5,4 @@ dist/
 .lazyimages.json
 src/_post/prettier
 .vscode
+package-lock.json
