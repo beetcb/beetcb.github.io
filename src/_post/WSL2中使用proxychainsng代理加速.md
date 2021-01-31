@@ -4,7 +4,7 @@ title: WSL2中使用proxychains ng代理加速
 author: beet
 post: '@13@'
 date: 2020-07-21 08:14:22
-nailimg: https://static.beetcb.com/nailimg/proxy.png
+nailimg: https://static.beetcb.com?path=/nailimg/proxy.png
 tags: wsl
 ---
 
@@ -71,7 +71,7 @@ alias px='proxychains4'
 > 注意：`px gp` 如此的连续两个 alias 是无法识别的，依旧需要使用`px git pull`
 
 最后，放一张 `proxychains ng` 体验图
-![px test](https://static.beetcb.com/postimg/13/13.png)
+![px test](https://static.beetcb.com?path=/postimg/13/13.png)
 
 参考及补充：
 

@@ -4,7 +4,7 @@ title: Git 快扶我入门
 author: beet
 post: '@4@'
 date: 2020-04-28 16:31:28
-nailimg: https://static.beetcb.com/nailimg/git.png
+nailimg: https://static.beetcb.com?path=/nailimg/git.png
 tags:
   - git
 ---
@@ -39,7 +39,7 @@ Git 为记录文件更改而设计，它能还原之前版本的项目或文件�
 
 ##### 3. 理解文件更改的三种状态(git tracked)
 
-![form pluralsight](https://static.beetcb.com/postimg/4/1.png)
+![form pluralsight](https://static.beetcb.com?path=/postimg/4/1.png)
 
 Git 已追踪文件的状态（注意`untracked`：未被 git 追踪的状态）
 
@@ -64,7 +64,7 @@ Git 已追踪文件的状态（注意`untracked`：未被 git 追踪的状态）
 
 ##### 4. 理解 Git 工程的三种状态
 
-![form pluralsight](https://static.beetcb.com/postimg/4/2.png)
+![form pluralsight](https://static.beetcb.com?path=/postimg/4/2.png)
 
 **<code>Working Directory</code>**
 
@@ -88,7 +88,7 @@ Git 已追踪文件的状态（注意`untracked`：未被 git 追踪的状态）
 
 先 google 一份学霸作文，用某 seo 伪原创工具替换关键词，"写"成了一篇新的文章
 
-![](https://static.beetcb.com/postimg/4/3.png)
+![](https://static.beetcb.com?path=/postimg/4/3.png)
 
 打开命令行（git bash） ，git it ！！！（含完整返回结果作参考）
 
@@ -286,7 +286,7 @@ git pull [url]
 
 一些常用的
 
-![](https://static.beetcb.com/postimg/4/4.png)
+![](https://static.beetcb.com?path=/postimg/4/4.png)
 
 前面已经提过了 <code>init</code> <code>clone</code> <code>pull</code> <code>add</code> <code>commit</code> <code>push</code>
 
@@ -296,7 +296,7 @@ git pull [url]
 
 git add 同时 commit （untracked 状态的文件不会被 commit ，例如新建的 new.txt 文件，会出现如下结果）
 
-![](https://static.beetcb.com/postimg/4/5.png)
+![](https://static.beetcb.com?path=/postimg/4/5.png)
 
 **<code>git status</code>**
 
@@ -323,7 +323,7 @@ git push origin master --tags
 
 这张图太直观了，必须放上来（git reset 对比）
 
-![form pluralsight](https://static.beetcb.com/postimg/4/6.png)
+![form pluralsight](https://static.beetcb.com?path=/postimg/4/6.png)
 
 **<code>git diff</code>**
 
@@ -331,7 +331,7 @@ git push origin master --tags
 
 例如：git diff --staged
 
-![form pluralsight](https://static.beetcb.com/postimg/4/7.png)
+![form pluralsight](https://static.beetcb.com?path=/postimg/4/7.png)
 
 **<code>git log</code>**
 

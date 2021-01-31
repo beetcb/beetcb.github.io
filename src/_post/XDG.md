@@ -4,7 +4,7 @@ title: XDG 约定，与软件拉个勾
 author: beet
 post: '@18@'
 date: 2020-08-24 09:50:04
-nailimg: https://static.beetcb.com/postimg/17/download.jpeg
+nailimg: https://static.beetcb.com?path=/postimg/17/download.jpeg
 tags: linux
 ---
 

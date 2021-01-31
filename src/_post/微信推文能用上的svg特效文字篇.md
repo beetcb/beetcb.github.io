@@ -4,7 +4,7 @@ title: 微信推文能用上的svg特效 | 文字篇
 author: beet
 post: '@2@'
 date: 2020-04-15 15:44:46
-nailimg: https://static.beetcb.com/nailimg/svg.png
+nailimg: https://static.beetcb.com?path=/nailimg/svg.png
 tags: svg
 ---
 
