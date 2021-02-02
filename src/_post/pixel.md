@@ -4,7 +4,7 @@ title: 刷机pixelExp，获得原生安卓体验
 author: beet
 post: '@16@'
 date: 2020-08-06
-nailimg: https://static.beetcb.com?path=/nailimg/google.png
+nailimg: https://static.beetcb.com/nailimg/google.png
 tags: share
 ---
 
@@ -25,7 +25,7 @@ root 中解锁 `bootLoader` 必须格式化，于是指引我想到换一个干�
 `pixel experience OS?` 提供类 pixel 的原生安卓体验，自带谷歌全家桶。还有，它是开源的自定义 ROM ，拥有无限可能。
 
 > 国内大多数手机厂商预装的都是自定义 ROM，不开源而且大部分阉割 GMS 和谷歌全家桶( 因为国情，也没有办法 )
-> ![wiki](https://static.beetcb.com?path=/postimg/16/1.png)
+> ![wiki](https://static.beetcb.com/postimg/16/1.png)
 
 所以，安排！！！
 

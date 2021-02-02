@@ -4,7 +4,7 @@ title: DontLookBack | RickAndMorty
 author: beet
 post: '@10@'
 date: 2020-06-06 11:01:25
-nailimg: https://static.beetcb.com?path=/nailimg/rick.png
+nailimg: https://static.beetcb.com/nailimg/rick.png
 tags: RickAndMorty
 ---
 
@@ -18,4 +18,4 @@ tags: RickAndMorty
 
 To human Rick!!!
 
-![](https://static.beetcb.com?path=/postimg/10/1.png)
+![](https://static.beetcb.com/postimg/10/1.png)

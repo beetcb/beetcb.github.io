@@ -4,7 +4,7 @@ title: shell 传参变量异常问题
 author: beet
 post: '@21@'
 date: 2020-12-05 08:23:23
-nailimg: https://static.beetcb.com?path=/nailimg/bash.png
+nailimg: https://static.beetcb.com/nailimg/bash.png
 tags: linux
 ---
 

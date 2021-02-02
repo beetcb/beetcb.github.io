@@ -4,7 +4,7 @@ title: DSA | Sorting Algorithm
 author: beet
 post: '@20@'
 date: 2020-11-15 09:02:24
-nailimg: https://static.beetcb.com?path=/nailimg/dsa.png
+nailimg: https://static.beetcb.com/nailimg/dsa.png
 tags: DSA
 ---
 
@@ -20,7 +20,7 @@ tags: DSA
 本文将介绍的算法有：Insertion Selection MergeSort Heapsort Quicksort Shellsort Bubble Bucket
 
 几者之间关系为：
-![](https://static.beetcb.com?path=/postimg/20/BigO.png)
+![](https://static.beetcb.com/postimg/20/BigO.png)
 
 此外，网上有许多数据结构和算法可视化的项目，可以更好理解其原理，本文不再做搬运。
 

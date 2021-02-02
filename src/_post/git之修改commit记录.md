@@ -4,7 +4,7 @@ title: Git之修改commit记录
 author: beet
 post: '@11@'
 date: 2020-06-22 19:50:04
-nailimg: https://static.beetcb.com?path=/nailimg/git.png
+nailimg: https://static.beetcb.com/nailimg/git.png
 tags: git
 ---
 
@@ -32,7 +32,7 @@ tags: git
 
 `oh anotherOne wtf?`
 
-![](https://static.beetcb.com?path=/postimg/11/1.png)
+![](https://static.beetcb.com/postimg/11/1.png)
 
 #### 魔法一：git coomit --amend -m ''🃏
 
@@ -44,7 +44,7 @@ git coomit --amend -m 'Sun of a Beach with canvas'
 
 **实际效果图**：
 
-![](https://static.beetcb.com?path=/postimg/11/2.png)
+![](https://static.beetcb.com/postimg/11/2.png)
 
 如果没有加 <code>-m</code>参数的话，会弹出 vim 让你编辑最近一次的 commit
 
@@ -93,7 +93,7 @@ git reset master^ #opt3: 利用当前所在分支
 
 **实际效果图**：
 
-![](https://static.beetcb.com?path=/postimg/11/3.png)
+![](https://static.beetcb.com/postimg/11/3.png)
 
 #### 魔法三：git rebase🃏
 
@@ -105,7 +105,7 @@ git reset master^ #opt3: 利用当前所在分支
 git log --oneline
 ```
 
-![](https://static.beetcb.com?path=/postimg/11/4.png)
+![](https://static.beetcb.com/postimg/11/4.png)
 
 ##### 2.确定操作的范围
 
@@ -114,11 +114,11 @@ git rebase -i 4d11e38
 #此处-i表示interactive 交互式的rebase过程
 ```
 
-![](https://static.beetcb.com?path=/postimg/11/5.png)
+![](https://static.beetcb.com/postimg/11/5.png)
 
 ##### 3.把需要修改的 commit 前面 <code>pick</code> 改为 <code>r</code>
 
-![](https://static.beetcb.com?path=/postimg/11/6.png)
+![](https://static.beetcb.com/postimg/11/6.png)
 
 保存并退出 vim 编辑器
 
@@ -128,11 +128,11 @@ git rebase -i 4d11e38
 
 退出保存后，再次查看 commit
 
-![](https://static.beetcb.com?path=/postimg/11/7.png)
+![](https://static.beetcb.com/postimg/11/7.png)
 
 我们再重新看看这张图，
 
-![](https://static.beetcb.com?path=/postimg/11/8.png)
+![](https://static.beetcb.com/postimg/11/8.png)
 
 细心的你有没有发现 除了可以 `r`(也就是 reword commit) 还有很多强大的操作，这里举两个栗子：
 
@@ -149,7 +149,7 @@ git rebase -i 4d11e38
 
 但是，新的 commit 物件并没有被之后的 commit 所指到 ，当你再次 reset 回去的时候，一切还是原来的样子。不信你看
 
-![](https://static.beetcb.com?path=/postimg/11/9.png)
+![](https://static.beetcb.com/postimg/11/9.png)
 
 除非你愿意去手动修改 commit 的指向，可能会生效吧
 
