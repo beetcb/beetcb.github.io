@@ -1,5 +1,5 @@
 import './css/my.css'
-import './css/prism-dracula.css'
+import './css/prism.css'
 import './Pixer.woff'
 
 let judge = false

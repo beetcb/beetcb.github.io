@@ -293,13 +293,12 @@ article .location time {
   position: absolute;
   font-size: 3em;
   left: 0;
-  top: 0.2em;
   content: '\201c';
   color: var(--link);
 }
 .content code {
   font-size: 0.9em;
-  color: var(--inline-codecode);
+  color: var(--inline-code);
 }
 
 .content h5 {
