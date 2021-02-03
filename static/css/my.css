@@ -36,11 +36,11 @@ html {
   padding: 0;
   height: 100%;
   text-rendering: optimizeSpeed;
-  font: 400 14px;
+  font: 300 14px;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica Neue, Arial, sans-serif;
   word-wrap: break-word;
-  line-height: 1.7rem;
+  line-height: 1.6;
   overflow: auto; /* add bfc to avoid body 'collapse' */
 }
 *,
@@ -55,8 +55,8 @@ a {
 ol,
 ul {
   margin: 0;
+  padding: 0;
   display: inline;
-  list-style: none;
 }
 .article pre code {
   font-size: 16px;
@@ -74,6 +74,7 @@ html {
   --border-hover: #04d481;
   --link: #bd93f9;
   --alink: #47ebb4;
+  --inline-code: #a35991;
 }
 body {
   display: flex;
@@ -222,7 +223,7 @@ body {
   background: var(--bg-edge);
   border-top-left-radius: 35px;
   border-top-right-radius: 35px;
-  line-height: 0.8em;
+  line-height: 0.8;
 }
 
 .footer-desc {
@@ -256,6 +257,9 @@ body {
   transform: rotate(45deg);
   filter: invert(1);
   font-size: 12px;
+}
+.article li {
+  margin-left: 1em;
 }
 .article .title {
   padding: 20px 0 20px 10px;
@@ -295,11 +299,6 @@ article .location time {
   border-left: 5px solid var(--link);
   border-radius: 0.2em;
 }
-.content li::before {
-  content: '•';
-  color: var(--link);
-  padding-right: 4px;
-}
 .content blockquote::before {
   position: absolute;
   font-size: 3em;
@@ -309,22 +308,10 @@ article .location time {
   color: var(--link);
 }
 .content code {
-  background: #433e47;
-  font-size: 98%;
-  padding: 0.2em 0.4em;
-  border-radius: 5px;
+  font-size: 0.9em;
+  color: var(--inline-codecode);
 }
 
-.content h2::after,
-.content h3::after,
-.content h4::after,
-.content h5::after,
-.content h6::after {
-  content: '#';
-  color: var(--link);
-  float: left;
-  margin-left: -0.8em;
-}
 .content h5 {
   font-size: 1.2em;
 }
