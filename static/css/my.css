@@ -36,7 +36,6 @@ html {
   padding: 0;
   height: 100%;
   text-rendering: optimizeSpeed;
-  font: 300 14px;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica Neue, Arial, sans-serif;
   word-wrap: break-word;
@@ -66,10 +65,8 @@ ul {
   global layout 
 ========= */
 html {
-  --bg-body: #202124;
-  --bg-edge: #06375e;
-  --bg-tag: #012d4e;
-  --text: white;
+  --bg-tag: #8599a8;
+  --text: black;
   --border: #b0dde9;
   --border-hover: #04d481;
   --link: #bd93f9;
@@ -80,7 +77,6 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: var(--bg-body);
 }
 
 .main {
@@ -183,9 +179,6 @@ body {
   text-align: center;
   color: var(--link);
 }
-.beetsaid small {
-  color: var(--border);
-}
 
 .tagList {
   display: flex;
@@ -220,9 +213,6 @@ body {
 /* footer */
 .footer {
   color: var(--text);
-  background: var(--bg-edge);
-  border-top-left-radius: 35px;
-  border-top-right-radius: 35px;
   line-height: 0.8;
 }
 
@@ -234,7 +224,7 @@ body {
 }
 .footer a[href="http://www.beian.miit.gov.cn/"]
 {
-  color: black;
+  color: var(--border);
   font-size: 12px;
 }
 
