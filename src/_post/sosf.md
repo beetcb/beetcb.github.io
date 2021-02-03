@@ -4,10 +4,8 @@ title: sosf 部署教程
 author: beet
 post: '@22@'
 date: 2020-12-05 08:23:23
-nailimg: https://static.beetcb.com/nailimg/bash.png
-tags:
-  - severless
-  - image hosting
+nailimg: https://static.beetcb.com/nailimg/host.png
+tags: severless
 ---
 
 ### sosf 简介
