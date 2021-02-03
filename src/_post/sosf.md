@@ -12,7 +12,7 @@ tags: severless
 
 **S**everless **O**neDrive & **S**harePoint **F**unction
 
-博主使用世纪互联 OneDrive 一年多了，之前一直使用 CloudFlare Worker 做分享索引。最近我不再阿里 OSS，所以想利用 OneDrive 来做图床，CloudFlare Worker 的问题是国内网络环境下它太慢了，特别是世纪互联用户，虽说是国内服务器，总有种毫无用武之地的感觉。于是 sosf 诞生了，它或许是**国内**访问最快的 OneDrive **免服务器**图床程序，专为**世纪互联**用户打造
+博主使用世纪互联 OneDrive 一年多了，之前一直使用 CloudFlare Worker 做分享索引。最近我不再使用阿里 OSS 了，所以想利用 OneDrive 来做图床，CloudFlare Worker 的问题是国内网络环境下它太慢了，特别是世纪互联用户，虽说是国内服务器，总有种毫无用武之地的感觉。于是 sosf 诞生了，它或许是**国内**访问最快的 OneDrive **免服务器**图床程序，专为**世纪互联**用户打造
 
 > 注：SharePoint 文档储存功能和 OneDrive 网盘类似，本说明将他们统称为 OneDrive
 
