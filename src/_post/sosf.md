@@ -114,7 +114,7 @@ tags: severless
 
    配置完成后，sosf 会创建一个 `.env` 文件，内容大致如下：
 
-   ![.env](https://i.imgur.com/iTGXe8I.png)
+   ![.env](https://static.beetcb.com/postimg/22/env0.png)
 
 2. 进入刚刚创建的环境 ⇢ 左栏云函数 ⇢ 编辑环境变量 ⇢ 将本地 `.env` 文件里的 key-value 依次填入环境变量并保存。，类似下图：
 
