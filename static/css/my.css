@@ -97,10 +97,6 @@ body {
 ========= */
 
 /* main layout */
-.main img,
-.main video {
-  width: 100%;
-}
 .post-container {
   display: flex;
   margin: 0 auto;
@@ -361,7 +357,6 @@ pre[class*='language-'] {
 
 img {
   display: block;
-  width: 100%;
   max-width: 100%;
   height: auto;
   border-radius: 5px;
