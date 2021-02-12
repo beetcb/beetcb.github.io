@@ -1,5 +1,4 @@
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight'),
-  lazyImagesPlugin = require('eleventy-plugin-lazyimages'),
   yaml = require('js-yaml')
 
 module.exports = eleventyConfig => {
